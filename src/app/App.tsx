@@ -1,5 +1,6 @@
 import React from 'react'
 
+import './App.css'
 import { Navigate, NavLink, Route, Routes } from 'react-router-dom'
 
 import { Error404 } from 'common/components/Error404/Error404'
