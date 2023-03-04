@@ -1,8 +1,10 @@
 const initState = {}
 
-export const loginReducer = (state = initState, action: ActionType) => {
+export const loginReducer = (state: initStateType = initState, action: ActionType) => {
   switch (action.type) {
     case 'CHANGE_LOGIN':
+      return state
+    default:
       return state
   }
 }

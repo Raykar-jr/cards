@@ -1,8 +1,10 @@
 const initState = {}
 
-export const profileReducer = (state = initState, action: ActionType) => {
+export const profileReducer = (state: initStateType = initState, action: ActionType) => {
   switch (action.type) {
     case 'CHANGE_PROFILE':
+      return state
+    default:
       return state
   }
 }

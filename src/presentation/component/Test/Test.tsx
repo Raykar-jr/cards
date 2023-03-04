@@ -12,7 +12,7 @@ const Test: React.FC<Props> = () => {
       <h1>Test</h1>
       <SuperInputText />
       <br />
-      <SuperButton children={'Button'} />
+      <SuperButton></SuperButton>
       <br />
       <SuperCheckbox />
     </div>

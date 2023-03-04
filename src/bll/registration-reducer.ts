@@ -1,8 +1,10 @@
 const initState = {}
 
-export const registrationReducer = (state = initState, action: ActionType) => {
+export const registrationReducer = (state: initStateType = initState, action: ActionType) => {
   switch (action.type) {
     case 'CHANGE_REGISTRATION':
+      return state
+    default:
       return state
   }
 }
