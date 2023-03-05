@@ -1,0 +1,19 @@
+.h1 {
+    margin-top: 35px;
+    margin-bottom: 50px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 32px;
+    color: #000000;
+}
+
+.optionalText {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;
+
+    opacity: 0.5;
+}

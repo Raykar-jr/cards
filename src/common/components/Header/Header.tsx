@@ -25,7 +25,7 @@ export const Header = () => {
         <AppBar sx={{ bgcolor: '#FCFCFC' }} position="fixed">
           <Container maxWidth="lg">
             <Toolbar>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#366EFF' }}>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: 'black' }}>
                 Cards
               </Typography>
               <Button
