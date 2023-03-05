@@ -9,7 +9,7 @@ import FormLabel from '@mui/material/FormLabel'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import { useFormik } from 'formik'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 
 import textStyle from '../../common/styles/Text.module.css'
 
@@ -24,6 +24,7 @@ import {
   login_linkStyle,
   login_linkStyleTwo,
 } from 'common/styles/LoginStyles'
+import { login } from 'features/Login/login-reducer'
 
 type Props = {}
 type FormikErrorType = {
@@ -58,15 +59,14 @@ export const Login = () => {
       return errors
     },
     onSubmit: values => {
-      console.log(values)
-      //dispatch(loginTC(values))
+      dispatch(login(values))
       formik.resetForm()
     },
   })
 
-  /* if (isLoggedIn) {
-                  return <Navigate to="" />
-                }*/
+  if (isLoggedIn) {
+    return <Navigate to={PATH.PROFILE.PROFILE} />
+  }
 
   return (
     <Grid container display="flex" justifyContent={'center'} className={s.loginGrid}>
@@ -77,12 +77,18 @@ export const Login = () => {
               <p className={textStyle.h1}>Sign In</p>
             </FormLabel>
             <FormGroup>
-              <TextField label="Email" margin="normal" {...formik.getFieldProps('email')} />
+              <TextField
+                variant="standard"
+                label="Email"
+                margin="normal"
+                {...formik.getFieldProps('email')}
+              />
               {formik.touched.email && formik.errors.email && (
                 <div style={login_errorTextStyle}> {formik.errors.email} </div>
               )}
 
               <TextField
+                variant="standard"
                 type="password"
                 label="Password"
                 margin="normal"
