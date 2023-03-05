@@ -4,7 +4,6 @@ import { Dispatch } from 'redux'
 import { setAppError } from 'app/app-reducer'
 
 export const errorUtils = (e: Error | AxiosError<{ error: string }>, dispatch: Dispatch) => {
-  debugger
   const err = e as Error | AxiosError<{ error: string }>
 
   if (axios.isAxiosError(err)) {

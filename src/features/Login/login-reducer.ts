@@ -24,13 +24,11 @@ export const setIsLoggedIn = (value: boolean) =>
 // thunks
 export const login = (data: LoginParamsType) => async (dispatch: Dispatch<ActionType>) => {
   try {
-    debugger
     let response = await loginApi.signIn(data)
 
     //TO-DO Забирать данные пользователя
     dispatch(setIsLoggedIn(true))
   } catch (e) {
-    debugger
     // @ts-ignore
     errorUtils(e, dispatch)
     // TO DO: избавиться от ts-ignore
