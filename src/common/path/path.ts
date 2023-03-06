@@ -4,6 +4,7 @@ export const PATH = {
     REGISTRATION: '/registration',
     RECOVERY_PASSWORD: '/recoveryPassword',
     CREATE_NEW_PASSWORD: '/createNewPassword/',
+    CHECK_EMAIL: '/checkEmail',
   },
   PROFILE: {
     PROFILE: '/profile',

@@ -1,0 +1,37 @@
+.mainContainer {
+    width: 413px;
+    height: 408px;
+    margin-top: 60px;
+    padding: 35px 33px 42px;
+
+    text-align: center;
+}
+
+.button {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.h1 {
+    margin-bottom: 30px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 32px;
+    color: #000000;
+}
+
+.optionalText {
+    margin-top: 31px;
+    margin-bottom: 20px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    color: #000000;
+
+    opacity: 0.5;
+}
