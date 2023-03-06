@@ -2,16 +2,25 @@ import React from 'react'
 
 import { Paper, Typography } from '@mui/material'
 import { Formik } from 'formik'
-import { NavLink } from 'react-router-dom'
+import { Navigate, NavLink } from 'react-router-dom'
 import * as Yup from 'yup'
 
+import { useAppDispatch, useAppSelector } from 'app/store'
 import { PATH } from 'common/path/path'
+import { registration } from 'features/Registration/registration-reducer'
 import s from 'features/Registration/Registration.module.css'
 import RegistrationForm from 'features/Registration/RegistrationForm'
 
 type Login = {}
 
 const Registration: React.FC<Login> = () => {
+  const dispatch = useAppDispatch()
+  const isRegistered = useAppSelector<boolean>(state => state.registration.isRegistered)
+
+  if (isRegistered) {
+    return <Navigate to={PATH.LOGIN.LOGIN} />
+  }
+
   return (
     <div>
       <Paper elevation={3} className={s.mainContainer}>
@@ -22,17 +31,21 @@ const Registration: React.FC<Login> = () => {
           validationSchema={Yup.object().shape({
             email: Yup.string().email('Invalid email address').required('Required'),
             password: Yup.string()
-              .min(5, 'Password must be at least 5 characters')
+              .min(7, 'Password must be at least 7 characters')
               .required('Required'),
             confirmPassword: Yup.string()
               .required('Required')
               .oneOf([Yup.ref('password')], 'Passwords must match'),
           })}
           // todo 'Вывести в переменную, убрать лог, прописать логику
-          onSubmit={values => console.log(JSON.stringify(values))}
+          onSubmit={(values, { resetForm }) => {
+            dispatch(registration({ email: values.email, password: values.password }))
+            resetForm()
+          }}
         >
           {formik => <RegistrationForm formik={formik} />}
         </Formik>
+
         <Typography className={s.optionalText}>Already have an account?</Typography>
         <NavLink to={PATH.LOGIN.LOGIN}>Sign In</NavLink>
       </Paper>
