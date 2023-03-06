@@ -5,6 +5,7 @@ import { Navigate, NavLink, Route, Routes } from 'react-router-dom'
 
 import { Error404 } from 'common/components/Error404/Error404'
 import { Header } from 'common/components/Header/Header'
+import { SnackBar } from 'common/components/SnackBar/SnackBar'
 import { PATH } from 'common/path/path'
 import { Login } from 'features/Login/Login'
 import { CheckEmail } from 'features/Password/CheckEmail/CheckEmail'
@@ -37,6 +38,7 @@ export const App = () => {
         <Route path={PATH.LOGIN.CHECK_EMAIL} element={<CheckEmail />} />
         <Route path={'*'} element={<Navigate to={PATH.COMMON.ERROR404} />} />
       </Routes>
+      <SnackBar />
     </div>
   )
 }
