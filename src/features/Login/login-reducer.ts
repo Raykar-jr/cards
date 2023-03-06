@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux'
 
 import { setAppError } from 'app/app-reducer'
-import { errorUtils } from 'common/utils/error-util'
+import { handleError } from 'common/utils/error-util'
 import { loginApi, LoginParamsType } from 'features/Login/login-api'
 
 const initState = {
@@ -29,9 +29,7 @@ export const login = (data: LoginParamsType) => async (dispatch: Dispatch<Action
     //TO-DO Забирать данные пользователя
     dispatch(setIsLoggedIn(true))
   } catch (e) {
-    // @ts-ignore
-    errorUtils(e, dispatch)
-    // TO DO: избавиться от ts-ignore
+    handleError(e, dispatch)
   }
 }
 // types
