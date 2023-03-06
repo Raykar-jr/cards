@@ -18,7 +18,8 @@ import s from './Login.module.css'
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { PATH } from 'common/path/path'
 import {
-  login_errorTextStyle,
+  common_button,
+  errorTextStyle,
   login_formLabelStyle,
   login_formLabelTwoStyle,
   login_linkStyle,
@@ -84,7 +85,7 @@ export const Login = () => {
                 {...formik.getFieldProps('email')}
               />
               {formik.touched.email && formik.errors.email && (
-                <div style={login_errorTextStyle}> {formik.errors.email} </div>
+                <div style={errorTextStyle}> {formik.errors.email} </div>
               )}
 
               <TextField
@@ -95,7 +96,7 @@ export const Login = () => {
                 {...formik.getFieldProps('password')}
               />
               {formik.touched.password && formik.errors.password && (
-                <div style={login_errorTextStyle}> {formik.errors.password} </div>
+                <div style={errorTextStyle}> {formik.errors.password} </div>
               )}
 
               <FormControlLabel
@@ -114,13 +115,7 @@ export const Login = () => {
                 </Link>
               </FormLabel>
 
-              <Button
-                className={s.button}
-                sx={{ borderRadius: '30px' }}
-                type={'submit'}
-                variant={'contained'}
-                color={'primary'}
-              >
+              <Button sx={common_button} type={'submit'} variant={'contained'} color={'primary'}>
                 Sign In
               </Button>
 

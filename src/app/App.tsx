@@ -14,7 +14,7 @@ import Registration from 'features/Registration/Registration'
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <Header />
       <div style={{ marginTop: '80px' }}>
         <NavLink to={PATH.LOGIN.LOGIN}>Login </NavLink>
