@@ -11,17 +11,22 @@ import { useNavigate } from 'react-router-dom'
 
 // import s from './Header.module.css'
 
-import { useAppSelector } from 'app/store'
+import { useAppDispatch, useAppSelector } from 'app/store'
 import photo from 'assets/images/photo.svg'
 import { PATH } from 'common/path/path'
 import { common_button } from 'common/styles/LoginStyles'
+import { logout } from 'features/Login/login-reducer'
 
 export const Header = () => {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const name = ''
-  const isLoggedIn = useAppSelector<boolean>(state => state.login.isLoggedIn) || true
+  const name = 'Snezhok'
+  const isLoggedIn = useAppSelector<boolean>(state => state.login.isLoggedIn)
   const loginHandler = () => {
     navigate(PATH.LOGIN.LOGIN)
+  }
+  const logOutHandler = () => {
+    dispatch(logout())
   }
 
   return (
@@ -38,6 +43,9 @@ export const Header = () => {
                   component="div"
                   sx={{ color: 'black', display: 'flex', alignItems: 'center', gap: '12px' }}
                 >
+                  <Button sx={common_button} variant="contained" onClick={logOutHandler}>
+                    Log out
+                  </Button>
                   <span>{name}</span>
                   <Avatar sx={{ width: 36, height: 36 }} alt="UserName" src={photo} sizes="small" />
                 </Typography>
