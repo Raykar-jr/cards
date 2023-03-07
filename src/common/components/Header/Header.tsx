@@ -9,11 +9,12 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import { useNavigate } from 'react-router-dom'
 
-import s from './Header.module.css'
+// import s from './Header.module.css'
 
 import { useAppSelector } from 'app/store'
 import photo from 'assets/images/photo.svg'
 import { PATH } from 'common/path/path'
+import { common_button } from 'common/styles/LoginStyles'
 
 export const Header = () => {
   const navigate = useNavigate()
@@ -41,12 +42,7 @@ export const Header = () => {
                   <Avatar sx={{ width: 36, height: 36 }} alt="UserName" src={photo} sizes="small" />
                 </Typography>
               ) : (
-                <Button
-                  sx={{ borderRadius: '30px' }}
-                  className={s.button}
-                  variant="contained"
-                  onClick={loginHandler}
-                >
+                <Button sx={common_button} variant="contained" onClick={loginHandler}>
                   Sign In
                 </Button>
               )}
