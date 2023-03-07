@@ -25,6 +25,27 @@ export type UserDataType = {
   _id?: string
   avatar?: string
 }
+export interface ResponseUpdateUserDataType {
+  updatedUser: ResponseType
+  token: string
+  tokenDeathTime: number
+}
+
+type ResponseType = {
+  _id: string
+  email: string
+  name: string
+  avatar?: string
+  publicCardPacksCount: number
+
+  created: Date
+  updated: Date
+  isAdmin: boolean
+  verified: boolean
+  rememberMe: boolean
+
+  error?: string
+}
 
 export type PassDataType = {
   password: string
