@@ -35,6 +35,16 @@ export const login = (data: LoginParamsType) => async (dispatch: Dispatch<Action
     handleError(e, dispatch)
   }
 }
+
+export const logout = () => async (dispatch: Dispatch<ActionType>) => {
+  try {
+    await authAPI.logout()
+
+    dispatch(setIsLoggedIn(false))
+  } catch (e) {
+    handleError(e, dispatch)
+  }
+}
 // types
 type initStateType = typeof initState
 type ActionType = ReturnType<typeof setIsLoggedIn> | ReturnType<typeof setAppError> | SetUserDataAT
