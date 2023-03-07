@@ -4,7 +4,7 @@ import { setAppError } from 'app/app-reducer'
 import { authAPI } from 'common/api/authAPI'
 import { LoginParamsType } from 'common/api/DataTypes'
 import { handleError } from 'common/utils/error-util'
-import { setUserData, SetUserDataAT } from 'features/Profile/profile-reducer'
+import { setUserData, SetUserDataActionType } from 'features/Profile/profile-reducer'
 
 const initState = {
   isLoggedIn: false,
@@ -27,9 +27,9 @@ export const setIsLoggedIn = (value: boolean) =>
 export const login = (data: LoginParamsType) => async (dispatch: Dispatch<ActionType>) => {
   try {
     let response = await authAPI.login(data)
-    let { email, name, publicCardPacksCount, _id, avatar } = response.data
+    let { email, name, _id, avatar } = response.data
 
-    dispatch(setUserData({ email, name, publicCardPacksCount, _id, avatar }))
+    dispatch(setUserData({ email, name, _id, avatar }))
     dispatch(setIsLoggedIn(true))
   } catch (e) {
     handleError(e, dispatch)
@@ -37,4 +37,7 @@ export const login = (data: LoginParamsType) => async (dispatch: Dispatch<Action
 }
 // types
 type initStateType = typeof initState
-type ActionType = ReturnType<typeof setIsLoggedIn> | ReturnType<typeof setAppError> | SetUserDataAT
+type ActionType =
+  | ReturnType<typeof setIsLoggedIn>
+  | ReturnType<typeof setAppError>
+  | SetUserDataActionType
