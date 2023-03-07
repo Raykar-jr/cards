@@ -3,12 +3,14 @@ import React, { useEffect } from 'react'
 import { Paper } from '@mui/material'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
-//import { Navigate } from 'react-router-dom'
 
+//import { Navigate } from 'react-router-dom'
+import s from './Profile.module.scss'
 import { User } from './User/User'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
 import profile_logout from 'assets/images/profile_logout.svg'
+//import { PATH } from 'common/path/path'
 
 type Props = {}
 
@@ -20,12 +22,8 @@ const Profile: React.FC<Props> = () => {
   }
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      return
-    }
-    //dispatch()
+    //if (!isLoggedIn) <Navigate to={PATH.LOGIN.LOGIN} />
   }, [])
-  /*if (!isLoggedIn) return <Navigate to={'/login'} />*/
 
   return (
     <Grid container display="flex" justifyContent="center" marginTop="40px">
@@ -42,15 +40,7 @@ const Profile: React.FC<Props> = () => {
           borderRadius: '2px',
         }}
       >
-        <span
-          style={{
-            fontWeight: 600,
-            fontSize: '22px',
-            lineHeight: '27px',
-          }}
-        >
-          Personal Information
-        </span>
+        <span className={s.title}>Personal Information</span>
         <User />
         <Button
           onClick={logOutHandler}

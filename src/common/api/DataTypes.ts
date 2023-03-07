@@ -18,3 +18,10 @@ export type ResponseLoginType = {
   // количество колод
   error?: string
 }
+
+export type UserDataType = {
+  name: string
+  email?: string
+  _id?: string
+  avatar?: string
+}

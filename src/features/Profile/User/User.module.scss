@@ -1,0 +1,15 @@
+@import "src/common/styles/scss/mixins";
+
+.information {
+  @include flex(flex-start,center,column);
+  gap: 10px;
+  .name {
+    display: flex;
+    gap: 5px;
+  }
+
+  .email {
+    @include fontSettings(14px, 400, 24px);
+    opacity: 0.5;
+  }
+}
