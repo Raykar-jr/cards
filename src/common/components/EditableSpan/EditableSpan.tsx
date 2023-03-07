@@ -1,6 +1,11 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react'
 
 import { TextField } from '@mui/material'
+import Button from '@mui/material/Button'
+
+import s from './EditableSpan.module.scss'
+
+import edit_name from 'assets/images/edit_name.svg'
 
 type EditableSpanPropsType = {
   initTitle: string
@@ -28,22 +33,40 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo(
 
     return isEditMode ? (
       <TextField
+        label="Nickname"
         variant="standard"
         value={title}
         onBlur={activateEditModule}
         onChange={onChangeHandler}
         onKeyDown={onEnter}
         autoFocus
+        sx={{ width: '100%' }}
+        InputProps={{
+          endAdornment: (
+            <Button
+              onClick={activateEditModule}
+              variant="contained"
+              sx={{
+                height: 24,
+                width: 54,
+                fontWeight: 400,
+                fontSize: '12px',
+                bgcolor: '#366EFF',
+                borderRadius: '2px',
+              }}
+            >
+              SAVE
+            </Button>
+          ),
+        }}
       />
     ) : (
-      <span
-        onDoubleClick={activateEditModule}
-        style={{
-          fontSize: '20px',
-        }}
-      >
-        {title}
-      </span>
+      <>
+        <span className={s.nickname}>{title}</span>
+        <button className={s.button} onClick={activateEditModule}>
+          <img src={edit_name} alt="edit" />
+        </button>
+      </>
     )
   }
 )
