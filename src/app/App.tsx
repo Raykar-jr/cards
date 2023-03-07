@@ -1,18 +1,12 @@
 import React from 'react'
 
 import './App.css'
-import { Navigate, NavLink, Route, Routes } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-import { Error404 } from 'common/components/Error404/Error404'
 import { Header } from 'common/components/Header/Header'
+import { RoutesPage } from 'common/components/RoutesPage/RoutesPage'
 import { SnackBar } from 'common/components/SnackBar/SnackBar'
 import { PATH } from 'common/path/path'
-import { Login } from 'features/Login/Login'
-import { CheckEmail } from 'features/Password/CheckEmail/CheckEmail'
-import { CreateNewPassword } from 'features/Password/CreateNewPassword/CreateNewPassword'
-import { RecoveryPassword } from 'features/Password/RecoveryPassword/RecoveryPassword'
-import Profile from 'features/Profile/Profile'
-import Registration from 'features/Registration/Registration'
 
 export const App = () => {
   return (
@@ -28,16 +22,7 @@ export const App = () => {
         <NavLink to={PATH.LOGIN.CHECK_EMAIL}> Check email</NavLink>
       </div>
 
-      <Routes>
-        <Route path={PATH.LOGIN.LOGIN} element={<Login />} />
-        <Route path={PATH.PROFILE.PROFILE} element={<Profile />} />
-        <Route path={PATH.LOGIN.CREATE_NEW_PASSWORD} element={<CreateNewPassword />} />
-        <Route path={PATH.LOGIN.REGISTRATION} element={<Registration />} />
-        <Route path={PATH.LOGIN.RECOVERY_PASSWORD} element={<RecoveryPassword />} />
-        <Route path={PATH.COMMON.ERROR404} element={<Error404 />} />
-        <Route path={PATH.LOGIN.CHECK_EMAIL} element={<CheckEmail />} />
-        <Route path={'*'} element={<Navigate to={PATH.COMMON.ERROR404} />} />
-      </Routes>
+      <RoutesPage />
       <SnackBar />
     </div>
   )
