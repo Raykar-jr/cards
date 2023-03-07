@@ -8,8 +8,8 @@ import * as Yup from 'yup'
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { PATH } from 'common/path/path'
 import { registration } from 'features/Registration/registration-reducer'
-import s from 'features/Registration/Registration.module.css'
-import RegistrationForm from 'features/Registration/RegistrationForm'
+import s from 'features/Registration/Registration.module.scss'
+import RegistrationForm from 'features/Registration/RegistrationForm/RegistrationForm'
 
 type Login = {}
 
@@ -47,7 +47,9 @@ const Registration: React.FC<Login> = () => {
         </Formik>
 
         <Typography className={s.optionalText}>Already have an account?</Typography>
-        <NavLink to={PATH.LOGIN.LOGIN}>Sign In</NavLink>
+        <NavLink to={PATH.LOGIN.LOGIN}>
+          <div className={s.textLink}>Sign In</div>
+        </NavLink>
       </Paper>
     </div>
   )

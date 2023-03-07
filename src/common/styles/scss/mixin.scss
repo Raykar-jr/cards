@@ -1,0 +1,9 @@
+@import "variables";
+
+@mixin fontSettings($fountSize, $fontWeight, $lineHeight) {
+  font-family: $montserrat !important;
+  font-size: $fountSize !important;
+  font-weight: $fontWeight !important;
+  font-style: normal !important;
+  line-height: $lineHeight !important;
+}

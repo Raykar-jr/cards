@@ -1,0 +1,36 @@
+@import "src/common/styles/scss/variables";
+@import "src/common/styles/scss/mixin";
+
+.mainContainer {
+    box-sizing: border-box;
+    width: 414px;
+    min-height: 528px;
+    margin: 60px auto 0;
+    padding: 35px 33px 42px;
+
+    text-align: center;
+
+    & .title {
+        margin: 0 0 41px;
+
+        @include fontSettings(26px,  600, 32px);
+    }
+
+    & .optionalText {
+        margin-bottom: 10px!important;
+
+        @include fontSettings(14px, 600, 24px);
+
+        opacity: 0.5!important;
+    }
+
+    & .textLink {
+        @include fontSettings(16px, 600, 24px);
+
+        color: #366EFF;
+    }
+}
+
+
+
+
