@@ -1,5 +1,32 @@
 @import "src/common/styles/scss/mixins";
 
-.title{
-  @include fontSettings(22px,600,27px)
+.profileWrapper {
+  .arrow {
+    margin: 0 auto;
+    padding-left: 10%;
+    cursor: pointer;
+    @include fontSettings(14px, 400, 24px);
+
+    & img {
+      margin-right: 12px;
+    }
+
+    & a {
+
+      text-decoration: none;
+
+      &:visited {
+        color: black;
+      }
+    }
+  }
+
+  .title {
+    @include fontSettings(22px, 600, 27px)
+  }
+
+  .img {
+    margin-right: 10px;
+  }
+
 }
