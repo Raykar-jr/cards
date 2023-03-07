@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { Paper } from '@mui/material'
 import Button from '@mui/material/Button'
@@ -13,22 +13,13 @@ import profile_logout from 'assets/images/profile_logout.svg'
 import vector from 'assets/images/vector.svg'
 import { PATH } from 'common/path/path'
 import { logout } from 'features/Login/login-reducer'
-import { getUserDataTC } from 'features/Profile/profile-reducer'
 
 const Profile = () => {
-  debugger
   const isLoggedIn = useAppSelector<boolean>(state => state.login.isLoggedIn)
   const dispatch = useAppDispatch()
   const logOutHandler = () => {
     dispatch(logout())
   }
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      return
-    }
-    dispatch(getUserDataTC())
-  }, [])
 
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN.LOGIN} />
