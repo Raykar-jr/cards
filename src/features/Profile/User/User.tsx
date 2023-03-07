@@ -4,14 +4,18 @@ import { Typography } from '@mui/material'
 import Avatar from '@mui/material/Avatar'
 import Badge from '@mui/material/Badge'
 
+import s from './User.module.scss'
+
+import { useAppSelector } from 'app/store'
 import edit_name from 'assets/images/edit_name.svg'
 import edit_photo from 'assets/images/edit_photo.svg'
 import photo from 'assets/images/photo.svg'
 import { EditableSpan } from 'common/components/EditableSpan/EditableSpan'
 
 export const User = () => {
-  const email = 'j&johnson@gmail.com'
-  const name = 'Alex'
+  const email = useAppSelector<string>(state => state.profile.email) || 'weqwewe@sad.ru'
+  const name = useAppSelector<string>(state => state.profile.name) || 'Alex'
+  const avatar = useAppSelector<string>(state => state.profile.avatar) || photo
   const editName = () => {}
 
   return (
@@ -21,27 +25,15 @@ export const User = () => {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         badgeContent={<Avatar alt="Remy Sharp" src={edit_photo} sx={{ width: 32, height: 32 }} />}
       >
-        <Avatar sx={{ width: 96, height: 96 }} alt="UserName" src={photo} sizes="small" />
+        <Avatar sx={{ width: 96, height: 96 }} alt="UserName" src={avatar} sizes="small" />
       </Badge>
-      <Typography
-        component="div"
-        sx={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center' }}
-      >
-        <div style={{ display: 'flex', gap: '5px' }}>
+      <div className={s.information}>
+        <div className={s.name}>
           <EditableSpan changeTitle={editName} initTitle={name} />
           <img src={edit_name} alt="edit" />
         </div>
-        <span
-          style={{
-            fontWeight: '400px',
-            fontSize: '14px',
-            lineHeight: '24px',
-            opacity: 0.5,
-          }}
-        >
-          {email}
-        </span>
-      </Typography>
+        <span className={s.email}>{email}</span>
+      </div>
     </>
   )
 }
