@@ -1,8 +1,9 @@
 import { Dispatch } from 'redux'
 
 import { setAppError } from 'app/app-reducer'
+import { authAPI } from 'common/api/authAPI'
+import { LoginParamsType } from 'common/api/DataTypes'
 import { handleError } from 'common/utils/error-util'
-import { loginApi, LoginParamsType } from 'features/Login/login-api'
 
 const initState = {
   isLoggedIn: false,
@@ -24,7 +25,7 @@ export const setIsLoggedIn = (value: boolean) =>
 // thunks
 export const login = (data: LoginParamsType) => async (dispatch: Dispatch<ActionType>) => {
   try {
-    let response = await loginApi.signIn(data)
+    let response = await authAPI.login(data)
 
     //TO-DO Забирать данные пользователя
     dispatch(setIsLoggedIn(true))

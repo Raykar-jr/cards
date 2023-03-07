@@ -1,7 +1,8 @@
 import { Dispatch } from 'redux'
 
+import { authAPI } from 'common/api/authAPI'
+import { RegisterData } from 'common/api/DataTypes'
 import { handleError } from 'common/utils/error-util'
-import { registerApi, RegisterData } from 'features/Registration/register-api'
 
 const initState = {
   isRegistered: false,
@@ -25,7 +26,7 @@ export const setIsRegistration = (value: boolean) =>
 // thunks
 export const registration = (data: RegisterData) => async (dispatch: Dispatch<ActionType>) => {
   try {
-    let response = await registerApi.singUp(data)
+    let response = await authAPI.register(data)
 
     dispatch(setIsRegistration(true))
   } catch (e) {

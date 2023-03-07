@@ -1,9 +1,6 @@
-import { instance } from 'common/api/main-api'
-
-export const loginApi = {
-  signIn(data: LoginParamsType) {
-    return instance.post<ResponseLoginType>('auth/login', data)
-  },
+export type RegisterData = {
+  email: string
+  password: string
 }
 
 export type LoginParamsType = {
