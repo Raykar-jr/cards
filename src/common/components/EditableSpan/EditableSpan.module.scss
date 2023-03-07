@@ -1,0 +1,10 @@
+@import 'src/common/styles/scss/mixins';
+
+.nickname {
+  @include fontSettings(20px, 500, 24px);
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+}
