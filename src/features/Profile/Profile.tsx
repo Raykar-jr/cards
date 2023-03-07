@@ -3,62 +3,77 @@ import React, { useEffect } from 'react'
 import { Paper } from '@mui/material'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
+import { Navigate, NavLink } from 'react-router-dom'
 
-//import { Navigate } from 'react-router-dom'
 import s from './Profile.module.scss'
 import { User } from './User/User'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
 import profile_logout from 'assets/images/profile_logout.svg'
-//import { PATH } from 'common/path/path'
+import vector from 'assets/images/vector.svg'
+import { PATH } from 'common/path/path'
+import { logout } from 'features/Login/login-reducer'
+import { getUserDataTC } from 'features/Profile/profile-reducer'
 
-type Props = {}
-
-const Profile: React.FC<Props> = () => {
+const Profile = () => {
+  debugger
   const isLoggedIn = useAppSelector<boolean>(state => state.login.isLoggedIn)
   const dispatch = useAppDispatch()
   const logOutHandler = () => {
-    //dispatch()
+    dispatch(logout())
   }
 
   useEffect(() => {
-    //if (!isLoggedIn) <Navigate to={PATH.LOGIN.LOGIN} />
+    if (!isLoggedIn) {
+      return
+    }
+    dispatch(getUserDataTC())
   }, [])
 
+  if (!isLoggedIn) {
+    return <Navigate to={PATH.LOGIN.LOGIN} />
+  }
+
   return (
-    <Grid container display="flex" justifyContent="center" marginTop="40px">
-      <Paper
-        elevation={3}
-        sx={{
-          p: '27px 0 36px 0',
-          height: '360px',
-          width: '420px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexDirection: 'column',
-          borderRadius: '2px',
-        }}
-      >
-        <span className={s.title}>Personal Information</span>
-        <User />
-        <Button
-          onClick={logOutHandler}
+    <div className={s.profileWrapper}>
+      <div className={s.arrow}>
+        <img src={vector} alt="vector icon" />
+        <NavLink to={''}>Back to Packs List</NavLink>
+      </div>
+      <Grid container display="flex" justifyContent="center" marginTop="40px">
+        <Paper
+          elevation={3}
           sx={{
-            borderRadius: '30px',
-            px: '20px',
-            color: 'black',
-            lineHeight: '20px',
-            textTransform: 'none',
-            boxShadow:
-              '0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3)',
+            p: '27px 0 36px 0',
+            height: '360px',
+            width: '420px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexDirection: 'column',
+            borderRadius: '2px',
           }}
         >
-          <img src={profile_logout} alt="edit" style={{ marginRight: '10px' }} />
-          Log out
-        </Button>
-      </Paper>
-    </Grid>
+          <span className={s.title}>Personal Information</span>
+          <User />
+          <Button
+            onClick={logOutHandler}
+            sx={{
+              borderRadius: '30px',
+              px: '20px',
+              color: 'black',
+              lineHeight: '20px',
+              textTransform: 'none',
+              boxShadow:
+                '0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3)',
+            }}
+          >
+            <img src={profile_logout} alt="edit" className={s.img} />
+            Log out
+          </Button>
+        </Paper>
+      </Grid>
+    </div>
   )
 }
 
