@@ -1,36 +1,35 @@
-const initState = {
-  _id: null,
-  email: null,
-  name: null,
-  publicCardPacksCount: 0,
-  avatar: null,
-  verified: false,
+import { UserDataType } from 'common/api/DataTypes'
+
+const initState: InitStateType = {
+  name: '',
+  email: '',
+  _id: '',
+  avatar: '',
 }
 
-export const profileReducer = (state: ProfileInitStateType = initState, action: ActionType) => {
+export const profileReducer = (state = initState, action: ProfileActionsType): InitStateType => {
   switch (action.type) {
-    case 'PROFILE/SET_USER_DATA':
-      return { ...state, ...action.userData }
-    default:
+    case 'PROFILE/SET-USER-DATA':
+      return { ...state, ...action.payload.data }
+    default: {
       return state
+    }
   }
 }
 
-// actions
-export const setUserData = (userData: ProfileInitStateType) =>
-  ({
-    type: 'PROFILE/SET_USER_DATA',
-    userData,
-  } as const)
-
-// types
-type ProfileInitStateType = {
-  _id: null | string
-  email: null | string
-  name: null | string
-  publicCardPacksCount: number
-  avatar?: null | string
-  verified?: boolean
+export const setUserData = (data: UserDataType) => {
+  return {
+    type: 'PROFILE/SET-USER-DATA',
+    payload: { data },
+  } as const
 }
-type ActionType = SetUserDataAT
-export type SetUserDataAT = ReturnType<typeof setUserData>
+
+type InitStateType = {
+  name: string
+  email: string
+  _id: string
+  avatar: string
+}
+
+export type ProfileActionsType = SetUserDataActionType
+export type SetUserDataActionType = ReturnType<typeof setUserData>
