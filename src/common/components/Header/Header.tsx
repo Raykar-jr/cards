@@ -12,7 +12,6 @@ import { useNavigate } from 'react-router-dom'
 // import s from './Header.module.css'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
-import photo from 'assets/images/photo.svg'
 import { PATH } from 'common/path/path'
 import { common_button } from 'common/styles/LoginStyles'
 import { logout } from 'features/Login/login-reducer'
@@ -20,7 +19,8 @@ import { logout } from 'features/Login/login-reducer'
 export const Header = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const name = 'Snezhok'
+  const name = useAppSelector<string>(state => state.profile.name)
+  const avatar = useAppSelector<string>(state => state.profile.avatar)
   const isLoggedIn = useAppSelector<boolean>(state => state.login.isLoggedIn)
   const loginHandler = () => {
     navigate(PATH.LOGIN.LOGIN)
@@ -43,11 +43,16 @@ export const Header = () => {
                   component="div"
                   sx={{ color: 'black', display: 'flex', alignItems: 'center', gap: '12px' }}
                 >
-                  <Button sx={common_button} variant="contained" onClick={logOutHandler}>
+                  {/* <Button sx={common_button} variant="contained" onClick={logOutHandler}>
                     Log out
-                  </Button>
+                  </Button>*/}
                   <span>{name}</span>
-                  <Avatar sx={{ width: 36, height: 36 }} alt="UserName" src={photo} sizes="small" />
+                  <Avatar
+                    sx={{ width: 36, height: 36 }}
+                    alt="UserName"
+                    src={avatar}
+                    sizes="small"
+                  />
                 </Typography>
               ) : (
                 <Button sx={common_button} variant="contained" onClick={loginHandler}>
