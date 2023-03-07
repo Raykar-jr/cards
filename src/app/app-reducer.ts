@@ -1,3 +1,10 @@
+import { Dispatch } from 'redux'
+
+import { authAPI } from 'common/api/authAPI'
+import { handleError } from 'common/utils/error-util'
+import { setIsLoggedIn } from 'features/Login/login-reducer'
+import { setUserData } from 'features/Profile/profile-reducer'
+
 const initialState: AppInitialStateType = {
   status: 'idle', // idle - начальное значение (простаивание)
   error: null,
@@ -32,6 +39,17 @@ export type AppInitialStateType = {
   isInitialized: boolean
 }
 
+export const initializeAppTC = () => async (dispatch: Dispatch) => {
+  try {
+    const response = await authAPI.me()
+    const { name, email, _id, avatar } = response.data
+
+    dispatch(setIsLoggedIn(true))
+    dispatch(setUserData({ name, _id, email, avatar }))
+  } catch (e: any) {
+    handleError(e, dispatch)
+  }
+}
 export type AppInitialStateStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 
 export type ApplicationActionType = ReturnType<typeof appSetStatus> | ReturnType<typeof setAppError>
