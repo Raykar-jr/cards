@@ -1,6 +1,5 @@
 import { Dispatch } from 'redux'
 
-import { authAPI } from 'common/api/authAPI'
 import { UserDataType } from 'common/api/DataTypes'
 import { handleError } from 'common/utils/error-util'
 import { profileAPI, UpdateDataUserType } from 'features/Profile/profile-api'
@@ -48,19 +47,6 @@ export const changeUserDataTC =
       handleError(e, dispatch)
     }
   }
-
-export const getUserDataTC = () => async (dispatch: Dispatch<ProfileActionsType>) => {
-  try {
-    const response = await authAPI.me()
-
-    console.log(response)
-    const { name, email, _id, avatar } = response.data
-
-    dispatch(setUserData({ name, _id, email, avatar }))
-  } catch (e: any) {
-    handleError(e, dispatch)
-  }
-}
 
 //types
 export type ProfileActionsType = SetUserDataActionType
