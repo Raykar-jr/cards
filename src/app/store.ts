@@ -4,6 +4,7 @@ import thunkMiddleware, { ThunkDispatch } from 'redux-thunk'
 
 import { appReducer } from 'app/app-reducer'
 import { loginReducer } from 'features/Login/login-reducer'
+import { recoveryPassReducer } from 'features/Password/RecoveryPassword/recoveryPass-reducer'
 import { profileReducer } from 'features/Profile/profile-reducer'
 import { registrationReducer } from 'features/Registration/registration-reducer'
 
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   login: loginReducer,
   profile: profileReducer,
   registration: registrationReducer,
+  recovery: recoveryPassReducer,
 })
 
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware))

@@ -25,3 +25,13 @@ export type UserDataType = {
   _id?: string
   avatar?: string
 }
+
+export type PassDataType = {
+  password: string
+  resetPasswordToken: string | undefined
+}
+export type RecoveredDataType = {
+  email: string
+  from: string
+  message: string
+}

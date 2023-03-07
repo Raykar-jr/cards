@@ -2,14 +2,21 @@ import React from 'react'
 
 import Grid from '@mui/material/Grid'
 import { Formik } from 'formik'
+import { useParams } from 'react-router-dom'
 import * as Yup from 'yup'
 
+import { useAppDispatch } from 'app/store'
 import { CreateNewPasswordForm } from 'features/Password/CreateNewPassword/CreateNewPasswordForm'
+import { setNewPass } from 'features/Password/RecoveryPassword/recoveryPass-reducer'
 import s from 'features/Password/RecoveryPassword/RecoveryPassword.module.css'
 
 type Props = {}
 
 export const CreateNewPassword: React.FC<Props> = () => {
+  const { token } = useParams()
+
+  const dispatch = useAppDispatch()
+
   return (
     <Grid container display="flex" justifyContent={'center'} className={s.wrapper}>
       <Grid item justifyContent={'center'}>
@@ -17,16 +24,14 @@ export const CreateNewPassword: React.FC<Props> = () => {
           initialValues={{ password: '' }}
           validationSchema={Yup.object().shape({
             password: Yup.string()
-              .min(5, 'Password must be at least 5 characters')
+              .min(7, 'Password must be at least 7 characters')
               .required('Required field'),
           })}
-          // todo 'убрать лог, прописать логику'
           onSubmit={(values, actions) => {
-            // console.log(JSON.stringify(values))
-            // dispatch
+            let passData = { password: values.password, resetPasswordToken: token }
 
+            dispatch(setNewPass(passData))
             actions.resetForm()
-            // редирект на Check Email component
           }}
         >
           {formik => <CreateNewPasswordForm formik={formik} />}
