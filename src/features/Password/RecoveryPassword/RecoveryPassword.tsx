@@ -27,12 +27,12 @@ export const RecoveryPassword: React.FC<Props> = () => {
           validationSchema={Yup.object().shape({
             email: Yup.string().email('Invalid email address').required('Required field'),
           })}
-          onSubmit={(values, { resetForm }) => {
+          onSubmit={async (values, { resetForm }) => {
             const recoveredData = makeRecoveredData(values.email)
 
             dispatch(setEmail(values.email))
-            dispatch(recovery(recoveredData))
             resetForm()
+            await dispatch(recovery(recoveredData))
             navigate(PATH.LOGIN.CHECK_EMAIL)
           }}
         >

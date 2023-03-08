@@ -46,7 +46,7 @@ export const initializeAppTC = () => async (dispatch: Dispatch) => {
 
     dispatch(setIsLoggedIn(true))
     dispatch(setUserData({ name, _id, email, avatar }))
-  } catch (e: any) {
+  } catch (e) {
     handleError(e, dispatch)
   }
 }

@@ -30,15 +30,15 @@ export const setEmail = (email: string) => ({ type: 'SET-EMAIL', email } as cons
 export const recovery = (recoveredData: RecoveredDataType) => async (dispatch: Dispatch) => {
   try {
     await authAPI.recoveryPass(recoveredData)
-
-    dispatch(setRecovery(true))
   } catch (e) {
     handleError(e, dispatch)
   }
 }
 export const setNewPass = (passData: PassDataType) => async (dispatch: Dispatch) => {
   try {
-    let response = await authAPI.setNewPass(passData)
+    await authAPI.setNewPass(passData)
+
+    dispatch(setRecovery(true))
   } catch (e) {
     handleError(e, dispatch)
   }
