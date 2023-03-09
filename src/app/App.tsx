@@ -16,6 +16,7 @@ export const App = () => {
   const [open, setOpen] = useState(false)
 
   const status = useAppSelector((state): requestStatus => state.app.status)
+  const isInitialized = useAppSelector((state): boolean => state.app.isInitialized)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -26,6 +27,14 @@ export const App = () => {
   useEffect(() => {
     dispatch(initializeAppTC())
   }, [])
+
+  if (!isInitialized) {
+    return (
+      <div style={{ margin: '20% 50%' }}>
+        <CircularProgress color="primary" />
+      </div>
+    )
+  }
 
   return (
     <div className="App">
