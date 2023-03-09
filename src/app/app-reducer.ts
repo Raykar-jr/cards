@@ -5,14 +5,21 @@ import { handleError } from 'common/utils/error-util'
 import { setIsLoggedIn } from 'features/Login/login-reducer'
 import { setUserData } from 'features/Profile/profile-reducer'
 
-const initialState: AppInitialStateType = {
-  status: 'idle', // idle - начальное значение (простаивание)
-  error: null,
+export enum requestStatus {
+  IDLE = 'idle',
+  LOADING = 'loading',
+  SUCCEEDED = 'succeeded',
+  FAILED = 'failed',
+}
+
+const initialState = {
+  status: requestStatus.IDLE, // idle - начальное значение (простаивание)
+  error: null as null | string,
   isInitialized: false,
 }
 
 export const appReducer = (
-  state: AppInitialStateType = initialState,
+  state = initialState,
   action: ApplicationActionType
 ): AppInitialStateType => {
   switch (action.type) {
@@ -26,18 +33,11 @@ export const appReducer = (
   }
 }
 // actions
-export const appSetStatus = (status: AppInitialStateStatusType) =>
-  ({ type: 'APP/SET_STATUS', status } as const)
+export const appSetStatus = (status: requestStatus) => ({ type: 'APP/SET_STATUS', status } as const)
 export const setAppError = (error: string | null) => ({ type: 'APP/SET-ERROR', error } as const)
 
 // types
-export type AppInitialStateType = {
-  // происходит ли сейчас взаимодействие с сервером
-  status: AppInitialStateStatusType
-  // текст ошибки запишем сюда
-  error: string | null
-  isInitialized: boolean
-}
+export type AppInitialStateType = typeof initialState
 
 export const initializeAppTC = () => async (dispatch: Dispatch) => {
   try {
@@ -50,6 +50,6 @@ export const initializeAppTC = () => async (dispatch: Dispatch) => {
     handleError(e, dispatch)
   }
 }
-export type AppInitialStateStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 
-export type ApplicationActionType = ReturnType<typeof appSetStatus> | ReturnType<typeof setAppError>
+export type AppSetStatusType = ReturnType<typeof appSetStatus>
+export type ApplicationActionType = AppSetStatusType | ReturnType<typeof setAppError>

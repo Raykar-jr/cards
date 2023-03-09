@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux'
 
+import { appSetStatus, AppSetStatusType, requestStatus } from 'app/app-reducer'
 import { authAPI } from 'common/api/authAPI'
 import { RegisterData } from 'common/api/DataTypes'
 import { handleError } from 'common/utils/error-util'
@@ -26,12 +27,15 @@ export const setIsRegistration = (value: boolean) =>
 // thunks
 export const registration = (data: RegisterData) => async (dispatch: Dispatch<ActionType>) => {
   try {
-    let response = await authAPI.register(data)
+    dispatch(appSetStatus(requestStatus.LOADING))
+    await authAPI.register(data)
 
     dispatch(setIsRegistration(true))
   } catch (e) {
     handleError(e, dispatch)
+  } finally {
+    dispatch(appSetStatus(requestStatus.SUCCEEDED))
   }
 }
 type initStateType = typeof initState
-type ActionType = ReturnType<typeof setIsRegistration>
+type ActionType = ReturnType<typeof setIsRegistration> | AppSetStatusType
