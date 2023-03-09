@@ -35,6 +35,7 @@ export type AppInitialStateType = typeof initialState
 
 export const initializeAppTC = () => async (dispatch: Dispatch) => {
   try {
+    dispatch(appSetStatus(requestStatus.LOADING))
     const response = await authAPI.me()
     const { name, email, _id, avatar } = response.data
 
@@ -42,6 +43,8 @@ export const initializeAppTC = () => async (dispatch: Dispatch) => {
     dispatch(setUserData({ name, _id, email, avatar }))
   } catch (e) {
     handleError(e, dispatch)
+  } finally {
+    dispatch(appSetStatus(requestStatus.SUCCEEDED))
   }
 }
 
