@@ -6,22 +6,15 @@ import CircularProgress from '@mui/material/CircularProgress/CircularProgress'
 import { initializeAppTC } from 'app/app-reducer'
 import s from 'app/App.module.scss'
 import { useAppDispatch, useAppSelector } from 'app/store'
+import { BackDrop } from 'common/components/BackDrop/BackDrop'
 import { Header } from 'common/components/Header/Header'
 import { RoutesPage } from 'common/components/RoutesPage/RoutesPage'
 import { SnackBar } from 'common/components/SnackBar/SnackBar'
 import { requestStatus } from 'common/enums/requestStatus'
 
 export const App = () => {
-  const [open, setOpen] = useState(false)
-
-  const status = useAppSelector((state): requestStatus => state.app.status)
   const isInitialized = useAppSelector((state): boolean => state.app.isInitialized)
   const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    if (status === requestStatus.LOADING) setOpen(true)
-    else setOpen(false)
-  }, [status])
 
   useEffect(() => {
     dispatch(initializeAppTC())
@@ -37,11 +30,7 @@ export const App = () => {
 
   return (
     <div className="App">
-      {status === requestStatus.LOADING && (
-        <Backdrop open={open} className={s.backdrop}>
-          <CircularProgress color="inherit" />
-        </Backdrop>
-      )}
+      <BackDrop />
       <Header />
       <RoutesPage />
       <SnackBar />
