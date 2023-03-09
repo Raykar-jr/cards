@@ -1,10 +1,12 @@
 import React from 'react'
 
-import { Box, Button, Grid } from '@mui/material'
-
-import image404 from '../../../assets/images/404.svg'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Grid from '@mui/material/Grid'
 
 import s from './Error404.module.css'
+
+import image404 from 'assets/images/404.svg'
 
 export const Error404 = () => {
   return (

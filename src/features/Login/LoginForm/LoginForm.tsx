@@ -25,8 +25,8 @@ import {
   login_linkStyle,
   login_linkStyleTwo,
 } from 'common/styles/LoginStyles'
-import textStyle from 'common/styles/Text.module.css'
-import s from 'features/Login/Login.module.css'
+import textStyle from 'common/styles/Text.module.scss'
+import s from 'features/Login/Login.module.scss'
 
 type Props = {
   formik: FormikProps<{ email: string; password: string; rememberMe: boolean }>

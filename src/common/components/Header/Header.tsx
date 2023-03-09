@@ -9,8 +9,6 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import { useNavigate } from 'react-router-dom'
 
-// import s from './Header.module.css'
-
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { PATH } from 'common/path/path'
 import { common_button } from 'common/styles/LoginStyles'
