@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Paper, Typography } from '@mui/material'
-import { Formik, FormikHelpers } from 'formik'
+import { Formik } from 'formik'
 import { Navigate, NavLink } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
@@ -23,12 +23,8 @@ const Registration: React.FC<Login> = () => {
     return <Navigate to={PATH.LOGIN.LOGIN} />
   }
 
-  const submitRegistrationForm = async (
-    values: RegisterData,
-    { setSubmitting }: FormikHelpers<RegisterData & { confirmPassword: string }>
-  ): Promise<void> => {
+  const submitRegistrationForm = async (values: RegisterData): Promise<void> => {
     await dispatch(registration(values))
-    setSubmitting(false)
   }
 
   return (

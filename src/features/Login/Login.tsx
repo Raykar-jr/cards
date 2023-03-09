@@ -1,9 +1,8 @@
 import React from 'react'
 
 import Grid from '@mui/material/Grid'
-import { Formik, FormikHelpers } from 'formik'
+import { Formik } from 'formik'
 import { Navigate } from 'react-router-dom'
-import * as Yup from 'yup'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { LoginParamsType } from 'common/api/DataTypes'
@@ -21,12 +20,8 @@ export const Login = () => {
     return <Navigate to={PATH.PROFILE.PROFILE} />
   }
 
-  const submitLoginForm = async (
-    values: LoginParamsType,
-    { setSubmitting }: FormikHelpers<LoginParamsType>
-  ): Promise<void> => {
+  const submitLoginForm = async (values: LoginParamsType): Promise<void> => {
     await dispatch(login(values))
-    setSubmitting(false)
   }
 
   return (
