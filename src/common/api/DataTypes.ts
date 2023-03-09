@@ -3,6 +3,11 @@ export type RegisterData = {
   password: string
 }
 
+export type RegisterResponseType = {
+  addedUser: any
+  error?: string
+}
+
 export type LoginParamsType = {
   email: string
   password: string
