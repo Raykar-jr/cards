@@ -1,7 +1,7 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react'
 
-import { TextField } from '@mui/material'
 import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
 
 import s from './EditableSpan.module.scss'
 
