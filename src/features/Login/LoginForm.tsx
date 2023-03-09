@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
 import FormControl from '@mui/material/FormControl'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import FormGroup from '@mui/material/FormGroup'
 import FormLabel from '@mui/material/FormLabel'
+import IconButton from '@mui/material/IconButton'
+import Input from '@mui/material/Input'
+import InputAdornment from '@mui/material/InputAdornment'
+import InputLabel from '@mui/material/InputLabel'
 import TextField from '@mui/material/TextField'
 import { FormikProps } from 'formik'
 import { Link } from 'react-router-dom'
@@ -26,12 +32,20 @@ type Props = {
   formik: FormikProps<{ email: string; password: string; rememberMe: boolean }>
 }
 export const LoginForm: React.FC<Props> = ({ formik }) => {
+  const [showPassword, setShowPassword] = useState(false)
+
+  const handleClickShowPassword = () => setShowPassword(show => !show)
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+  }
+
   return (
     <form onSubmit={formik.handleSubmit} className={s.form}>
       <FormControl sx={{ width: '100%' }}>
         <FormLabel>
           <p className={textStyle.h1}>Sign In</p>
         </FormLabel>
+
         <FormGroup>
           <TextField
             variant="standard"
@@ -39,17 +53,30 @@ export const LoginForm: React.FC<Props> = ({ formik }) => {
             margin="normal"
             {...formik.getFieldProps('email')}
           />
+
           {formik.touched.email && formik.errors.email && (
             <div style={errorTextStyle}> {formik.errors.email} </div>
           )}
 
-          <TextField
-            variant="standard"
-            type="password"
-            label="Password"
-            margin="normal"
-            {...formik.getFieldProps('password')}
-          />
+          <FormControl variant="standard" margin="normal">
+            <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+            <Input
+              type={showPassword ? 'text' : 'password'}
+              {...formik.getFieldProps('password')}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+
           {formik.touched.password && formik.errors.password && (
             <div style={errorTextStyle}> {formik.errors.password} </div>
           )}
