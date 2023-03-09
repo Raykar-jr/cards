@@ -1,8 +1,9 @@
 import { Dispatch } from 'redux'
 
-import { appSetStatus, AppSetStatusType, requestStatus } from 'app/app-reducer'
+import { appSetStatus, AppSetStatusType } from 'app/app-reducer'
 import { authAPI } from 'common/api/authAPI'
 import { PassDataType, RecoveredDataType } from 'common/api/DataTypes'
+import { requestStatus } from 'common/enums/requestStatus'
 import { handleError } from 'common/utils/error-util'
 
 const initialState = {

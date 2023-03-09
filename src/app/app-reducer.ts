@@ -1,16 +1,10 @@
 import { Dispatch } from 'redux'
 
 import { authAPI } from 'common/api/authAPI'
+import { requestStatus } from 'common/enums/requestStatus'
 import { handleError } from 'common/utils/error-util'
 import { setIsLoggedIn } from 'features/Login/login-reducer'
 import { setUserData } from 'features/Profile/profile-reducer'
-
-export enum requestStatus {
-  IDLE = 'idle',
-  LOADING = 'loading',
-  SUCCEEDED = 'succeeded',
-  FAILED = 'failed',
-}
 
 const initialState = {
   status: requestStatus.IDLE, // idle - начальное значение (простаивание)

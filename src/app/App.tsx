@@ -5,11 +5,12 @@ import './App.css'
 import Backdrop from '@mui/material/Backdrop/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress'
 
-import { initializeAppTC, requestStatus } from 'app/app-reducer'
+import { initializeAppTC } from 'app/app-reducer'
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { Header } from 'common/components/Header/Header'
 import { RoutesPage } from 'common/components/RoutesPage/RoutesPage'
 import { SnackBar } from 'common/components/SnackBar/SnackBar'
+import { requestStatus } from 'common/enums/requestStatus'
 
 export const App = () => {
   const [open, setOpen] = useState(false)
