@@ -37,9 +37,8 @@ const Registration: React.FC<Login> = () => {
               .required('Required')
               .oneOf([Yup.ref('password')], 'Passwords must match'),
           })}
-          onSubmit={(values, { resetForm }) => {
+          onSubmit={values => {
             dispatch(registration({ email: values.email, password: values.password }))
-            resetForm()
           }}
         >
           {formik => <RegistrationForm formik={formik} />}
