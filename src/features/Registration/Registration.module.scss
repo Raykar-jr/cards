@@ -24,11 +24,6 @@
         opacity: 0.5!important;
     }
 
-    & .textLink {
-        @include fontSettings(16px, 600, 24px);
-
-        color: #366EFF;
-    }
 }
 
 
