@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
-import './App.css'
-
 import Backdrop from '@mui/material/Backdrop/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress'
 
 import { initializeAppTC } from 'app/app-reducer'
+import s from 'app/App.module.scss'
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { Header } from 'common/components/Header/Header'
 import { RoutesPage } from 'common/components/RoutesPage/RoutesPage'
@@ -30,7 +29,7 @@ export const App = () => {
 
   if (!isInitialized) {
     return (
-      <div style={{ margin: '20% 50%' }}>
+      <div className={s.initialized}>
         <CircularProgress color="primary" />
       </div>
     )
@@ -39,7 +38,7 @@ export const App = () => {
   return (
     <div className="App">
       {status === requestStatus.LOADING && (
-        <Backdrop open={open} sx={{ color: '#fff', zIndex: 10 }}>
+        <Backdrop open={open} className={s.backdrop}>
           <CircularProgress color="inherit" />
         </Backdrop>
       )}

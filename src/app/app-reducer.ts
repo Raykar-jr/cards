@@ -37,8 +37,8 @@ export const setIsInitialized = (isInitialized: boolean) =>
 // types
 export type AppInitialStateType = typeof initialState
 
+// thunks
 export const initializeAppTC = () => async (dispatch: Dispatch) => {
-  debugger
   try {
     const response = await authAPI.me()
     const { name, email, _id, avatar } = response.data

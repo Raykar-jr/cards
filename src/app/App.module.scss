@@ -14,8 +14,17 @@ body {
     font-style: normal;
     line-height: 24px;
     color: #000000;
+
+    & button {
+        cursor: pointer
+    }
+    .initialized {
+        margin: 20% 50%;
+    }
+    .backdrop {
+    color: #fff;
+    z-index: 10;
 }
 
-button {
-    cursor: pointer
 }
+
