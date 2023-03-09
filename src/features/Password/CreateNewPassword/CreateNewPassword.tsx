@@ -32,11 +32,10 @@ export const CreateNewPassword: React.FC<Props> = () => {
               .min(7, 'Password must be at least 7 characters')
               .required('Required field'),
           })}
-          onSubmit={(values, actions) => {
+          onSubmit={values => {
             let passData = { password: values.password, resetPasswordToken: token }
 
             dispatch(setNewPass(passData))
-            actions.resetForm()
           }}
         >
           {formik => <CreateNewPasswordForm formik={formik} />}

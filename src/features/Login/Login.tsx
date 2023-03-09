@@ -12,8 +12,6 @@ import { PATH } from 'common/path/path'
 import { login } from 'features/Login/login-reducer'
 import { LoginForm } from 'features/Login/LoginForm'
 
-type Props = {}
-
 export const Login = () => {
   const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector<boolean>(state => state.login.isLoggedIn)
@@ -33,10 +31,7 @@ export const Login = () => {
               .min(7, 'Password must be at least 7 characters')
               .required('Required field'),
           })}
-          onSubmit={(values, { resetForm }) => {
-            dispatch(login(values))
-            resetForm()
-          }}
+          onSubmit={values => dispatch(login(values))}
         >
           {formik => <LoginForm formik={formik} />}
         </Formik>
