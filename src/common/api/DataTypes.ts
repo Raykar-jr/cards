@@ -61,3 +61,6 @@ export type RecoveredDataType = {
   from: string
   message: string
 }
+export type PasswordType = {
+  password: string
+}
