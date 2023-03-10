@@ -2,7 +2,6 @@ import { Dispatch } from 'redux'
 
 import { authAPI } from 'common/api/authAPI'
 import { requestStatus } from 'common/enums/requestStatus'
-import { handleError } from 'common/utils/error-util'
 import { setIsLoggedIn } from 'features/Login/login-reducer'
 import { setUserData } from 'features/Profile/profile-reducer'
 
@@ -45,8 +44,6 @@ export const initializeAppTC = () => async (dispatch: Dispatch) => {
 
     dispatch(setIsLoggedIn(true))
     dispatch(setUserData({ name, _id, email, avatar }))
-  } catch (e) {
-    handleError(e, dispatch)
   } finally {
     dispatch(setIsInitialized(true))
   }
