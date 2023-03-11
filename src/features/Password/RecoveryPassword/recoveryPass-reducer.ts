@@ -12,9 +12,9 @@ const initialState = {
 }
 
 export const recoveryPassReducer = (
-  state: RecoveryPassStateType = initialState,
+  state = initialState,
   action: RecoveryPassActionType
-) => {
+): RecoveryPassStateType => {
   switch (action.type) {
     case 'SET-RECOVERY-PASSWORD':
       return { ...state, success: action.value }
@@ -53,10 +53,7 @@ export const setNewPass = (passData: PassDataType) => async (dispatch: Dispatch)
 }
 
 // types
-type RecoveryPassStateType = {
-  success: boolean
-  email: string
-}
+type RecoveryPassStateType = typeof initialState
 type RecoveryPassActionType =
   | ReturnType<typeof setRecovery>
   | ReturnType<typeof setEmail>

@@ -6,13 +6,7 @@ import { requestStatus } from 'common/enums/requestStatus'
 import { handleError } from 'common/utils/error-util'
 import { profileAPI, UpdateDataUserType } from 'features/Profile/profile-api'
 
-type InitStateType = {
-  name: string
-  email: string
-  _id: string
-  avatar: string
-}
-const initState: InitStateType = {
+const initState = {
   name: '',
   email: '',
   _id: '',
@@ -52,5 +46,6 @@ export const changeUserDataTC =
   }
 
 //types
+type InitStateType = typeof initState
 export type ProfileActionsType = SetUserDataActionType | AppSetStatusType
 export type SetUserDataActionType = ReturnType<typeof setUserData>

@@ -3,14 +3,15 @@ import React from 'react'
 import { Paper, Typography } from '@mui/material'
 import { Formik } from 'formik'
 import { Navigate, NavLink } from 'react-router-dom'
-import * as Yup from 'yup'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
+import { RegisterData } from 'common/api/DataTypes'
 import { PATH } from 'common/path/path'
 import { login_linkStyleTwo } from 'common/styles/LoginStyles'
 import { registration } from 'features/Registration/registration-reducer'
 import s from 'features/Registration/Registration.module.scss'
 import RegistrationForm from 'features/Registration/RegistrationForm/RegistrationForm'
+import { validationRegistrationForm } from 'features/Registration/validationRegistrationForm'
 
 type Login = {}
 
@@ -22,24 +23,18 @@ const Registration: React.FC<Login> = () => {
     return <Navigate to={PATH.LOGIN.LOGIN} />
   }
 
+  const submitRegistrationForm = async (values: RegisterData): Promise<void> => {
+    await dispatch(registration(values))
+  }
+
   return (
     <div>
       <Paper elevation={3} className={s.mainContainer}>
         <Typography className={s.title}>Sing Up</Typography>
         <Formik
           initialValues={{ email: '', password: '', confirmPassword: '' }}
-          validationSchema={Yup.object().shape({
-            email: Yup.string().email('Invalid email address').required('Required'),
-            password: Yup.string()
-              .min(7, 'Password must be at least 7 characters')
-              .required('Required'),
-            confirmPassword: Yup.string()
-              .required('Required')
-              .oneOf([Yup.ref('password')], 'Passwords must match'),
-          })}
-          onSubmit={values => {
-            dispatch(registration({ email: values.email, password: values.password }))
-          }}
+          validationSchema={validationRegistrationForm}
+          onSubmit={submitRegistrationForm}
         >
           {formik => <RegistrationForm formik={formik} />}
         </Formik>

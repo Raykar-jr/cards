@@ -2,7 +2,6 @@ import { Dispatch } from 'redux'
 
 import { authAPI } from 'common/api/authAPI'
 import { requestStatus } from 'common/enums/requestStatus'
-import { handleError } from 'common/utils/error-util'
 import { setIsLoggedIn } from 'features/Login/login-reducer'
 import { setUserData } from 'features/Profile/profile-reducer'
 
@@ -37,16 +36,14 @@ export const setIsInitialized = (isInitialized: boolean) =>
 // types
 export type AppInitialStateType = typeof initialState
 
+// thunks
 export const initializeAppTC = () => async (dispatch: Dispatch) => {
-  debugger
   try {
     const response = await authAPI.me()
     const { name, email, _id, avatar } = response.data
 
     dispatch(setIsLoggedIn(true))
     dispatch(setUserData({ name, _id, email, avatar }))
-  } catch (e) {
-    handleError(e, dispatch)
   } finally {
     dispatch(setIsInitialized(true))
   }

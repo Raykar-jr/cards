@@ -17,7 +17,7 @@ import {
   login_formLabelTwoStyle,
   login_linkStyleTwo,
 } from 'common/styles/LoginStyles'
-import textStyle from 'common/styles/Text.module.css'
+import textStyle from 'common/styles/Text.module.scss'
 
 type Props = {
   formik: FormikProps<{ email: string }>

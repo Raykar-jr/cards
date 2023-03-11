@@ -4,12 +4,13 @@ import {
   PassDataType,
   RegisterData,
   ResponseLoginType,
+  RegisterResponseType,
 } from 'common/api/DataTypes'
 import { herokuInstance, instance } from 'common/api/main-api'
 
 export const authAPI = {
   register(data: RegisterData) {
-    return instance.post('auth/register', data)
+    return instance.post<RegisterResponseType>('auth/register', data)
   },
   login(data: LoginParamsType) {
     return instance.post<ResponseLoginType>('auth/login', data)

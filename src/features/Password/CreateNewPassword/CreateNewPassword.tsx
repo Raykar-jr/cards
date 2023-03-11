@@ -1,13 +1,14 @@
 import React from 'react'
 
 import Grid from '@mui/material/Grid'
-import { Formik } from 'formik'
+import { Formik, FormikHelpers } from 'formik'
 import { Navigate, useParams } from 'react-router-dom'
-import * as Yup from 'yup'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
+import { PassDataType, PasswordType } from 'common/api/DataTypes'
 import { PATH } from 'common/path/path'
 import { CreateNewPasswordForm } from 'features/Password/CreateNewPassword/CreateNewPasswordForm'
+import { validatePass } from 'features/Password/CreateNewPassword/validatePassword'
 import { setNewPass } from 'features/Password/RecoveryPassword/recoveryPass-reducer'
 import s from 'features/Password/RecoveryPassword/RecoveryPassword.module.css'
 
@@ -21,22 +22,20 @@ export const CreateNewPassword: React.FC<Props> = () => {
   if (successRecovery) {
     return <Navigate to={PATH.LOGIN.LOGIN} />
   }
+  const submitForm = (values: PasswordType, { setSubmitting }: FormikHelpers<PasswordType>) => {
+    let passData: PassDataType = { password: values.password, resetPasswordToken: token }
+
+    dispatch(setNewPass(passData))
+    setSubmitting(false)
+  }
 
   return (
     <Grid container display="flex" justifyContent={'center'} className={s.wrapper}>
       <Grid item justifyContent={'center'}>
         <Formik
           initialValues={{ password: '' }}
-          validationSchema={Yup.object().shape({
-            password: Yup.string()
-              .min(7, 'Password must be at least 7 characters')
-              .required('Required field'),
-          })}
-          onSubmit={values => {
-            let passData = { password: values.password, resetPasswordToken: token }
-
-            dispatch(setNewPass(passData))
-          }}
+          validationSchema={validatePass}
+          onSubmit={submitForm}
         >
           {formik => <CreateNewPasswordForm formik={formik} />}
         </Formik>

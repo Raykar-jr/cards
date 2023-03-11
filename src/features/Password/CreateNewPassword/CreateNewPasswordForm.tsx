@@ -15,7 +15,7 @@ import { FormikProps } from 'formik'
 import s from './CreateNewPassword.module.css'
 
 import { common_button, errorTextStyle, login_formLabelTwoStyle } from 'common/styles/LoginStyles'
-import textStyle from 'common/styles/Text.module.css'
+import textStyle from 'common/styles/Text.module.scss'
 
 type Props = {
   formik: FormikProps<{ password: string }>

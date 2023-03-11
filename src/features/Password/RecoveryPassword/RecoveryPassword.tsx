@@ -19,6 +19,14 @@ export const RecoveryPassword: React.FC<Props> = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
+  const submitForm = async (values: { email: string }): Promise<void> => {
+    const recoveredData = makeRecoveredData(values.email)
+
+    dispatch(setEmail(values.email))
+    await dispatch(recovery(recoveredData))
+    navigate(PATH.LOGIN.CHECK_EMAIL)
+  }
+
   return (
     <Grid container display="flex" justifyContent={'center'} className={s.wrapper}>
       <Grid item justifyContent={'center'}>
@@ -27,13 +35,7 @@ export const RecoveryPassword: React.FC<Props> = () => {
           validationSchema={Yup.object().shape({
             email: Yup.string().email('Invalid email address').required('Required field'),
           })}
-          onSubmit={async values => {
-            const recoveredData = makeRecoveredData(values.email)
-
-            dispatch(setEmail(values.email))
-            await dispatch(recovery(recoveredData))
-            navigate(PATH.LOGIN.CHECK_EMAIL)
-          }}
+          onSubmit={submitForm}
         >
           {formik => <RecoveryPasswordForm formik={formik} />}
         </Formik>
