@@ -4,10 +4,11 @@ import Alert from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
 
 import { setAppError } from 'app/app-reducer'
+import { selectAppError } from 'app/appSelectors'
 import { useAppDispatch, useAppSelector } from 'app/store'
 
 export const SnackBar = () => {
-  const error = useAppSelector<string | null>(state => state.app.error)
+  const error = useAppSelector<string | null>(selectAppError)
 
   const dispatch = useAppDispatch()
   const handleClose = (event?: React.SyntheticEvent<any> | Event, reason?: string) => {

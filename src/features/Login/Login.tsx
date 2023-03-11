@@ -10,11 +10,12 @@ import { PATH } from 'common/path/path'
 import { login } from 'features/Login/login-reducer'
 import s from 'features/Login/Login.module.scss'
 import { LoginForm } from 'features/Login/LoginForm/LoginForm'
+import { selectIsLoggedIn } from 'features/Login/loginSelectors'
 import { validateLogin } from 'features/Login/validateLogin'
 
 export const Login = () => {
   const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector<boolean>(state => state.login.isLoggedIn)
+  const isLoggedIn = useAppSelector<boolean>(selectIsLoggedIn)
 
   if (isLoggedIn) {
     return <Navigate to={PATH.PROFILE.PROFILE} />

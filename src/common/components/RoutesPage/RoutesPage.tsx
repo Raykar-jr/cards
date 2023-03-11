@@ -3,6 +3,7 @@ import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { Error404 } from 'common/components/Error404/Error404'
+import { PrivateRoutes } from 'common/components/PrivateRoutes/PrivateRoutes'
 import { PATH } from 'common/path/path'
 import { Login } from 'features/Login/Login'
 import { CheckEmail } from 'features/Password/CheckEmail/CheckEmail'
@@ -14,7 +15,6 @@ import Registration from 'features/Registration/Registration'
 export const RoutesPage = () => {
   const routes = [
     { path: PATH.LOGIN.LOGIN, component: <Login /> },
-    { path: PATH.PROFILE.PROFILE, component: <Profile /> },
     { path: PATH.LOGIN.CREATE_NEW_PASSWORD, component: <CreateNewPassword /> },
     { path: PATH.LOGIN.REGISTRATION, component: <Registration /> },
     { path: PATH.LOGIN.RECOVERY_PASSWORD, component: <RecoveryPassword /> },
@@ -25,6 +25,9 @@ export const RoutesPage = () => {
 
   return (
     <Routes>
+      <Route element={<PrivateRoutes />}>
+        <Route path={PATH.PROFILE.PROFILE} element={<Profile />} />
+      </Route>
       <Route path="/" element={<Navigate to={PATH.LOGIN.LOGIN} />} />
       {routes.map(route => (
         <Route path={route.path} element={route.component} key={route.path} />

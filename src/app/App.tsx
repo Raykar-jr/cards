@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
-import Backdrop from '@mui/material/Backdrop/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress'
 
 import { initializeAppTC } from 'app/app-reducer'
 import s from 'app/App.module.scss'
+import { selectIsAppInitialized } from 'app/appSelectors'
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { BackDrop } from 'common/components/BackDrop/BackDrop'
 import { Header } from 'common/components/Header/Header'
 import { RoutesPage } from 'common/components/RoutesPage/RoutesPage'
 import { SnackBar } from 'common/components/SnackBar/SnackBar'
-import { requestStatus } from 'common/enums/requestStatus'
 
 export const App = () => {
-  const isInitialized = useAppSelector((state): boolean => state.app.isInitialized)
+  const isInitialized = useAppSelector<boolean>(selectIsAppInitialized)
   const dispatch = useAppDispatch()
 
   useEffect(() => {

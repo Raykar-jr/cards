@@ -9,11 +9,12 @@ import { useAppDispatch, useAppSelector } from 'app/store'
 import edit_photo from 'assets/images/edit_photo.svg'
 import { EditableSpan } from 'common/components/EditableSpan/EditableSpan'
 import { changeUserDataTC } from 'features/Profile/profile-reducer'
+import { selectAvatar, selectEmail, selectName } from 'features/Profile/profileSelectors'
 
 export const User = () => {
-  const email = useAppSelector<string>(state => state.profile.email)
-  const name = useAppSelector<string>(state => state.profile.name)
-  const avatar = useAppSelector<string>(state => state.profile.avatar)
+  const email = useAppSelector<string>(selectEmail)
+  const name = useAppSelector<string>(selectName)
+  const avatar = useAppSelector<string>(selectAvatar)
   const dispatch = useAppDispatch()
   const editName = (newName: string) => {
     dispatch(changeUserDataTC({ name: newName, avatar }))

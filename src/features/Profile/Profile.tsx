@@ -3,26 +3,20 @@ import React from 'react'
 import { Paper } from '@mui/material'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
-import { Navigate, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import s from './Profile.module.scss'
 import { User } from './User/User'
 
-import { useAppDispatch, useAppSelector } from 'app/store'
+import { useAppDispatch } from 'app/store'
 import profile_logout from 'assets/images/profile_logout.svg'
 import vector from 'assets/images/vector.svg'
-import { PATH } from 'common/path/path'
 import { logout } from 'features/Login/login-reducer'
 
 const Profile = () => {
-  const isLoggedIn = useAppSelector<boolean>(state => state.login.isLoggedIn)
   const dispatch = useAppDispatch()
   const logOutHandler = () => {
     dispatch(logout())
-  }
-
-  if (!isLoggedIn) {
-    return <Navigate to={PATH.LOGIN.LOGIN} />
   }
 
   return (
@@ -55,8 +49,7 @@ const Profile = () => {
               color: 'black',
               lineHeight: '20px',
               textTransform: 'none',
-              boxShadow:
-                '0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3)',
+              boxShadow: '0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3)',
             }}
           >
             <img src={profile_logout} alt="edit" className={s.img} />
