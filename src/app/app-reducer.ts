@@ -1,5 +1,4 @@
-import { Dispatch } from 'redux'
-
+import { AppThunk } from 'app/store'
 import { authAPI } from 'common/api/authAPI'
 import { requestStatus } from 'common/enums/requestStatus'
 import { setIsLoggedIn } from 'features/Login/login-reducer'
@@ -11,10 +10,7 @@ const initialState = {
   isInitialized: false,
 }
 
-export const appReducer = (
-  state = initialState,
-  action: ApplicationActionType
-): AppInitialStateType => {
+export const appReducer = (state = initialState, action: ApplicationActionType): AppInitialStateType => {
   switch (action.type) {
     case 'APP/SET_STATUS': {
       return { ...state, status: action.status }
@@ -30,14 +26,13 @@ export const appReducer = (
 // actions
 export const appSetStatus = (status: requestStatus) => ({ type: 'APP/SET_STATUS', status } as const)
 export const setAppError = (error: string | null) => ({ type: 'APP/SET-ERROR', error } as const)
-export const setIsInitialized = (isInitialized: boolean) =>
-  ({ type: 'APP/SET-IS-INITIALIZED', isInitialized } as const)
+export const setIsInitialized = (isInitialized: boolean) => ({ type: 'APP/SET-IS-INITIALIZED', isInitialized } as const)
 
 // types
 export type AppInitialStateType = typeof initialState
 
 // thunks
-export const initializeAppTC = () => async (dispatch: Dispatch) => {
+export const initializeAppTC = (): AppThunk => async dispatch => {
   try {
     const response = await authAPI.me()
     const { name, email, _id, avatar } = response.data

@@ -1,13 +1,14 @@
 @import "src/common/styles/scss/mixins";
 
 .information {
-  @include flex(flex-start,center,column);
+  @include flex(flex-start, center, column);
   width: 100%;
   gap: 10px;
+
   .name {
     width: 100%;
     padding: 0 8%;
-    @include flex(center,end);
+    @include flex(center, flex-end);
     gap: 2%;
   }
 

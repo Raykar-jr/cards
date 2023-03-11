@@ -12,4 +12,4 @@ export const PATH = {
   COMMON: {
     ERROR404: '/error404',
   },
-}
+} as const

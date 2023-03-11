@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux'
 
 import { appSetStatus, AppSetStatusType } from 'app/app-reducer'
+import { AppThunk } from 'app/store'
 import { UserDataType } from 'common/api/DataTypes'
 import { requestStatus } from 'common/enums/requestStatus'
 import { handleError } from 'common/utils/error-util'
@@ -23,25 +24,22 @@ export const profileReducer = (state = initState, action: ProfileActionsType): I
   }
 }
 
-export const setUserData = (data: UserDataType) => {
-  return {
-    type: 'PROFILE/SET-USER-DATA',
-    payload: { data },
-  } as const
-}
+export const setUserData = (data: UserDataType) => ({ type: 'PROFILE/SET-USER-DATA', payload: { data } } as const)
 
 //thunk
 export const changeUserDataTC =
-  (data: UpdateDataUserType) => async (dispatch: Dispatch<ProfileActionsType>) => {
+  (data: UpdateDataUserType): AppThunk =>
+  async (dispatch: Dispatch<ProfileActionsType>) => {
     try {
       dispatch(appSetStatus(requestStatus.LOADING))
       const response = await profileAPI.updateUserData(data)
       const { name, email, _id, avatar } = response.data.updatedUser
 
       dispatch(setUserData({ name, _id, email, avatar }))
-      dispatch(appSetStatus(requestStatus.SUCCEEDED))
-    } catch (e: any) {
+    } catch (e) {
       handleError(e, dispatch)
+    } finally {
+      dispatch(appSetStatus(requestStatus.SUCCEEDED))
     }
   }
 

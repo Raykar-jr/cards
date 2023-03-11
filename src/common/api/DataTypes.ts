@@ -3,7 +3,7 @@ export type RegisterData = {
   password: string
 }
 
-export type RegisterResponseType = {
+export type ResponseRegisterType = {
   addedUser: any
   error?: string
 }
@@ -18,9 +18,8 @@ export type ResponseLoginType = {
   _id: string
   name: string
   email: string
-  publicCardPacksCount: number
+  publicCardPacksCount: number // количество колод
   avatar?: string
-  // количество колод
   error?: string
 }
 
@@ -30,6 +29,7 @@ export type UserDataType = {
   _id?: string
   avatar?: string
 }
+
 export interface ResponseUpdateUserDataType {
   updatedUser: ResponseType
   token: string
@@ -63,4 +63,16 @@ export type RecoveredDataType = {
 }
 export type PasswordType = {
   password: string
+}
+
+export type ResponseSetNewPassType = {
+  info: string
+  error?: string
+}
+
+export type ResponseRecoveryPassType = {
+  info: string
+  success: boolean
+  answer: boolean
+  error?: string
 }

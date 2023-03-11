@@ -15,7 +15,7 @@ import s from 'features/Password/RecoveryPassword/RecoveryPassword.module.css'
 type Props = {}
 
 export const CreateNewPassword: React.FC<Props> = () => {
-  const { token } = useParams()
+  const { token } = useParams<{ token: string }>()
   const successRecovery = useAppSelector<boolean>(state => state.recovery.success)
   const dispatch = useAppDispatch()
 
@@ -32,11 +32,7 @@ export const CreateNewPassword: React.FC<Props> = () => {
   return (
     <Grid container display="flex" justifyContent={'center'} className={s.wrapper}>
       <Grid item justifyContent={'center'}>
-        <Formik
-          initialValues={{ password: '' }}
-          validationSchema={validatePass}
-          onSubmit={submitForm}
-        >
+        <Formik initialValues={{ password: '' }} validationSchema={validatePass} onSubmit={submitForm}>
           {formik => <CreateNewPasswordForm formik={formik} />}
         </Formik>
       </Grid>

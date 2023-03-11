@@ -4,13 +4,15 @@ import {
   PassDataType,
   RegisterData,
   ResponseLoginType,
-  RegisterResponseType,
+  ResponseRegisterType,
+  ResponseSetNewPassType,
+  ResponseRecoveryPassType,
 } from 'common/api/DataTypes'
 import { herokuInstance, instance } from 'common/api/main-api'
 
 export const authAPI = {
   register(data: RegisterData) {
-    return instance.post<RegisterResponseType>('auth/register', data)
+    return instance.post<ResponseRegisterType>('auth/register', data)
   },
   login(data: LoginParamsType) {
     return instance.post<ResponseLoginType>('auth/login', data)
@@ -22,9 +24,9 @@ export const authAPI = {
     return instance.post('auth/me')
   },
   setNewPass(data: PassDataType) {
-    return instance.post('auth/set-new-password', data)
+    return instance.post<ResponseSetNewPassType>('auth/set-new-password', data)
   },
   recoveryPass(data: RecoveredDataType) {
-    return herokuInstance.post('auth/forgot', data)
+    return herokuInstance.post<ResponseRecoveryPassType>('auth/forgot', data)
   },
 }

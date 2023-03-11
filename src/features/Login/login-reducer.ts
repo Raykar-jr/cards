@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux'
 
 import { appSetStatus, AppSetStatusType, setAppError } from 'app/app-reducer'
+import { AppThunk } from 'app/store'
 import { authAPI } from 'common/api/authAPI'
 import { LoginParamsType } from 'common/api/DataTypes'
 import { requestStatus } from 'common/enums/requestStatus'
@@ -21,31 +22,30 @@ export const loginReducer = (state = initState, action: ActionType): initStateTy
 }
 
 // actions
-export const setIsLoggedIn = (value: boolean) =>
-  ({ type: 'login/SET-IS-LOGGED-IN', value } as const)
+export const setIsLoggedIn = (value: boolean) => ({ type: 'login/SET-IS-LOGGED-IN', value } as const)
 
 // thunks
-export const login = (data: LoginParamsType) => async (dispatch: Dispatch<ActionType>) => {
-  try {
-    dispatch(appSetStatus(requestStatus.LOADING))
-    let response = await authAPI.login(data)
+export const login =
+  (data: LoginParamsType): AppThunk =>
+  async (dispatch: Dispatch<ActionType>) => {
+    try {
+      dispatch(appSetStatus(requestStatus.LOADING))
+      let response = await authAPI.login(data)
+      let { email, name, _id, avatar } = response.data
 
-    let { email, name, _id, avatar } = response.data
-
-    dispatch(setUserData({ email, name, _id, avatar }))
-    dispatch(setIsLoggedIn(true))
-  } catch (e) {
-    handleError(e, dispatch)
-  } finally {
-    dispatch(appSetStatus(requestStatus.SUCCEEDED))
+      dispatch(setUserData({ email, name, _id, avatar }))
+      dispatch(setIsLoggedIn(true))
+    } catch (e) {
+      handleError(e, dispatch)
+    } finally {
+      dispatch(appSetStatus(requestStatus.SUCCEEDED))
+    }
   }
-}
 
-export const logout = () => async (dispatch: Dispatch<ActionType>) => {
+export const logout = (): AppThunk => async dispatch => {
   try {
     dispatch(appSetStatus(requestStatus.LOADING))
     await authAPI.logout()
-
     dispatch(setIsLoggedIn(false))
   } catch (e) {
     handleError(e, dispatch)
