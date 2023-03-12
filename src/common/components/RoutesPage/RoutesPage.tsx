@@ -11,6 +11,7 @@ import { CreateNewPassword } from 'features/Password/CreateNewPassword/CreateNew
 import { RecoveryPassword } from 'features/Password/RecoveryPassword/RecoveryPassword'
 import Profile from 'features/Profile/Profile'
 import Registration from 'features/Registration/Registration'
+import { PacksList } from 'features/Packs/PackList/PacksList';
 
 export const RoutesPage = () => {
   const routes = [
@@ -20,6 +21,7 @@ export const RoutesPage = () => {
     { path: PATH.LOGIN.RECOVERY_PASSWORD, component: <RecoveryPassword /> },
     { path: PATH.COMMON.ERROR404, component: <Error404 /> },
     { path: PATH.LOGIN.CHECK_EMAIL, component: <CheckEmail /> },
+    { path: PATH.PACKS.PACKS, component: <PacksList /> },
     { path: '*', component: <Error404 /> },
   ]
 
@@ -32,6 +34,7 @@ export const RoutesPage = () => {
       {routes.map(route => (
         <Route path={route.path} element={route.component} key={route.path} />
       ))}
+      <Route path={PATH.PACKS.PACKS} element={<PacksList />} />
     </Routes>
   )
 }
