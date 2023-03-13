@@ -10,6 +10,9 @@ import { useAppSelector } from 'app/store'
 import { PackType } from 'common/api/DataTypes'
 import { PacksBody } from 'features/Packs/PackList/PacksBody/PacksBody'
 import { PacksHeader } from 'features/Packs/PackList/PacksHeader/PacksHeader'
+import s from 'features/Packs/PackList/PacksList.module.scss'
+
+
 
 export const PacksList = () => {
   const packs = useAppSelector((state): Array<PackType> => {
@@ -18,7 +21,7 @@ export const PacksList = () => {
 
   return (
     <>
-      <TableContainer>
+      <TableContainer className={'commonContainer'}>
         <Paper sx={{ width: '100%', mb: 2 }}>
           <Table sx={{ minWidth: 700 }} aria-labelledby="tableTitle">
             <PacksHeader />
