@@ -15,10 +15,15 @@ type EditableSpanPropsType = {
 export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo(({ initTitle, changeTitle }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(false)
   const [title, setTitle] = useState<string>(initTitle)
+  const [error, setError] = useState<string | null>(null)
   const change = () => title !== initTitle && changeTitle(title)
+
   const activateEditModule = () => {
-    setIsEditMode(!isEditMode)
-    change()
+    if (title !== '' && title.length <= 30) {
+      setError(null)
+      setIsEditMode(!isEditMode)
+      change()
+    } else setError('Invalid Nickname')
   }
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value.trimStart())
@@ -40,6 +45,8 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo(({ initT
       onKeyDown={onEnter}
       autoFocus
       sx={{ width: '100%' }}
+      error={!!error}
+      helperText={error}
       InputProps={{
         endAdornment: (
           <Button
@@ -52,6 +59,7 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo(({ initT
               fontSize: '12px',
               bgcolor: '#366EFF',
               borderRadius: '2px',
+              ml: '5px',
             }}
           >
             SAVE
