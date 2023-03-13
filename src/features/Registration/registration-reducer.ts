@@ -11,10 +11,7 @@ const initState = {
   isRegistered: false,
 }
 
-export const registrationReducer = (
-  state: initStateType = initState,
-  action: ActionType
-): initStateType => {
+export const registrationReducer = (state = initState, action: ActionType): InitStateType => {
   switch (action.type) {
     case 'login/SET-IS-REGISTRATION':
       return { ...state, isRegistered: action.value }
@@ -23,8 +20,7 @@ export const registrationReducer = (
   }
 }
 // actions
-export const setIsRegistration = (value: boolean) =>
-  ({ type: 'login/SET-IS-REGISTRATION', value } as const)
+export const setIsRegistration = (value: boolean) => ({ type: 'login/SET-IS-REGISTRATION', value } as const)
 
 // thunks
 export const registration =
@@ -41,5 +37,8 @@ export const registration =
       dispatch(appSetStatus(requestStatus.SUCCEEDED))
     }
   }
-type initStateType = typeof initState
-type ActionType = ReturnType<typeof setIsRegistration> | AppSetStatusType
+
+//type
+
+type InitStateType = typeof initState
+type ActionType = AppSetStatusType | ReturnType<typeof setIsRegistration>
