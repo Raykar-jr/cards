@@ -23,7 +23,7 @@ const Profile = () => {
     <div className={s.profileWrapper}>
       <div className={s.arrow}>
         <img src={vector} alt="vector icon" />
-        <NavLink to={''}>Back to Packs List</NavLink>
+        <NavLink to={'/packList'}>Back to Packs List</NavLink>
       </div>
       <Grid container display="flex" justifyContent="center" marginTop="40px">
         <Paper

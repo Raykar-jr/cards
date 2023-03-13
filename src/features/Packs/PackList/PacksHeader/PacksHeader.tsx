@@ -10,15 +10,15 @@ import s from 'features/Packs/PackList/PacksHeader/PacksHeader.module.scss'
 export const PacksHeader = () => {
   return (
     <TableHead>
-      <TableRow className={s.head}>
+      <TableRow className={`${s.head} ${s.wrap}`}>
         <TableCell>Name</TableCell>
         <TableCell align={'right'}>Cards</TableCell>
-        <TableCell className={s.head_cursor}>
+        <TableCell className={s.head_cursor} align={'right'}>
           Last Updated
           <img src={arrow_down} alt={'sort'} />
         </TableCell>
-        <TableCell>Created by</TableCell>
-        <TableCell>Actions</TableCell>
+        <TableCell align={'right'}>Created by</TableCell>
+        <TableCell align={'right'}>Actions</TableCell>
       </TableRow>
     </TableHead>
   )

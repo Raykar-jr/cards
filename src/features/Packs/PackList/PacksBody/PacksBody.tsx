@@ -10,13 +10,13 @@ export const PacksBody = () => {
       <TableCell scope={'row'} component="th" padding="none">
         <Link to={'id'}>{'Name'}</Link>
       </TableCell>
-      <TableCell align="right">
-        <img alt={'avatar'} src={'sadfsadf'} />
-      </TableCell>
+      {/*<TableCell align="right">*/}
+      {/*  <img alt={'avatar'} src={'sadfsadf'} />*/}
+      {/*</TableCell>*/}
       <TableCell align="right">{'cards'}</TableCell>
       <TableCell align="right">{'date'}</TableCell>
       <TableCell align="right">{'user_name'}</TableCell>
-      <TableCell align="right">{'learn/edite,delete'}</TableCell>
+      <TableCell align="right">{'learn/edite/delete'}</TableCell>
     </TableRow>
   )
 }
