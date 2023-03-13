@@ -4,11 +4,19 @@ import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { Link } from 'react-router-dom'
 
-export const PacksBody = () => {
+import { PackType } from 'common/api/DataTypes'
+
+type PropsType = {
+  key: string
+  pack: PackType
+}
+export const PacksBody: React.FC<PropsType> = ({ pack }) => {
+  console.log(pack.name, pack.user_name)
+
   return (
     <TableRow>
       <TableCell scope={'row'} component="th" padding="none">
-        <Link to={'id'}>{'Name'}</Link>
+        <Link to={'id'}>{pack.name}</Link>
       </TableCell>
       {/*<TableCell align="right">*/}
       {/*  <img alt={'avatar'} src={'sadfsadf'} />*/}

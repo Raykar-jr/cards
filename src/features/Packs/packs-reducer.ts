@@ -1,11 +1,10 @@
 import { Dispatch } from 'redux'
 
-import { appSetStatus, AppSetStatusType } from 'app/app-reducer'
+import { AppSetStatusType } from 'app/app-reducer'
 import { AppThunk } from 'app/store'
-import { GetPacksResponseType, PackParamsType } from 'common/api/DataTypes'
-import { packAPI } from 'common/api/PackAPI'
-import { requestStatus } from 'common/enums/requestStatus'
+import { CreatePacksDataType, GetPacksResponseType, PackParamsType } from 'common/api/DataTypes'
 import { handleError } from 'common/utils/error-util'
+import { packApi } from 'features/Packs/packs-api'
 
 const initState = {
   cardPacks: [
@@ -55,14 +54,28 @@ export const getPackTC =
   (params: PackParamsType): AppThunk =>
   async (dispatch: Dispatch<ActionType>) => {
     try {
-      dispatch(appSetStatus(requestStatus.LOADING))
-      const res = await packAPI.getPacks({})
+      // dispatch(appSetStatus(requestStatus.LOADING))
+      const res = await packApi.getPacks({})
 
       dispatch(getPacks(res.data))
     } catch (e) {
       handleError(e, dispatch)
     } finally {
-      dispatch(appSetStatus(requestStatus.SUCCEEDED))
+      // dispatch(appSetStatus(requestStatus.SUCCEEDED))
+    }
+  }
+
+export const createPackTC =
+  (params: { params: PackParamsType; data: CreatePacksDataType }): AppThunk =>
+  async dispatch => {
+    try {
+      // dispatch(appSetStatus(requestStatus.LOADING))
+      await packApi.createPack(params.data)
+      dispatch(getPackTC(params.params))
+    } catch (e) {
+      handleError(e, dispatch)
+    } finally {
+      // dispatch(appSetStatus(requestStatus.SUCCEEDED))
     }
   }
 

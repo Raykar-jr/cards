@@ -6,12 +6,12 @@ import { Error404 } from 'common/components/Error404/Error404'
 import { PrivateRoutes } from 'common/components/PrivateRoutes/PrivateRoutes'
 import { PATH } from 'common/path/path'
 import { Login } from 'features/Login/Login'
+import { PacksList } from 'features/Packs/PackList/PacksList'
 import { CheckEmail } from 'features/Password/CheckEmail/CheckEmail'
 import { CreateNewPassword } from 'features/Password/CreateNewPassword/CreateNewPassword'
 import { RecoveryPassword } from 'features/Password/RecoveryPassword/RecoveryPassword'
 import Profile from 'features/Profile/Profile'
 import Registration from 'features/Registration/Registration'
-import { PacksList } from 'features/Packs/PackList/PacksList';
 
 export const RoutesPage = () => {
   const routes = [
