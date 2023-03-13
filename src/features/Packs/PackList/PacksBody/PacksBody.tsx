@@ -11,8 +11,6 @@ type PropsType = {
   pack: PackType
 }
 export const PacksBody: React.FC<PropsType> = ({ pack }) => {
-  console.log(pack.name, pack.user_name)
-
   return (
     <TableRow>
       <TableCell scope={'row'} component="th" padding="none">
