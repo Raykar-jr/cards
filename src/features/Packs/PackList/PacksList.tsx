@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from 'app/store'
 import { CreatePacksDataType, PackParamsType, PackType } from 'common/api/DataTypes'
 import { PacksBody } from 'features/Packs/PackList/PacksBody/PacksBody'
 import { PacksHeader } from 'features/Packs/PackList/PacksHeader/PacksHeader'
-import { createPackTC, getPackTC } from 'features/Packs/packs-reducer'
+import { createPackTC, getPackTC, updatePackTC } from 'features/Packs/packs-reducer'
 
 export const PacksList = () => {
   const dispatch = useAppDispatch()
@@ -23,7 +23,7 @@ export const PacksList = () => {
   }, [])
 
   const addNewPackHandler = () => {
-    dispatch(createPackTC({ params: {}, data: { cardsPack: { name: 'dsd' } } }))
+    dispatch(createPackTC({ params: {}, data: { cardsPack: { name: 'NEW PACK!!!!' } } }))
   }
 
   return (
