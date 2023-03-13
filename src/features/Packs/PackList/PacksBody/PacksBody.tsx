@@ -26,9 +26,9 @@ export const PacksBody: React.FC<PropsType> = ({ pack }) => {
       <TableCell scope={'row'} component="th" padding="none">
         <Link to={'id'}>{pack.name}</Link>
       </TableCell>
-      <TableCell align="right">
-        <img alt={'avatar'} src={'sadfsadf'} />
-      </TableCell>
+      {/*<TableCell align="right">*/}
+      {/*  <img alt={'avatar'} src={'sadfsadf'} />*/}
+      {/*</TableCell>*/}
       <TableCell align="right">{'cards'}</TableCell>
       <TableCell align="right">{pack.updated}</TableCell>
       <TableCell align="right">{pack.user_name}</TableCell>
@@ -37,6 +37,9 @@ export const PacksBody: React.FC<PropsType> = ({ pack }) => {
         <button onClick={updatePackHandler}>Update Pack</button> <br />
         <button onClick={deletePackHandler}>Delete Pack</button>
       </TableCell>
+      <TableCell align="right">{'date'}</TableCell>
+      <TableCell align="right">{'user_name'}</TableCell>
+      <TableCell align="right">{'learn/edite/delete'}</TableCell>
     </TableRow>
   )
 }
