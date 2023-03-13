@@ -21,12 +21,7 @@ const rootReducer = combineReducers({
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware))
 
 export type AppThunkDispatch = ThunkDispatch<AppRootStateType, any, AnyAction>
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  AppRootStateType,
-  unknown,
-  AnyAction
->
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppRootStateType, unknown, AnyAction>
 export const useAppDispatch = () => useDispatch<AppThunkDispatch>()
 export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
 
