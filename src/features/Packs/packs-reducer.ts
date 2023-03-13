@@ -56,7 +56,7 @@ export const getPackTC =
   async (dispatch: Dispatch<ActionType>) => {
     try {
       dispatch(appSetStatus(requestStatus.LOADING))
-      const res = await packApi.getPacks({})
+      const res = await packApi.getPacks(params)
 
       dispatch(getPacks(res.data))
     } catch (e) {
