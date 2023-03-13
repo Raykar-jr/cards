@@ -11,6 +11,7 @@ import { PackType } from 'common/api/DataTypes'
 import { PacksBody } from 'features/Packs/PackList/PacksBody/PacksBody'
 import { PacksHeader } from 'features/Packs/PackList/PacksHeader/PacksHeader'
 import { createPackTC, getPackTC } from 'features/Packs/packs-reducer'
+import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
 
 export const PacksList = () => {
   const dispatch = useAppDispatch()
@@ -25,6 +26,10 @@ export const PacksList = () => {
   const addNewPackHandler = () => {
     dispatch(createPackTC({ params: {}, data: { cardsPack: { name: 'dsd' } } }))
   }
+
+  const page = useAppSelector(state => state.packs.page)
+  const pageCount = useAppSelector(state => state.packs.pageCount)
+  const cardPacksTotalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
 
   return (
     <>
@@ -43,15 +48,7 @@ export const PacksList = () => {
           </Paper>
         </TableContainer>
 
-        {/*<TablePagination*/}
-        {/*  rowsPerPageOptions={[5, 10, 25]}*/}
-        {/*  component="div"*/}
-        {/*  count={rows.length}*/}
-        {/*  rowsPerPage={rowsPerPage}*/}
-        {/*  page={page}*/}
-        {/*  onPageChange={handleChangePage}*/}
-        {/*  onRowsPerPageChange={handleChangeRowsPerPage}*/}
-        {/*/>*/}
+        <SuperPaginationTable page={page} itemsCount={pageCount} totalCount={cardPacksTotalCount} onChange={() => {}} />
       </TableContainer>
     </>
   )
