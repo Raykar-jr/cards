@@ -8,11 +8,10 @@ import TableContainer from '@mui/material/TableContainer'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { PackType } from 'common/api/DataTypes'
+import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
 import { PacksBody } from 'features/Packs/PackList/PacksBody/PacksBody'
 import { PacksHeader } from 'features/Packs/PackList/PacksHeader/PacksHeader'
-import { createPackTC, getPackTC, updatePackTC } from 'features/Packs/packs-reducer'
 import { createPackTC, getPackTC } from 'features/Packs/packs-reducer'
-import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
 
 export const PacksList = () => {
   const dispatch = useAppDispatch()
