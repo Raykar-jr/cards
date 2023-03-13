@@ -76,3 +76,64 @@ export type ResponseRecoveryPassType = {
   answer: boolean
   error?: string
 }
+
+export type GetPacksResponseType = {
+  cardPacks: Array<PackType>
+  page: number
+  pageCount: number
+  cardPacksTotalCount: number
+  minCardsCount: number
+  maxCardsCount: number
+  token: string
+  tokenDeathTime: number
+}
+
+export type PackType = {
+  _id: string
+  user_id: string
+  user_name: string
+  private: boolean
+  name: string
+  path: string
+  grade: number
+  shots: number
+  cardsCount: number
+  type: string
+  rating: number
+  created: string
+  updated: string
+  more_id: string
+  __v: number
+  deckCover: string
+}
+
+export type PackParamsType = {
+  packName?: string
+  min?: number
+  max?: number
+  sortPacks?: number
+  page?: number
+  pageCount?: number
+  user_id?: string
+}
+
+export type CreatePacksDataType = {
+  cardsPack: { name: string }
+}
+
+export type CreatePackResponseType = {
+  newCardsPack: PackType
+}
+
+export type UpdatePackDataType = {
+  cardsPack: {
+    _id: string
+    name: string
+  }
+}
+
+export type UpdatePackResponseType = {
+  updatedCardsPack: PackType
+}
+
+export type DeletePackResponseType = {}

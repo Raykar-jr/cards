@@ -6,11 +6,15 @@ import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
 import { useSelector } from 'react-redux'
 
+import { useAppSelector } from 'app/store'
+import { PackType } from 'common/api/DataTypes'
 import { PacksBody } from 'features/Packs/PackList/PacksBody/PacksBody'
 import { PacksHeader } from 'features/Packs/PackList/PacksHeader/PacksHeader'
 
 export const PacksList = () => {
-  const packs = useSelector(() => {})
+  const packs = useAppSelector((state): Array<PackType> => {
+    return state.packs.cardPacks
+  })
 
   return (
     <>
@@ -20,7 +24,7 @@ export const PacksList = () => {
             <PacksHeader />
             <TableBody>
               {packs.map(pack => (
-                <PacksBody key={pack._id} pack={pack}/>
+                <PacksBody key={pack._id} pack={pack} />
               ))}
             </TableBody>
           </Table>

@@ -10,7 +10,6 @@ import { BackDrop } from 'common/components/BackDrop/BackDrop'
 import { Header } from 'common/components/Header/Header'
 import { RoutesPage } from 'common/components/RoutesPage/RoutesPage'
 import { SnackBar } from 'common/components/SnackBar/SnackBar'
-import { PacksList } from 'features/Packs/PackList/PacksList'
 
 export const App = () => {
   const isInitialized = useAppSelector<boolean>(selectIsAppInitialized)

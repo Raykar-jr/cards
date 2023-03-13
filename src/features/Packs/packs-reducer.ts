@@ -1,16 +1,73 @@
-const initialState = {}
+import { Dispatch } from 'redux'
 
-type PacksStateType = typeof initialState
-export const packsReducer = (
-  state: PacksStateType = initialState,
-  action: PacksActionType
-): PacksStateType => {
+import { appSetStatus, AppSetStatusType } from 'app/app-reducer'
+import { AppThunk } from 'app/store'
+import { GetPacksResponseType, PackParamsType } from 'common/api/DataTypes'
+import { packAPI } from 'common/api/PackAPI'
+import { requestStatus } from 'common/enums/requestStatus'
+import { handleError } from 'common/utils/error-util'
+
+const initState = {
+  cardPacks: [
+    {
+      _id: '',
+      user_id: '',
+      user_name: '',
+      private: false,
+      name: '',
+      path: '',
+      grade: 0,
+      shots: 0,
+      cardsCount: 0,
+      type: '',
+      rating: 0,
+      created: '',
+      updated: '',
+      more_id: '',
+      __v: 0,
+      deckCover: '',
+    },
+  ],
+  page: 1,
+  pageCount: 0,
+  cardPacksTotalCount: 0,
+  minCardsCount: 0,
+  maxCardsCount: 0,
+  token: '',
+  tokenDeathTime: 0,
+}
+
+export const packsReducer = (state = initState, action: ActionType): initStateType => {
   switch (action.type) {
-    case '':
-      return state
+    case 'packs/GET-PACKS':
+      return { ...state, ...action.payload.data }
     default:
       return state
   }
 }
 
-type PacksActionType = any
+// actions
+export const getPacks = (data: GetPacksResponseType) => ({ type: 'packs/GET-PACKS', payload: { data } } as const)
+
+// thunks
+
+export const getPackTC =
+  (params: PackParamsType): AppThunk =>
+  async (dispatch: Dispatch<ActionType>) => {
+    try {
+      dispatch(appSetStatus(requestStatus.LOADING))
+      const res = await packAPI.getPacks({})
+
+      dispatch(getPacks(res.data))
+    } catch (e) {
+      handleError(e, dispatch)
+    } finally {
+      dispatch(appSetStatus(requestStatus.SUCCEEDED))
+    }
+  }
+
+// types
+type initStateType = typeof initState
+type ActionType = ReturnType<typeof getPacks> | AppSetStatusType
+//   | ReturnType<typeof setAppError>
+//   | SetUserDataActionType

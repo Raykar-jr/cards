@@ -5,10 +5,7 @@ import { instance } from 'common/api/main-api'
 
 export const profileAPI = {
   updateUserData(data: UpdateDataUserType) {
-    return instance.put<UpdateDataUserType, AxiosResponse<ResponseUpdateUserDataType>>(
-      'auth/me',
-      data
-    )
+    return instance.put<UpdateDataUserType, AxiosResponse<ResponseUpdateUserDataType>>('auth/me', data)
   },
 }
 
