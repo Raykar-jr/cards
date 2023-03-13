@@ -4,7 +4,7 @@ import { appSetStatus, AppSetStatusType, setAppError } from 'app/app-reducer'
 import { AppThunk } from 'app/store'
 import { authAPI } from 'common/api/authAPI'
 import { LoginParamsType } from 'common/api/DataTypes'
-import { requestStatus } from 'common/enums/requestStatus'
+import { requestStatus } from 'common/components/constants/requestStatus'
 import { handleError } from 'common/utils/error-util'
 import { setUserData, SetUserDataActionType } from 'features/Profile/profile-reducer'
 

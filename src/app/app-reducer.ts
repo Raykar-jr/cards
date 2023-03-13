@@ -1,11 +1,12 @@
 import { AppThunk } from 'app/store'
 import { authAPI } from 'common/api/authAPI'
-import { requestStatus } from 'common/enums/requestStatus'
+import { requestsStatus } from 'common/api/DataTypes'
+import { requestStatus } from 'common/components/constants/requestStatus'
 import { setIsLoggedIn } from 'features/Login/login-reducer'
 import { setUserData } from 'features/Profile/profile-reducer'
 
 const initialState = {
-  status: requestStatus.IDLE, // idle - начальное значение (простаивание)
+  status: requestStatus.IDLE as requestsStatus, // idle - начальное значение (простаивание)
   error: null as null | string,
   isInitialized: false,
 }
@@ -24,7 +25,7 @@ export const appReducer = (state = initialState, action: ApplicationActionType):
   }
 }
 // actions
-export const appSetStatus = (status: requestStatus) => ({ type: 'APP/SET_STATUS', status } as const)
+export const appSetStatus = (status: requestsStatus) => ({ type: 'APP/SET_STATUS', status } as const)
 export const setAppError = (error: string | null) => ({ type: 'APP/SET-ERROR', error } as const)
 export const setIsInitialized = (isInitialized: boolean) => ({ type: 'APP/SET-IS-INITIALIZED', isInitialized } as const)
 

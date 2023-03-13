@@ -3,7 +3,7 @@ import { Dispatch } from 'redux'
 import { appSetStatus, AppSetStatusType } from 'app/app-reducer'
 import { AppThunk } from 'app/store'
 import { CreatePacksDataType, GetPacksResponseType, PackParamsType, UpdatePackDataType } from 'common/api/DataTypes'
-import { requestStatus } from 'common/enums/requestStatus'
+import { requestStatus } from 'common/components/constants/requestStatus'
 import { handleError } from 'common/utils/error-util'
 import { packApi } from 'features/Packs/packs-api'
 

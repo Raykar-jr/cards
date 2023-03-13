@@ -137,3 +137,5 @@ export type UpdatePackResponseType = {
 }
 
 export type DeletePackResponseType = {}
+
+export type requestsStatus = 'idle' | 'loading' | 'succeeded' | 'failed'
