@@ -87,24 +87,46 @@ export type GetPacksResponseType = {
   token: string
   tokenDeathTime: number
 }
-
 export type PackType = {
   _id: string
   user_id: string
   user_name: string
   private: boolean
   name: string
-  path: string
   grade: number
   shots: number
   cardsCount: number
-  type: string
   rating: number
   created: string
   updated: string
-  more_id: string
-  __v: number
   deckCover: string
+}
+export type GetCardsResponseType = {
+  cards: CardType[]
+  packUserId: string
+  packName: string
+  packDeckCover: string
+  page: number
+  pageCount: number
+  cardsTotalCount: number
+  minGrade: number
+  maxGrade: number
+}
+
+export type CardType = {
+  _id: string
+  cardsPack_id: string
+  user_id: string
+  answer: string
+  question: string
+  grade: number
+  shots: number
+  created: string
+  updated: string
+  answerImg: string
+  answerVideo: string
+  questionImg: string
+  questionVideo: string
 }
 
 export type PackParamsType = {
