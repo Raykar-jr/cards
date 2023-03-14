@@ -1,0 +1,13 @@
+.head{
+  background-color: #efefef;
+  &_cursor{
+    cursor: pointer;
+  }
+}
+
+
+.button {
+  background-color: transparent;
+  border: none;
+  margin: 0 10px;
+}

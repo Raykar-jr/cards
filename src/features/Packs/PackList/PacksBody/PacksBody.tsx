@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 import { useAppDispatch } from 'app/store'
 import { PackType } from 'common/api/DataTypes'
+import { makeStringDate } from 'common/utils/makeStringDate'
 import { deletePackTC, updatePackTC } from 'features/Packs/packs-reducer'
 
 type PropsType = {
@@ -20,6 +21,7 @@ export const PacksBody: React.FC<PropsType> = ({ pack }) => {
   const deletePackHandler = () => {
     dispatch(deletePackTC({ params: {}, packId: pack._id }))
   }
+  const stringDate = makeStringDate(pack.updated)
 
   return (
     <TableRow>
@@ -30,7 +32,7 @@ export const PacksBody: React.FC<PropsType> = ({ pack }) => {
       {/*  <img alt={'avatar'} src={'sadfsadf'} />*/}
       {/*</TableCell>*/}
       <TableCell align="right">{'cards'}</TableCell>
-      <TableCell align="right">{pack.updated}</TableCell>
+      <TableCell align="right">{stringDate}</TableCell>
       <TableCell align="right">{pack.user_name}</TableCell>
       <TableCell align="right">
         {'learn/edite,delete'}
