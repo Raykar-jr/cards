@@ -14,13 +14,13 @@ export type SuperPaginationTableType = {
   onChange: (page: number, count: number) => void
 }
 export const SuperPaginationTable: FC<SuperPaginationTableType> = ({ id, page, itemsCount, totalCount, onChange }) => {
+  const lastCount = Math.ceil(totalCount / itemsCount)
   const onChangeHandler = (e: any, page: number) => {
-    onChange(page, lastCount)
+    onChange(page, itemsCount)
   }
   const onChangeSelectHandler = (e: any) => {
-    onChange(page, e.currentTarget.value)
+    onChange(page, +e.currentTarget.value)
   }
-  const lastCount = Math.ceil(totalCount / itemsCount)
 
   return (
     <div className={s.pagination}>
