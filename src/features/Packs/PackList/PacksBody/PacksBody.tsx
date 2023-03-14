@@ -24,7 +24,7 @@ export const PacksBody: React.FC<PropsType> = ({ pack }) => {
   return (
     <TableRow>
       <TableCell scope={'row'} component="th" padding="none">
-        <Link to={'id'}>{pack.name}</Link>
+        <Link to={pack._id}>{pack.name}</Link>
       </TableCell>
       {/*<TableCell align="right">*/}
       {/*  <img alt={'avatar'} src={'sadfsadf'} />*/}

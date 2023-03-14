@@ -6,6 +6,7 @@ import { Error404 } from 'common/components/Error404/Error404'
 import { PrivateRoutes } from 'common/components/PrivateRoutes/PrivateRoutes'
 import { PATH } from 'common/path/path'
 import { Login } from 'features/Login/Login'
+import { Cards } from 'features/Packs/Card/Card'
 import { PacksList } from 'features/Packs/PackList/PacksList'
 import { CheckEmail } from 'features/Password/CheckEmail/CheckEmail'
 import { CreateNewPassword } from 'features/Password/CreateNewPassword/CreateNewPassword'
@@ -35,6 +36,7 @@ export const RoutesPage = () => {
         <Route path={route.path} element={route.component} key={route.path} />
       ))}
       <Route path={PATH.PACKS.PACKS} element={<PacksList />} />
+      <Route path={PATH.PACKS.CARD} element={<Cards />} />
     </Routes>
   )
 }

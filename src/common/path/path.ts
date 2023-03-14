@@ -13,6 +13,7 @@ export const PATH = {
     ERROR404: '/error404',
   },
   PACKS: {
-    PACKS: '/packList',
+    PACKS: '/packs',
+    CARD: '/packs/:packId',
   },
 } as const
