@@ -29,7 +29,7 @@ const initState = {
   packName: '',
   packDeckCover: '',
   page: 1,
-  pageCount: 0,
+  pageCount: 5,
   cardsTotalCount: 0,
   minGrade: 0,
   maxGrade: 0,
@@ -42,6 +42,10 @@ export const cardsReducer = (state = initState, action: ActionType): initStateTy
   switch (action.type) {
     case 'cards/SET-CARDS':
       return { ...state, ...action.payload.data }
+    case 'cards/SET-PAGE':
+      return { ...state, page: action.page }
+    case 'cards/SET-COUNT':
+      return { ...state, pageCount: action.count }
     default:
       return state
   }
@@ -49,14 +53,18 @@ export const cardsReducer = (state = initState, action: ActionType): initStateTy
 
 // actions
 export const setCards = (data: GetCardsResponseType) => ({ type: 'cards/SET-CARDS', payload: { data } } as const)
+export const setPage = (page: number) => ({ type: 'cards/SET-PAGE', page } as const)
+export const setCount = (count: number) => ({ type: 'cards/SET-COUNT', count } as const)
 
 // thunks
 export const getCards =
   (cardsPackId: string): AppThunk =>
-  async (dispatch: Dispatch<ActionType>) => {
+  async (dispatch: Dispatch<ActionType>, getState) => {
     try {
       dispatch(appSetStatus(requestStatus.LOADING))
-      const res = await cardsApi.getCards(cardsPackId)
+      const { page, pageCount, sort, search } = getState().cards
+
+      const res = await cardsApi.getCards(cardsPackId, page, pageCount)
 
       dispatch(setCards(res.data))
     } catch (e) {
@@ -108,4 +116,8 @@ export const deleteCard =
 
 // types
 type initStateType = typeof initState
-type ActionType = AppSetStatusType | ReturnType<typeof setCards>
+type ActionType =
+  | AppSetStatusType
+  | ReturnType<typeof setCards>
+  | ReturnType<typeof setCount>
+  | ReturnType<typeof setPage>

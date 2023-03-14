@@ -7,7 +7,8 @@ import TableContainer from '@mui/material/TableContainer'
 import { useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
-import { createCard, getCards } from 'features/Packs/Card/card-reducer'
+import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
+import { createCard, getCards, setCount, setPage } from 'features/Packs/Card/card-reducer'
 import { CardBody } from 'features/Packs/Card/CardParts/CardBody'
 import { CardHeader } from 'features/Packs/Card/CardParts/CardHeader'
 
@@ -16,12 +17,20 @@ export const Cards = () => {
   const dispatch = useAppDispatch()
   const cards = useAppSelector(state => state.cards.cards)
 
+  const page = useAppSelector(state => state.cards.page)
+  const pageCount = useAppSelector(state => state.cards.pageCount)
+  const cardsTotalCount = useAppSelector(state => state.cards.cardsTotalCount)
+
   useEffect(() => {
     packId && dispatch(getCards(packId))
-  }, [])
+  }, [page, pageCount])
 
   const createCardHandler = () => {
     packId && dispatch(createCard(packId))
+  }
+  const ChangePaginationHandler = (newPage: number, newCount: number = 5) => {
+    dispatch(setPage(newPage))
+    dispatch(setCount(newCount))
   }
 
   return (
@@ -42,7 +51,12 @@ export const Cards = () => {
           </Paper>
         </TableContainer>
 
-        {/*<SuperPaginationTable page={page} itemsCount={pageCount} totalCount={cardPacksTotalCount} onChange={() => {}} />*/}
+        <SuperPaginationTable
+          page={page}
+          itemsCount={pageCount}
+          totalCount={cardsTotalCount}
+          onChange={ChangePaginationHandler}
+        />
       </TableContainer>
     </>
   )
