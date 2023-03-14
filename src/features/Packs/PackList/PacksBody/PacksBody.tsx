@@ -1,16 +1,20 @@
 import * as React from 'react'
 
+import IconButton from '@mui/material/IconButton'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { Link } from 'react-router-dom'
 
 import { useAppDispatch } from 'app/store'
+import edit from 'assets/icons/edit-2.svg'
+import learn from 'assets/icons/teacher.svg'
+import trash from 'assets/icons/trash.svg'
 import { PackType } from 'common/api/DataTypes'
 import { makeStringDate } from 'common/utils/makeStringDate'
 import { deletePackTC, updatePackTC } from 'features/Packs/packs-reducer'
 
 type PropsType = {
-  key: string
+  // key: string
   pack: PackType
 }
 export const PacksBody: React.FC<PropsType> = ({ pack }) => {
@@ -35,13 +39,19 @@ export const PacksBody: React.FC<PropsType> = ({ pack }) => {
       <TableCell align="right">{stringDate}</TableCell>
       <TableCell align="right">{pack.user_name}</TableCell>
       <TableCell align="right">
-        {'learn/edite,delete'}
-        <button onClick={updatePackHandler}>Update Pack</button> <br />
-        <button onClick={deletePackHandler}>Delete Pack</button>
+        {/*{'learn/edite,delete'}*/}
+        {/*<button onClick={updatePackHandler}>Update Pack</button> <br />*/}
+        {/*<button onClick={deletePackHandler}>Delete Pack</button>*/}
+        <IconButton onClick={() => {}} size="small">
+          <img src={learn} alt="learn icon" />
+        </IconButton>
+        <IconButton onClick={updatePackHandler} size="small">
+          <img src={edit} alt="edit icon" />
+        </IconButton>
+        <IconButton onClick={deletePackHandler} size="small">
+          <img src={trash} alt="delete icon" />
+        </IconButton>
       </TableCell>
-      <TableCell align="right">{'date'}</TableCell>
-      <TableCell align="right">{'user_name'}</TableCell>
-      <TableCell align="right">{'learn/edite/delete'}</TableCell>
     </TableRow>
   )
 }
