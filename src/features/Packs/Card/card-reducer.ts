@@ -46,6 +46,10 @@ export const cardsReducer = (state = initState, action: ActionType): initStateTy
       return { ...state, page: action.page }
     case 'cards/SET-COUNT':
       return { ...state, pageCount: action.count }
+    case 'cards/SET-SORT':
+      return { ...state, sort: action.sort }
+    case 'cards/SEARCH-CARDS-BY-QUESTION':
+      return { ...state, search: action.search }
     default:
       return state
   }
@@ -55,6 +59,8 @@ export const cardsReducer = (state = initState, action: ActionType): initStateTy
 export const setCards = (data: GetCardsResponseType) => ({ type: 'cards/SET-CARDS', payload: { data } } as const)
 export const setPage = (page: number) => ({ type: 'cards/SET-PAGE', page } as const)
 export const setCount = (count: number) => ({ type: 'cards/SET-COUNT', count } as const)
+export const setSort = (sort: string) => ({ type: 'cards/SET-SORT', sort } as const)
+export const setSearch = (search: string) => ({ type: 'cards/SEARCH-CARDS-BY-QUESTION', search } as const)
 
 // thunks
 export const getCards =
@@ -64,7 +70,7 @@ export const getCards =
       dispatch(appSetStatus(requestStatus.LOADING))
       const { page, pageCount, sort, search } = getState().cards
 
-      const res = await cardsApi.getCards(cardsPackId, page, pageCount)
+      const res = await cardsApi.getCards(cardsPackId, page, pageCount, sort, search)
 
       dispatch(setCards(res.data))
     } catch (e) {
@@ -121,3 +127,5 @@ type ActionType =
   | ReturnType<typeof setCards>
   | ReturnType<typeof setCount>
   | ReturnType<typeof setPage>
+  | ReturnType<typeof setSort>
+  | ReturnType<typeof setSearch>
