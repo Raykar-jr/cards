@@ -3,15 +3,13 @@ import React from 'react'
 import { Paper } from '@mui/material'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
-import { NavLink } from 'react-router-dom'
 
 import s from './Profile.module.scss'
 import { User } from './User/User'
 
 import { useAppDispatch } from 'app/store'
 import profile_logout from 'assets/images/profile_logout.svg'
-import vector from 'assets/images/vector.svg'
-import { PATH } from 'common/path/path'
+import { ArrowBackToPacks } from 'common/components/ArrowBackToPacks/ArrowBackToPacks'
 import { logout } from 'features/Login/login-reducer'
 
 const Profile = () => {
@@ -22,10 +20,7 @@ const Profile = () => {
 
   return (
     <div className={s.profileWrapper}>
-      <div className={s.arrow}>
-        <img src={vector} alt="vector icon" />
-        <NavLink to={PATH.PACKS.PACKS}>Back to Packs List</NavLink>
-      </div>
+      <ArrowBackToPacks />
       <Grid container display="flex" justifyContent="center" marginTop="40px">
         <Paper
           elevation={3}

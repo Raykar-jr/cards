@@ -1,0 +1,21 @@
+@import "src/common/styles/scss/mixins";
+
+.arrow {
+    margin: 0 auto;
+    padding-left: 10%;
+    cursor: pointer;
+    @include fontSettings(14px, 400, 24px);
+
+    & img {
+        margin-right: 12px;
+    }
+
+    & a {
+
+        text-decoration: none;
+
+        &:visited {
+            color: black;
+        }
+    }
+}
