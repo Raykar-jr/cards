@@ -47,16 +47,9 @@ export const LoginForm: React.FC<Props> = ({ formik }) => {
         </FormLabel>
 
         <FormGroup>
-          <TextField
-            variant="standard"
-            label="Email"
-            margin="normal"
-            {...formik.getFieldProps('email')}
-          />
+          <TextField variant="standard" label="Email" margin="normal" {...formik.getFieldProps('email')} />
 
-          {formik.touched.email && formik.errors.email && (
-            <div style={errorTextStyle}> {formik.errors.email} </div>
-          )}
+          {formik.touched.email && formik.errors.email && <div style={errorTextStyle}> {formik.errors.email} </div>}
 
           <FormControl variant="standard" margin="normal">
             <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
@@ -83,12 +76,7 @@ export const LoginForm: React.FC<Props> = ({ formik }) => {
 
           <FormControlLabel
             label={'Remember me'}
-            control={
-              <Checkbox
-                {...formik.getFieldProps('rememberMe')}
-                checked={formik.values.rememberMe}
-              />
-            }
+            control={<Checkbox {...formik.getFieldProps('rememberMe')} checked={formik.values.rememberMe} />}
           />
 
           <FormLabel sx={login_formLabelStyle}>
