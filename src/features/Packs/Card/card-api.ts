@@ -1,8 +1,14 @@
+import {
+  CreateCardsResponseType,
+  DeleteCardsResponseType,
+  GetCardsResponseType,
+  UpdateCardsResponseType,
+} from 'common/api/DataTypes'
 import { instance } from 'common/api/main-api'
 
 export const cardsApi = {
   getCards(cardsPackId: string, page: number, pageCount: number = 5) {
-    return instance.get(`/cards/card`, {
+    return instance.get<GetCardsResponseType>(`/cards/card`, {
       params: {
         cardsPack_id: cardsPackId,
         page,
@@ -11,7 +17,7 @@ export const cardsApi = {
     })
   },
   createCard(cardsPackId: string) {
-    return instance.post('cards/card', {
+    return instance.post<CreateCardsResponseType>('cards/card', {
       card: {
         cardsPack_id: cardsPackId,
         question: 'no question!!!',
@@ -20,7 +26,7 @@ export const cardsApi = {
     })
   },
   updateCard(cardId: string) {
-    return instance.put('cards/card', {
+    return instance.put<UpdateCardsResponseType>('cards/card', {
       card: {
         _id: cardId,
         question: 'new question!!!',
@@ -29,6 +35,6 @@ export const cardsApi = {
     })
   },
   removeCard(cardId: string) {
-    return instance.delete(`cards/card?id=${cardId}`)
+    return instance.delete<DeleteCardsResponseType>(`cards/card?id=${cardId}`)
   },
 }

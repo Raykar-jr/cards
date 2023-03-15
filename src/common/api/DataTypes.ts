@@ -128,6 +128,15 @@ export type CardType = {
   questionImg: string
   questionVideo: string
 }
+export type CreateCardsResponseType = {
+  newCard: CardType
+}
+export type UpdateCardsResponseType = {
+  updatedCard: CardType
+}
+export type DeleteCardsResponseType = {
+  deletedCard: CardType
+}
 
 export type PackParamsType = {
   packName?: string
