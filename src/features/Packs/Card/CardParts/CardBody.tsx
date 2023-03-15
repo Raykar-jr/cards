@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 
+import Rating from '@mui/material/Rating'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
@@ -15,6 +16,7 @@ type Props = {
   card: CardType
 }
 export const CardBody: React.FC<Props> = ({ card }) => {
+  const [value, setValue] = React.useState<number | null>(2)
   const dispatch = useAppDispatch()
   const updateCardHandler = () => {
     dispatch(updateCard(card.cardsPack_id, card._id))
@@ -23,13 +25,19 @@ export const CardBody: React.FC<Props> = ({ card }) => {
     dispatch(deleteCard(card.cardsPack_id, card._id))
   }
   const stringDate = makeStringDate(card.updated)
+  const changeRatingValue = (event: SyntheticEvent<Element, Event>, newValue: number | null) => {
+    setValue(newValue)
+  }
 
   return (
     <TableRow>
       <TableCell align="left">{card.question}</TableCell>
       <TableCell align="left">{card.answer}</TableCell>
       <TableCell align="center">{stringDate}</TableCell>
-      <TableCell align="left">{card.grade}</TableCell>
+      <TableCell align="left">
+        <Rating name="simple-controlled" value={value} onChange={changeRatingValue} />
+        {/* {card.grade}*/}
+      </TableCell>
       <TableCell align="left">
         <button className={s.button} onClick={updateCardHandler}>
           <img src={editCard} alt="edit card" />
