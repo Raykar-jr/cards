@@ -5,18 +5,18 @@ import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
-import { NavLink, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 import s from './Card.module.scss'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
-import vector from 'assets/images/vector.svg'
+import { ArrowBackToPacks } from 'common/components/ArrowBackToPacks/ArrowBackToPacks'
 import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
-import { PATH } from 'common/path/path'
 import { common_button } from 'common/styles/LoginStyles'
 import { createCard, getCards, setCount, setPage } from 'features/Packs/Card/card-reducer'
 import { CardBody } from 'features/Packs/Card/CardParts/CardBody'
 import { CardHeader } from 'features/Packs/Card/CardParts/CardHeader'
+import { EmptyPack } from 'features/Packs/Card/CardParts/EmptyPack'
 import {
   selectCardPage,
   selectCardPageCount,
@@ -39,6 +39,7 @@ export const Cards = () => {
   const packName = useAppSelector(selectPackName)
   const sort = useAppSelector(selectCardSort)
   const search = useAppSelector(selectCardSearch)
+  const isMyPack = true // false, разобраться с логикой определения моих/чужих колод
 
   useEffect(() => {
     packId && dispatch(getCards(packId))
@@ -54,20 +55,22 @@ export const Cards = () => {
 
   return (
     <>
-      <div className={s.arrow}>
-        <img src={vector} alt="vector icon" />
-        <NavLink to={PATH.PACKS.PACKS}>Back to Packs List</NavLink>
-      </div>
+      <ArrowBackToPacks />
       <div className={s.packName}>
         <p className={s.packNameText}>{packName}</p>
-      </div>
-      {cards.length == 0 ? (
-        <div className={s.wrapperEmptyPack}>
-          <p className={s.emptyPackText}>This pack is empty. Click add new card to fill this pack</p>
-          <Button sx={common_button} onClick={createCardHandler} variant={'contained'} color={'primary'}>
+        {cards.length !== 0 && !isMyPack && (
+          <Button sx={common_button} variant={'contained'} color={'primary'}>
+            Learn to pack
+          </Button>
+        )}
+        {cards.length !== 0 && isMyPack && (
+          <Button sx={common_button} variant={'contained'} color={'primary'}>
             Add new card
           </Button>
-        </div>
+        )}
+      </div>
+      {cards.length === 0 ? (
+        <EmptyPack onClick={createCardHandler} />
       ) : (
         <TableContainer className={'commonContainer'}>
           <TableContainer>
