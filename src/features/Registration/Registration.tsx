@@ -30,7 +30,7 @@ const Registration: React.FC<Login> = () => {
   return (
     <div>
       <Paper elevation={3} className={s.mainContainer}>
-        <Typography className={s.title}>Sing Up</Typography>
+        <Typography className={s.title}>Sign Up</Typography>
         <Formik
           initialValues={{ email: '', password: '', confirmPassword: '' }}
           validationSchema={validationRegistrationForm}

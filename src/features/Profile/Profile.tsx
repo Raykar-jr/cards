@@ -11,6 +11,7 @@ import { User } from './User/User'
 import { useAppDispatch } from 'app/store'
 import profile_logout from 'assets/images/profile_logout.svg'
 import vector from 'assets/images/vector.svg'
+import { PATH } from 'common/path/path'
 import { logout } from 'features/Login/login-reducer'
 
 const Profile = () => {
@@ -23,7 +24,7 @@ const Profile = () => {
     <div className={s.profileWrapper}>
       <div className={s.arrow}>
         <img src={vector} alt="vector icon" />
-        <NavLink to={'/packList'}>Back to Packs List</NavLink>
+        <NavLink to={PATH.PACKS.PACKS}>Back to Packs List</NavLink>
       </div>
       <Grid container display="flex" justifyContent="center" marginTop="40px">
         <Paper
