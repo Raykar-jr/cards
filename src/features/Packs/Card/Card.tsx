@@ -17,20 +17,32 @@ import { common_button } from 'common/styles/LoginStyles'
 import { createCard, getCards, setCount, setPage } from 'features/Packs/Card/card-reducer'
 import { CardBody } from 'features/Packs/Card/CardParts/CardBody'
 import { CardHeader } from 'features/Packs/Card/CardParts/CardHeader'
+import {
+  selectCardPage,
+  selectCardPageCount,
+  selectCards,
+  selectCardSearch,
+  selectCardSort,
+  selectCardsTotalCount,
+  selectPackName,
+} from 'features/Packs/Card/CardSelectors'
 
 export const Cards = () => {
   const { packId } = useParams<{ packId: string }>()
   const dispatch = useAppDispatch()
-  const cards = useAppSelector(state => state.cards.cards)
 
-  const page = useAppSelector(state => state.cards.page)
-  const pageCount = useAppSelector(state => state.cards.pageCount)
-  const cardsTotalCount = useAppSelector(state => state.cards.cardsTotalCount)
-  const packName = useAppSelector(state => state.cards.packName)
+  const cards = useAppSelector(selectCards)
+
+  const page = useAppSelector(selectCardPage)
+  const pageCount = useAppSelector(selectCardPageCount)
+  const cardsTotalCount = useAppSelector(selectCardsTotalCount)
+  const packName = useAppSelector(selectPackName)
+  const sort = useAppSelector(selectCardSort)
+  const search = useAppSelector(selectCardSearch)
 
   useEffect(() => {
     packId && dispatch(getCards(packId))
-  }, [page, pageCount])
+  }, [page, pageCount, sort, search])
 
   const createCardHandler = () => {
     packId && dispatch(createCard(packId))

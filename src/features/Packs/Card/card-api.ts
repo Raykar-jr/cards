@@ -7,12 +7,14 @@ import {
 import { instance } from 'common/api/main-api'
 
 export const cardsApi = {
-  getCards(cardsPackId: string, page: number, pageCount: number = 5) {
+  getCards(cardsPackId: string, page: number, pageCount: number = 5, sort: string, search: string) {
     return instance.get<GetCardsResponseType>(`/cards/card`, {
       params: {
         cardsPack_id: cardsPackId,
         page,
         pageCount,
+        cardQuestion: search,
+        sortCards: sort,
       },
     })
   },
