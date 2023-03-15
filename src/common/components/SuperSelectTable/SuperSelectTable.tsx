@@ -23,7 +23,7 @@ export const SuperSelectTable: FC<SuperSelectPropsType> = ({ options, onChange, 
   }
 
   return (
-    <select onChange={onChangeCallback} {...restProps}>
+    <select className={s.select} onChange={onChangeCallback} {...restProps}>
       {mappedOptions}
     </select>
   )
