@@ -11,9 +11,11 @@ import s from './Card.module.scss'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { ArrowBackToPacks } from 'common/components/ArrowBackToPacks/ArrowBackToPacks'
+import { Filters } from 'common/components/Filters/Filters'
+import { Search } from 'common/components/Search/Search'
 import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
 import { common_button } from 'common/styles/LoginStyles'
-import { createCard, getCards, setCount, setPage } from 'features/Packs/Card/card-reducer'
+import { createCard, getCards, setCount, setPage, setSearch } from 'features/Packs/Card/card-reducer'
 import { CardBody } from 'features/Packs/Card/CardParts/CardBody'
 import { CardHeader } from 'features/Packs/Card/CardParts/CardHeader'
 import { EmptyPack } from 'features/Packs/Card/CardParts/EmptyPack'
@@ -52,9 +54,12 @@ export const Cards = () => {
     dispatch(setPage(newPage))
     dispatch(setCount(newCount))
   }
+  const searchHandler = (search: string) => {
+    dispatch(setSearch(search))
+  }
 
   return (
-    <>
+    <TableContainer className={s.container}>
       <ArrowBackToPacks />
       <div className={s.packName}>
         <p className={s.packNameText}>{packName}</p>
@@ -69,6 +74,9 @@ export const Cards = () => {
           </Button>
         )}
       </div>
+      <Filters>
+        <Search onChange={searchHandler} />
+      </Filters>
       {cards.length === 0 ? (
         <EmptyPack onClick={createCardHandler} />
       ) : (
@@ -96,6 +104,6 @@ export const Cards = () => {
           />
         </TableContainer>
       )}
-    </>
+    </TableContainer>
   )
 }

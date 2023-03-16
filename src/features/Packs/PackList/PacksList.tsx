@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { useEffect } from 'react'
 
+import MoodBadIcon from '@mui/icons-material/MoodBad'
+import { Typography } from '@mui/material'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -48,25 +50,33 @@ export const PacksList = () => {
       <TableContainer className={s.container}>
         <button onClick={addNewPackHandler}>Add Pack</button>
         <FilterPanel />
-        <TableContainer>
-          <Paper sx={{ width: '100%', mb: 2 }}>
-            <Table sx={{ minWidth: 700 }} aria-labelledby="tableTitle">
-              <PacksHeader />
-              <TableBody>
-                {packs.map(pack => (
-                  <PacksBody key={pack._id} pack={pack} />
-                ))}
-              </TableBody>
-            </Table>
-          </Paper>
-        </TableContainer>
-
-        <SuperPaginationTable
-          page={page}
-          itemsCount={pageCount}
-          totalCount={cardPacksTotalCount}
-          onChange={onChangePagination}
-        />
+        {packs.length ? (
+          <>
+            <TableContainer>
+              <Paper sx={{ width: '100%', mb: 2 }}>
+                <Table sx={{ minWidth: 700 }} aria-labelledby="tableTitle">
+                  <PacksHeader />
+                  <TableBody>
+                    {packs.map(pack => (
+                      <PacksBody key={pack._id} pack={pack} />
+                    ))}
+                  </TableBody>
+                </Table>
+              </Paper>
+            </TableContainer>
+            <SuperPaginationTable
+              page={page}
+              itemsCount={pageCount}
+              totalCount={cardPacksTotalCount}
+              onChange={onChangePagination}
+            />
+          </>
+        ) : (
+          <Typography className={s.search}>
+            <MoodBadIcon color={'warning'} />
+            No decks found with given name. Change your search options.
+          </Typography>
+        )}
       </TableContainer>
     </>
   )
