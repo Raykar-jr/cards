@@ -6,6 +6,8 @@ import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
 
+import s from './PacksList.module.scss'
+
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { PackType } from 'common/api/DataTypes'
 import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
@@ -34,7 +36,7 @@ export const PacksList = () => {
 
   return (
     <>
-      <TableContainer className={'commonContainer'}>
+      <TableContainer className={s.container}>
         <button onClick={addNewPackHandler}>Add Pack</button>
         <Settings />
         <TableContainer>

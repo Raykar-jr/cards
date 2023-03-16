@@ -1,0 +1,5 @@
+@import "src/common/styles/scss/mixins";
+
+.searchContainer{
+  @include flex(space-between,flex-start,column)
+}
