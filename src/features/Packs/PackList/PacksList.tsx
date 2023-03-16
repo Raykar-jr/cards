@@ -5,6 +5,7 @@ import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
+import { useSearchParams } from 'react-router-dom'
 
 import s from './PacksList.module.scss'
 
@@ -17,17 +18,25 @@ import { Settings } from 'features/Packs/PackList/Settings/Settings'
 import { createPackTC, getPackTC } from 'features/Packs/packs-reducer'
 
 export const PacksList = () => {
+  const [searchParams, setSearchParams] = useSearchParams()
   const dispatch = useAppDispatch()
   const packs = useAppSelector((state): Array<PackType> => {
     return state.packs.cardPacks
   })
 
   useEffect(() => {
-    dispatch(getPackTC({}))
+    const params = Object.fromEntries(searchParams)
+
+    dispatch(getPackTC({ page: +params.page, pageCount: +params.count || 5 }))
   }, [])
 
   const addNewPackHandler = () => {
     dispatch(createPackTC({ params: {}, data: { cardsPack: { name: 'NEW PACK!!!!' } } }))
+  }
+
+  const onChangePagination = (newPage: number, newCount: number) => {
+    dispatch(getPackTC({ page: newPage, pageCount: newCount }))
+    setSearchParams({ page: '' + newPage, count: '' + newCount })
   }
 
   const page = useAppSelector(state => state.packs.page)
@@ -52,7 +61,12 @@ export const PacksList = () => {
           </Paper>
         </TableContainer>
 
-        <SuperPaginationTable page={page} itemsCount={pageCount} totalCount={cardPacksTotalCount} onChange={() => {}} />
+        <SuperPaginationTable
+          page={page}
+          itemsCount={pageCount}
+          totalCount={cardPacksTotalCount}
+          onChange={onChangePagination}
+        />
       </TableContainer>
     </>
   )
