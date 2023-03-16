@@ -2,5 +2,6 @@
 
 .settingsBlock {
   width: 100%;
-  @include flex(space-between, center)
+  @include flex(space-between, center);
+  @include fontSettings(14px, 500, 17px);
 }

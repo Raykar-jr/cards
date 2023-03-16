@@ -1,5 +1,6 @@
 @import "src/common/styles/scss/mixins";
 
 .searchContainer{
+  min-height: 62px;
   @include flex(space-between,flex-start,column)
 }
