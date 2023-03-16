@@ -14,7 +14,7 @@ import { PackType } from 'common/api/DataTypes'
 import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
 import { PacksBody } from 'features/Packs/PackList/PacksBody/PacksBody'
 import { PacksHeader } from 'features/Packs/PackList/PacksHeader/PacksHeader'
-import { Settings } from 'features/Packs/PackList/Settings/Settings'
+import { FilterPanel } from 'features/Packs/PackList/Settings/FilterPanel'
 import { createPackTC, getPackTC } from 'features/Packs/packs-reducer'
 
 export const PacksList = () => {
@@ -47,7 +47,7 @@ export const PacksList = () => {
     <>
       <TableContainer className={s.container}>
         <button onClick={addNewPackHandler}>Add Pack</button>
-        <Settings />
+        <FilterPanel />
         <TableContainer>
           <Paper sx={{ width: '100%', mb: 2 }}>
             <Table sx={{ minWidth: 700 }} aria-labelledby="tableTitle">
