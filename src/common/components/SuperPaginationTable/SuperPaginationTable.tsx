@@ -24,7 +24,15 @@ export const SuperPaginationTable: FC<SuperPaginationTableType> = ({ id, page, i
 
   return (
     <div className={s.pagination}>
-      <Pagination count={lastCount} shape="rounded" page={page} onChange={onChangeHandler} id={id} />
+      <Pagination
+        color="primary"
+        sx={{ mr: '20px' }}
+        count={lastCount}
+        shape="rounded"
+        page={page}
+        onChange={onChangeHandler}
+        id={id}
+      />
       <span className={s.show}>Show </span>
       <SuperSelectTable
         id={id}
