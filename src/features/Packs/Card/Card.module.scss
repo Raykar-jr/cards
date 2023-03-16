@@ -1,37 +1,47 @@
 @import "src/common/styles/scss/mixins";
 
-.head {
-  background-color: #efefef;
 
-  &_cursor {
-    cursor: pointer;
+.container{
+  max-width: 1280px;
+  margin: 0 auto;
+  @include flex(center, flex-end, column);
+  gap: 24px;
+  .head {
+    background-color: #efefef;
+
+    &_cursor {
+      cursor: pointer;
+    }
+  }
+  .packName {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10%;
+    @include fontSettings(22px, 600, 27px);
+
+    & .packNameText {
+      margin-top: 10px;
+    }
+  }
+  .search{
+    width: 100%;
+  }
+  .button {
+    background-color: transparent;
+    border: none;
+    margin: 0 10px;
+  }
+
+  .wrapperEmptyPack {
+    @include flex(flex-start, center, column);
+    width: 100%;
+    gap: 20px;
+
+    .emptyPackText {
+      @include fontSettings(16px, 600, 20px);
+      opacity: 0.5;
+    }
   }
 }
 
-.packName {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 10%;
-  @include fontSettings(22px, 600, 27px);
 
-  & .packNameText {
-    margin-top: 10px;
-  }
-}
-
-.button {
-  background-color: transparent;
-  border: none;
-  margin: 0 10px;
-}
-
-.wrapperEmptyPack {
-  @include flex(flex-start, center, column);
-  width: 100%;
-  gap: 20px;
-
-  .emptyPackText {
-    @include fontSettings(16px, 600, 20px);
-    opacity: 0.5;
-  }
-}
