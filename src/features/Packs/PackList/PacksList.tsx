@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from 'app/store'
 import { PackType } from 'common/api/DataTypes'
 import { PacksBody } from 'features/Packs/PackList/PacksBody/PacksBody'
 import { PacksHeader } from 'features/Packs/PackList/PacksHeader/PacksHeader'
+import { Settings } from 'features/Packs/PackList/Settings/Settings'
 import { createPackTC, getPackTC } from 'features/Packs/packs-reducer'
 
 export const PacksList = () => {
@@ -30,6 +31,7 @@ export const PacksList = () => {
     <>
       <TableContainer className={'commonContainer'}>
         <button onClick={addNewPackHandler}>Add Pack</button>
+        <Settings />
         <TableContainer>
           <Paper sx={{ width: '100%', mb: 2 }}>
             <Table sx={{ minWidth: 700 }} aria-labelledby="tableTitle">
