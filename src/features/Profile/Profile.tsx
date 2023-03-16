@@ -46,6 +46,10 @@ const Profile = () => {
               lineHeight: '20px',
               textTransform: 'none',
               boxShadow: '0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3)',
+              ':hover': {
+                bgcolor: '#366EFF',
+                color: 'white', // theme.palette.primary.main
+              },
             }}
           >
             <img src={profile_logout} alt="edit" className={s.img} />
