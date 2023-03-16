@@ -1,6 +1,8 @@
+@import "src/common/styles/scss/mixins";
+
 .pagination{
-  display: flex;
-  align-items: center;
+  width: 100%;
+  @include flex(flex-start, center);
   .show{
     font-size: 12px;
   }
