@@ -14,7 +14,6 @@ export const FilterPanel = () => {
   const { min, max, packName } = useAppSelector(state => state.packs.queryParams)
   const { page, pageCount } = useAppSelector(state => state.packs.packList)
 
-  console.log(packName)
   const userId = useAppSelector(selectUserId)
   const onSearchChange = useCallback((search: string) => {
     dispatch(setQueryParams({ packName: search }))
