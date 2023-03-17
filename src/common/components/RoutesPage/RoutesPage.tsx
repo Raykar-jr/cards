@@ -30,13 +30,13 @@ export const RoutesPage = () => {
     <Routes>
       <Route element={<PrivateRoutes />}>
         <Route path={PATH.PROFILE.PROFILE} element={<Profile />} />
+        <Route path={PATH.PACKS.PACKS} element={<PacksList />} />
+        <Route path={PATH.PACKS.CARD} element={<Cards />} />
       </Route>
       <Route path="/" element={<Navigate to={PATH.LOGIN.LOGIN} />} />
       {routes.map(route => (
         <Route path={route.path} element={route.component} key={route.path} />
       ))}
-      <Route path={PATH.PACKS.PACKS} element={<PacksList />} />
-      <Route path={PATH.PACKS.CARD} element={<Cards />} />
     </Routes>
   )
 }
