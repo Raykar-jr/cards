@@ -29,7 +29,7 @@ export const RangeCards: React.FC<RangeCardsPropsType> = React.memo(({ values, m
   }, [values[0], values[1]])
 
   return (
-    <Grid item flex={'0 0 200px'}>
+    <Grid item flex={'0 0 auto'}>
       <Typography margin={'0 0 8px 0'} fontSize={15} fontWeight={500}>
         Number of cards
       </Typography>
