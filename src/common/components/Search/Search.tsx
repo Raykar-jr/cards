@@ -31,6 +31,7 @@ export const Search: React.FC<SearchPropsType> = React.memo(({ onChange }) => {
         value={value}
         variant="outlined"
         size="small"
+        sx={{ minWidth: '400px' }}
         placeholder={'Provide your text'}
         InputProps={{ startAdornment: <SearchIcon sx={{ height: 36, mr: '5px' }} color={'disabled'} /> }}
       />
