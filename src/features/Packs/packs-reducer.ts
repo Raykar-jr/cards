@@ -47,6 +47,9 @@ export const packsReducer = (state = initState, action: ActionType): initStateTy
     case 'packs/SET-QUERY-PARAMS': {
       return { ...state, queryParams: { ...state.queryParams, ...action.payload.params } }
     }
+    case 'packs/RESET-QUERY-PARAMS': {
+      return { ...state, queryParams: { ...initState.queryParams } }
+    }
     default:
       return state
   }
@@ -56,7 +59,7 @@ export const packsReducer = (state = initState, action: ActionType): initStateTy
 export const getPacks = (data: GetPacksResponseType) => ({ type: 'packs/GET-PACKS', payload: { data } } as const)
 export const setQueryParams = (params: PackParamsType) =>
   ({ type: 'packs/SET-QUERY-PARAMS', payload: { params } } as const)
-
+export const resetQueryParams = () => ({ type: 'packs/RESET-QUERY-PARAMS' } as const)
 // thunks
 
 export const getPackTC =
@@ -118,4 +121,8 @@ export const deletePackTC =
 
 // types
 type initStateType = typeof initState
-type ActionType = ReturnType<typeof setQueryParams> | ReturnType<typeof getPacks> | AppSetStatusType
+type ActionType =
+  | ReturnType<typeof setQueryParams>
+  | ReturnType<typeof getPacks>
+  | ReturnType<typeof resetQueryParams>
+  | AppSetStatusType
