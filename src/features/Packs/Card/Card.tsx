@@ -50,7 +50,7 @@ export const Cards = () => {
   const createCardHandler = () => {
     packId && dispatch(createCard(packId))
   }
-  const ChangePaginationHandler = (newPage: number, newCount: number = 5) => {
+  const changePaginationHandler = (newPage: number, newCount: number = 5) => {
     dispatch(setPage(newPage))
     dispatch(setCount(newCount))
   }
@@ -99,7 +99,7 @@ export const Cards = () => {
             page={page}
             itemsCount={pageCount}
             totalCount={cardsTotalCount}
-            onChange={ChangePaginationHandler}
+            onChange={changePaginationHandler}
           />
         </TableContainer>
       )}
