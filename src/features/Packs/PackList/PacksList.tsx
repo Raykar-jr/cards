@@ -3,6 +3,8 @@ import { useEffect } from 'react'
 
 import MoodBadIcon from '@mui/icons-material/MoodBad'
 import { Typography } from '@mui/material'
+import Button from '@mui/material/Button'
+import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -12,6 +14,7 @@ import s from './PacksList.module.scss'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
+import { common_button } from 'common/styles/LoginStyles'
 import { PacksBody } from 'features/Packs/PackList/PacksBody/PacksBody'
 import { PacksHeader } from 'features/Packs/PackList/PacksHeader/PacksHeader'
 import { FilterPanel } from 'features/Packs/PackList/Settings/FilterPanel'
@@ -42,7 +45,12 @@ export const PacksList = () => {
   return (
     <>
       <TableContainer className={s.container}>
-        <button onClick={addNewPackHandler}>Add Pack</button>
+        <Grid container justifyContent={'space-between'} alignItems={'center'}>
+          <p className={s.title}>Packs list</p>
+          <Button onClick={addNewPackHandler} sx={common_button} variant={'contained'} color={'primary'}>
+            Add new pack
+          </Button>
+        </Grid>
         <FilterPanel />
         {packs.length ? (
           <>
