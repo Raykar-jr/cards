@@ -52,6 +52,11 @@ export const Cards = () => {
     packId && dispatch(getCards(packId))
   }, [page, pageCount, sort, search])
 
+  useEffect(() => {
+    return () => {
+      dispatch(setSearch(''))
+    }
+  }, [])
   const createCardHandler = () => {
     packId && dispatch(createCard(packId))
   }
@@ -92,7 +97,7 @@ export const Cards = () => {
           <TableContainer>
             <Paper sx={{ width: '100%', mb: 2 }}>
               <Filters>
-                <Search onChange={searchHandler} />
+                <Search search={search} onChange={searchHandler} />
               </Filters>
               <Table sx={{ minWidth: 700, mt: 2 }} aria-labelledby="tableTitle">
                 <CardHeader />
