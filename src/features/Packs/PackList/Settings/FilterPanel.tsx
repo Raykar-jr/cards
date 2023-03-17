@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 
-import { useAppDispatch } from 'app/store'
+import { useAppDispatch, useAppSelector } from 'app/store'
 import { ButtonsGroup } from 'common/components/ButtonsGroup/ButtonsGroup'
 import { Filters } from 'common/components/Filters/Filters'
 import { RangeCards } from 'common/components/RangeCards/RangeCards'
@@ -9,14 +9,23 @@ import { setQueryParams } from 'features/Packs/packs-reducer'
 
 export const FilterPanel = () => {
   const dispatch = useAppDispatch()
+  const { min, max } = useAppSelector(state => state.packs.queryParams)
+  const { page, pageCount } = useAppSelector(state => state.packs.packList)
+  const userId = useAppSelector(state => state.profile._id)
   const onSearchChange = useCallback((search: string) => {
     dispatch(setQueryParams({ packName: search }))
+  }, [])
+  const getMyPacks = useCallback(() => {
+    dispatch(setQueryParams({ min, max, user_id: userId, page, pageCount }))
+  }, [])
+  const getAllPacks = useCallback(() => {
+    dispatch(setQueryParams({ user_id: '' }))
   }, [])
 
   return (
     <Filters>
       <Search onChange={onSearchChange} />
-      <ButtonsGroup />
+      <ButtonsGroup onClickMy={getMyPacks} onClickAll={getAllPacks} />
       <RangeCards />
     </Filters>
   )
