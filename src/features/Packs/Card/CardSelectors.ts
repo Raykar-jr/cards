@@ -7,3 +7,5 @@ export const selectCardsTotalCount = (state: AppRootStateType) => state.cards.ca
 export const selectPackName = (state: AppRootStateType) => state.cards.packName
 export const selectCardSort = (state: AppRootStateType) => state.cards.sort
 export const selectCardSearch = (state: AppRootStateType) => state.cards.search
+export const selectPackUserId = (state: AppRootStateType) => state.cards.packUserId
+export const selectIsMyPack = (state: AppRootStateType) => state.cards.isMyPack

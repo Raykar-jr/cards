@@ -6,12 +6,13 @@ import { Filters } from 'common/components/Filters/Filters'
 import { RangeCards } from 'common/components/RangeCards/RangeCards'
 import { Search } from 'common/components/Search/Search'
 import { setQueryParams } from 'features/Packs/packs-reducer'
+import { selectUserId } from 'features/Profile/profileSelectors'
 
 export const FilterPanel = () => {
   const dispatch = useAppDispatch()
   const { min, max } = useAppSelector(state => state.packs.queryParams)
   const { page, pageCount } = useAppSelector(state => state.packs.packList)
-  const userId = useAppSelector(state => state.profile._id)
+  const userId = useAppSelector(selectUserId)
   const onSearchChange = useCallback((search: string) => {
     dispatch(setQueryParams({ packName: search }))
   }, [])

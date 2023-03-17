@@ -15,7 +15,7 @@ import { Filters } from 'common/components/Filters/Filters'
 import { Search } from 'common/components/Search/Search'
 import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
 import { common_button } from 'common/styles/LoginStyles'
-import { createCard, getCards, setCount, setPage, setSearch } from 'features/Packs/Card/card-reducer'
+import { createCard, getCards, setCount, setIsMyPack, setPage, setSearch } from 'features/Packs/Card/card-reducer'
 import { CardBody } from 'features/Packs/Card/CardParts/CardBody'
 import { CardHeader } from 'features/Packs/Card/CardParts/CardHeader'
 import { EmptyPack } from 'features/Packs/Card/CardParts/EmptyPack'
@@ -26,8 +26,11 @@ import {
   selectCardSearch,
   selectCardSort,
   selectCardsTotalCount,
+  selectIsMyPack,
   selectPackName,
+  selectPackUserId,
 } from 'features/Packs/Card/CardSelectors'
+import { selectUserId } from 'features/Profile/profileSelectors'
 
 export const Cards = () => {
   const { packId } = useParams<{ packId: string }>()
@@ -41,7 +44,9 @@ export const Cards = () => {
   const packName = useAppSelector(selectPackName)
   const sort = useAppSelector(selectCardSort)
   const search = useAppSelector(selectCardSearch)
-  const isMyPack = true // false, разобраться с логикой определения моих/чужих колод
+  const userId = useAppSelector(selectUserId)
+  const packUserId = useAppSelector(selectPackUserId)
+  const isMyPack = useAppSelector(selectIsMyPack)
 
   useEffect(() => {
     packId && dispatch(getCards(packId))
@@ -56,6 +61,12 @@ export const Cards = () => {
   }
   const searchHandler = (search: string) => {
     dispatch(setSearch(search))
+  }
+
+  if (userId === packUserId) {
+    dispatch(setIsMyPack(true))
+  } else {
+    dispatch(setIsMyPack(false))
   }
 
   return (
