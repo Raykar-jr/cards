@@ -50,7 +50,7 @@ export const Cards = () => {
   const createCardHandler = () => {
     packId && dispatch(createCard(packId))
   }
-  const ChangePaginationHandler = (newPage: number, newCount: number = 5) => {
+  const changePaginationHandler = (newPage: number, newCount: number = 5) => {
     dispatch(setPage(newPage))
     dispatch(setCount(newCount))
   }
@@ -69,22 +69,21 @@ export const Cards = () => {
           </Button>
         )}
         {cards.length !== 0 && isMyPack && (
-          <Button sx={common_button} variant={'contained'} color={'primary'}>
+          <Button onClick={createCardHandler} sx={common_button} variant={'contained'} color={'primary'}>
             Add new card
           </Button>
         )}
       </div>
-      <Filters>
-        <Search onChange={searchHandler} />
-      </Filters>
       {cards.length === 0 ? (
         <EmptyPack onClick={createCardHandler} />
       ) : (
         <TableContainer className={'commonContainer'}>
           <TableContainer>
             <Paper sx={{ width: '100%', mb: 2 }}>
-              <button onClick={createCardHandler}>Create Card</button>
-              <Table sx={{ minWidth: 700 }} aria-labelledby="tableTitle">
+              <Filters>
+                <Search onChange={searchHandler} />
+              </Filters>
+              <Table sx={{ minWidth: 700, mt: 2 }} aria-labelledby="tableTitle">
                 <CardHeader />
 
                 <TableBody>
@@ -100,7 +99,7 @@ export const Cards = () => {
             page={page}
             itemsCount={pageCount}
             totalCount={cardsTotalCount}
-            onChange={ChangePaginationHandler}
+            onChange={changePaginationHandler}
           />
         </TableContainer>
       )}

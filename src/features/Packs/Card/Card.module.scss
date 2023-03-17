@@ -4,8 +4,8 @@
 .container{
   max-width: 1280px;
   margin: 0 auto;
-  @include flex(center, flex-end, column);
-  gap: 24px;
+  @include flex(center, null, column);
+  gap: 16px;
   .head {
     background-color: #efefef;
 
@@ -16,7 +16,6 @@
   .packName {
     display: flex;
     justify-content: space-between;
-    padding: 0 10%;
     @include fontSettings(22px, 600, 27px);
 
     & .packNameText {
