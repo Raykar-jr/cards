@@ -34,7 +34,7 @@ const initState: InitialStateType = {
     packName: '',
     user_id: '',
     block: false,
-    page: 0,
+    page: 1,
     pageCount: 5,
     sortPacks: '0updated',
   },
