@@ -22,7 +22,6 @@ export const RoutesPage = () => {
     { path: PATH.LOGIN.RECOVERY_PASSWORD, component: <RecoveryPassword /> },
     { path: PATH.COMMON.ERROR404, component: <Error404 /> },
     { path: PATH.LOGIN.CHECK_EMAIL, component: <CheckEmail /> },
-    { path: PATH.PACKS.PACKS, component: <PacksList /> },
     { path: '*', component: <Error404 /> },
   ]
 
