@@ -27,7 +27,7 @@ export const FilterPanel = () => {
   const resetFilters = useCallback(() => {
     dispatch(resetQueryParams())
   }, [])
-  const onChangeSliderValue = useCallback((numbers: number[] | number) => {
+  const onChangeSliderValue = useCallback((event: any, numbers: number[] | number) => {
     Array.isArray(numbers) && dispatch(setQueryParams({ min: numbers[0], max: numbers[1] }))
   }, [])
 
