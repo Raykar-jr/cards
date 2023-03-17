@@ -7,43 +7,37 @@ import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
-import { useSearchParams } from 'react-router-dom'
 
 import s from './PacksList.module.scss'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
-import { PackType } from 'common/api/DataTypes'
 import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
 import { PacksBody } from 'features/Packs/PackList/PacksBody/PacksBody'
 import { PacksHeader } from 'features/Packs/PackList/PacksHeader/PacksHeader'
 import { FilterPanel } from 'features/Packs/PackList/Settings/FilterPanel'
-import { createPackTC, getPackTC } from 'features/Packs/packs-reducer'
+import { createPackTC, getPackTC, setQueryParams } from 'features/Packs/packs-reducer'
 
 export const PacksList = () => {
-  const [searchParams, setSearchParams] = useSearchParams()
   const dispatch = useAppDispatch()
-  const packs = useAppSelector((state): Array<PackType> => {
-    return state.packs.cardPacks
+  const cardPacksTotalCount = useAppSelector(state => {
+    return state.packs.packList.cardPacksTotalCount
   })
+  const packs = useAppSelector(state => {
+    return state.packs.packList.cardPacks
+  })
+  const queryParams = useAppSelector(state => state.packs.queryParams)
 
   useEffect(() => {
-    const params = Object.fromEntries(searchParams)
-
-    dispatch(getPackTC({ page: +params.page, pageCount: +params.count || 5 }))
-  }, [])
+    dispatch(getPackTC(queryParams))
+  }, [queryParams])
 
   const addNewPackHandler = () => {
     dispatch(createPackTC({ params: {}, data: { cardsPack: { name: 'NEW PACK!!!!' } } }))
   }
 
   const onChangePagination = (newPage: number, newCount: number) => {
-    dispatch(getPackTC({ page: newPage, pageCount: newCount }))
-    setSearchParams({ page: '' + newPage, count: '' + newCount })
+    dispatch(setQueryParams({ page: newPage, pageCount: newCount }))
   }
-
-  const page = useAppSelector(state => state.packs.page)
-  const pageCount = useAppSelector(state => state.packs.pageCount)
-  const cardPacksTotalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
 
   return (
     <>
@@ -65,8 +59,8 @@ export const PacksList = () => {
               </Paper>
             </TableContainer>
             <SuperPaginationTable
-              page={page}
-              itemsCount={pageCount}
+              page={queryParams.page}
+              itemsCount={queryParams.pageCount}
               totalCount={cardPacksTotalCount}
               onChange={onChangePagination}
             />

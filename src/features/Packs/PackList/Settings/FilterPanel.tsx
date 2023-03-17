@@ -5,12 +5,12 @@ import { ButtonsGroup } from 'common/components/ButtonsGroup/ButtonsGroup'
 import { Filters } from 'common/components/Filters/Filters'
 import { RangeCards } from 'common/components/RangeCards/RangeCards'
 import { Search } from 'common/components/Search/Search'
-import { getPackTC } from 'features/Packs/packs-reducer'
+import { setQueryParams } from 'features/Packs/packs-reducer'
 
 export const FilterPanel = () => {
   const dispatch = useAppDispatch()
   const onSearchChange = useCallback((search: string) => {
-    dispatch(getPackTC({ packName: search }))
+    dispatch(setQueryParams({ packName: search }))
   }, [])
 
   return (
