@@ -24,10 +24,22 @@ export const ButtonsGroup: React.FC<ButtonsGroupPropsType> = React.memo(({ onCli
         Show packs cards
       </Typography>
       <ButtonGroup variant="contained">
-        <Button disabled={!!userId} variant={activeMy} onClick={onClickChanger(onClickMy)} size={'large'}>
+        <Button
+          disabled={!!userId}
+          variant={activeMy}
+          onClick={onClickChanger(onClickMy)}
+          size={'large'}
+          sx={{ width: '80px' }}
+        >
           My
         </Button>
-        <Button disabled={!userId} variant={activeAll} onClick={onClickChanger(onClickAll)} size={'large'}>
+        <Button
+          disabled={!userId}
+          variant={activeAll}
+          onClick={onClickChanger(onClickAll)}
+          size={'large'}
+          sx={{ width: '80px' }}
+        >
           All
         </Button>
       </ButtonGroup>
