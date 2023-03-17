@@ -35,7 +35,7 @@ export const PacksBody: React.FC<PropsType> = ({ pack }) => {
       {/*<TableCell align="right">*/}
       {/*  <img alt={'avatar'} src={'sadfsadf'} />*/}
       {/*</TableCell>*/}
-      <TableCell align="right">{'cards'}</TableCell>
+      <TableCell align="right">{pack.cardsCount}</TableCell>
       <TableCell align="right">{stringDate}</TableCell>
       <TableCell align="right">{pack.user_name}</TableCell>
       <TableCell align="right">
