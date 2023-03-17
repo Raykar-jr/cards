@@ -8,16 +8,22 @@ import TextField from '@mui/material/TextField'
 import { useDebounce } from 'common/hooks/use-debounce'
 
 type SearchPropsType = {
+  search: string
   onChange: (search: string) => void
 }
-export const Search: React.FC<SearchPropsType> = React.memo(({ onChange }) => {
-  const [value, setValue] = useState<string>('')
+export const Search: React.FC<SearchPropsType> = React.memo(({ onChange, search }) => {
+  const [value, setValue] = useState<string>(search)
   const debouncedValue = useDebounce<string>(value, 500)
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.currentTarget.value)
   }
 
   useEffect(() => {
+    if (value === search) return
+    setValue(search)
+  }, [search])
+  useEffect(() => {
+    if (value === search) return
     onChange(value)
   }, [debouncedValue])
 
