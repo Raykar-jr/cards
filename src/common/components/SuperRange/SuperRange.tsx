@@ -19,8 +19,6 @@ export const SuperRange: React.FC<SliderProps> = props => {
         },
       }}
       step={1}
-      min={1}
-      max={100}
       getAriaLabel={() => 'Temperature range'}
       {...props}
     />
