@@ -33,7 +33,6 @@ const initState = {
   cardsTotalCount: 0,
   minGrade: 0,
   maxGrade: 0,
-  isMyPack: false,
   search: '',
   sort: '',
 }
@@ -50,8 +49,6 @@ export const cardsReducer = (state = initState, action: ActionType): initStateTy
       return { ...state, sort: action.sort }
     case 'cards/SEARCH-CARDS-BY-QUESTION':
       return { ...state, search: action.search }
-    case 'cards/SET-IS-MY-PACK':
-      return { ...state, isMyPack: action.value }
     default:
       return state
   }
@@ -62,7 +59,6 @@ export const setCards = (data: GetCardsResponseType) => ({ type: 'cards/SET-CARD
 export const setPage = (page: number) => ({ type: 'cards/SET-PAGE', page } as const)
 export const setCount = (count: number) => ({ type: 'cards/SET-COUNT', count } as const)
 export const setSort = (sort: string) => ({ type: 'cards/SET-SORT', sort } as const)
-export const setIsMyPack = (value: boolean) => ({ type: 'cards/SET-IS-MY-PACK', value } as const)
 export const setSearch = (search: string) => ({ type: 'cards/SEARCH-CARDS-BY-QUESTION', search } as const)
 
 // thunks
@@ -132,4 +128,3 @@ type ActionType =
   | ReturnType<typeof setPage>
   | ReturnType<typeof setSort>
   | ReturnType<typeof setSearch>
-  | ReturnType<typeof setIsMyPack>
