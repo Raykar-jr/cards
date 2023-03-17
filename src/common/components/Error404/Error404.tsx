@@ -3,12 +3,16 @@ import React from 'react'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
+import { useNavigate } from 'react-router-dom'
 
 import s from './Error404.module.css'
 
 import image404 from 'assets/images/404.svg'
+import { PATH } from 'common/path/path'
 
 export const Error404 = () => {
+  const navigate = useNavigate()
+
   return (
     <Grid container justifyContent={'center'} alignItems={'center'} style={{ marginTop: '200px' }}>
       <Grid display="flex" justifyContent="center" alignItems="center" gap={'62px'}>
@@ -21,7 +25,7 @@ export const Error404 = () => {
             className={s.button}
             variant="contained"
             sx={{ borderRadius: '30px' }}
-            onClick={() => {}}
+            onClick={() => navigate(PATH.PACKS.PACKS)}
           >
             Back to home page
           </Button>
