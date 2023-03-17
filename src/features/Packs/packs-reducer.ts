@@ -2,44 +2,51 @@ import { Dispatch } from 'redux'
 
 import { appSetStatus, AppSetStatusType } from 'app/app-reducer'
 import { AppThunk } from 'app/store'
-import { CreatePacksDataType, GetPacksResponseType, PackParamsType, UpdatePackDataType } from 'common/api/DataTypes'
+import {
+  CreatePacksDataType,
+  GetPacksResponseType,
+  PackListResponse,
+  PackParamsType,
+  QueryParams,
+  UpdatePackDataType,
+} from 'common/api/DataTypes'
 import { requestStatus } from 'common/components/constants/requestStatus'
 import { handleError } from 'common/utils/error-util'
 import { packApi } from 'features/Packs/packs-api'
 
-const initState = {
-  cardPacks: [
-    {
-      _id: '',
-      user_id: '',
-      user_name: '',
-      name: '',
-      private: false,
-      grade: 0,
-      shots: 0,
-      cardsCount: 0,
-      rating: 0,
-      created: '',
-      updated: '',
-      deckCover: '',
-    },
-  ],
-  page: 1,
-  pageCount: 0,
-  cardPacksTotalCount: 0,
-  minCardsCount: 0,
-  maxCardsCount: 0,
-  token: '',
-  tokenDeathTime: 0,
-  isMyPacks: false,
-  search: '',
-  sort: '',
+type InitialStateType = {
+  packList: PackListResponse
+  queryParams: QueryParams
+}
+
+const initState: InitialStateType = {
+  packList: {
+    minCardsCount: 0,
+    maxCardsCount: 0,
+    page: 0,
+    pageCount: 7,
+    cardPacks: [],
+    cardPacksTotalCount: 100,
+  },
+  queryParams: {
+    min: 0,
+    max: 0,
+    packName: '',
+    user_id: '',
+    block: false,
+    page: 0,
+    pageCount: 5,
+    sortPacks: '0updated',
+  },
 }
 
 export const packsReducer = (state = initState, action: ActionType): initStateType => {
   switch (action.type) {
     case 'packs/GET-PACKS':
-      return { ...state, ...action.payload.data }
+      return { ...state, packList: action.payload.data }
+    case 'packs/SET-QUERY-PARAMS': {
+      return { ...state, queryParams: { ...state.queryParams, ...action.payload.params } }
+    }
     default:
       return state
   }
@@ -47,6 +54,8 @@ export const packsReducer = (state = initState, action: ActionType): initStateTy
 
 // actions
 export const getPacks = (data: GetPacksResponseType) => ({ type: 'packs/GET-PACKS', payload: { data } } as const)
+export const setQueryParams = (params: PackParamsType) =>
+  ({ type: 'packs/SET-QUERY-PARAMS', payload: { params } } as const)
 
 // thunks
 
@@ -109,4 +118,4 @@ export const deletePackTC =
 
 // types
 type initStateType = typeof initState
-type ActionType = ReturnType<typeof getPacks> | AppSetStatusType
+type ActionType = ReturnType<typeof setQueryParams> | ReturnType<typeof getPacks> | AppSetStatusType
