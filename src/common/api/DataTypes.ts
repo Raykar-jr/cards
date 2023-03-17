@@ -142,10 +142,30 @@ export type PackParamsType = {
   packName?: string
   min?: number
   max?: number
-  sortPacks?: number
+  sortPacks?: string
   page?: number
   pageCount?: number
   user_id?: string
+  block?: boolean
+}
+export type QueryParams = {
+  packName: string
+  min: number
+  max: number
+  sortPacks: string
+  page: number
+  pageCount: number
+  user_id: string
+  block: boolean
+}
+
+export type PackListResponse = {
+  cardPacks: PackType[]
+  cardPacksTotalCount: number
+  maxCardsCount: number
+  minCardsCount: number
+  page: number
+  pageCount: number
 }
 
 export type CreatePacksDataType = {
