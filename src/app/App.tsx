@@ -35,8 +35,6 @@ export const App = () => {
       <Header />
       <RoutesPage />
       <SnackBar />
-      <NavLink to={PATH.PACKS.PACKS}>PACKS </NavLink> <br />
-      <NavLink to={PATH.LOGIN.LOGIN}>LOGIN </NavLink>
     </div>
   )
 }
