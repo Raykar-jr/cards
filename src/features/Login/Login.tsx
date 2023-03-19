@@ -18,7 +18,7 @@ export const Login = () => {
   const isLoggedIn = useAppSelector<boolean>(selectIsLoggedIn)
 
   if (isLoggedIn) {
-    return <Navigate to={PATH.PROFILE.PROFILE} />
+    return <Navigate to={PATH.PACKS.PACKS} />
   }
 
   const submitLoginForm = async (values: LoginParamsType): Promise<void> => {
