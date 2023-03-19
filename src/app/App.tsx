@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress'
-import { NavLink } from 'react-router-dom'
 
 import { initializeAppTC } from 'app/app-reducer'
 import s from 'app/App.module.scss'
@@ -11,7 +10,6 @@ import { BackDrop } from 'common/components/BackDrop/BackDrop'
 import { Header } from 'common/components/Header/Header'
 import { RoutesPage } from 'common/components/RoutesPage/RoutesPage'
 import { SnackBar } from 'common/components/SnackBar/SnackBar'
-import { PATH } from 'common/path/path'
 
 export const App = () => {
   const isInitialized = useAppSelector<boolean>(selectIsAppInitialized)
@@ -35,8 +33,6 @@ export const App = () => {
       <Header />
       <RoutesPage />
       <SnackBar />
-      <NavLink to={PATH.PACKS.PACKS}>PACKS </NavLink> <br />
-      <NavLink to={PATH.LOGIN.LOGIN}>LOGIN </NavLink>
     </div>
   )
 }
