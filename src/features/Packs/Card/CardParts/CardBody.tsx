@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from 'react'
+import React, { SyntheticEvent, useState } from 'react'
 
 import Rating from '@mui/material/Rating'
 import TableCell from '@mui/material/TableCell'
@@ -16,7 +16,7 @@ type Props = {
   card: CardType
 }
 export const CardBody: React.FC<Props> = ({ card }) => {
-  const [value, setValue] = React.useState<number | null>(2)
+  const [value, setValue] = useState<number | null>(2)
   const dispatch = useAppDispatch()
   const updateCardHandler = () => {
     dispatch(updateCard(card.cardsPack_id, card._id))

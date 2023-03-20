@@ -45,7 +45,9 @@ export const Cards = () => {
   const search = useAppSelector(selectCardSearch)
   const userId = useAppSelector(selectUserId)
   const packUserId = useAppSelector(selectPackUserId)
+
   const isMyPack = userId === packUserId
+  const isEmptyPack = !cards.length
 
   useEffect(() => {
     packId && dispatch(getCards(packId))
@@ -72,18 +74,18 @@ export const Cards = () => {
       <ArrowBackToPacks />
       <div className={s.packName}>
         <p className={s.packNameText}>{packName}</p>
-        {cards.length !== 0 && !isMyPack && (
+        {!isEmptyPack && !isMyPack && (
           <Button sx={common_button} variant={'contained'} color={'primary'}>
             Learn to pack
           </Button>
         )}
-        {cards.length !== 0 && isMyPack && (
+        {!isEmptyPack && isMyPack && (
           <Button onClick={createCardHandler} sx={common_button} variant={'contained'} color={'primary'}>
             Add new card
           </Button>
         )}
       </div>
-      {cards.length === 0 ? (
+      {isEmptyPack ? (
         <EmptyPack onClick={createCardHandler} />
       ) : (
         <TableContainer className={'commonContainer'}>
