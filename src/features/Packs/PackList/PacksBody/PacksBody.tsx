@@ -11,6 +11,8 @@ import learn from 'assets/icons/teacher.svg'
 import trash from 'assets/icons/trash.svg'
 import { PackType } from 'common/api/DataTypes'
 import { makeStringDate } from 'common/utils/makeStringDate'
+import { modal } from 'features/Modal/modal-constant'
+import { openModal } from 'features/Modal/modal-reducer'
 import { deletePackTC, updatePackTC } from 'features/Packs/packs-reducer'
 
 type PropsType = {
@@ -20,7 +22,7 @@ type PropsType = {
 export const PacksBody: React.FC<PropsType> = ({ pack }) => {
   const dispatch = useAppDispatch()
   const updatePackHandler = () => {
-    dispatch(updatePackTC({ params: {}, data: { cardsPack: { _id: pack._id, name: 'UPDATE PACK!!!' } } }))
+    dispatch(openModal(modal.EDIT_PACK, { name: pack.name, private: pack.private, _id: pack._id }))
   }
   const deletePackHandler = () => {
     dispatch(deletePackTC({ params: {}, packId: pack._id }))
