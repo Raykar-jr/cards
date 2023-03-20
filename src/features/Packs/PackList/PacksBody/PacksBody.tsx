@@ -25,7 +25,7 @@ export const PacksBody: React.FC<PropsType> = ({ pack }) => {
     dispatch(openModal(modal.EDIT_PACK, { name: pack.name, private: pack.private, _id: pack._id }))
   }
   const deletePackHandler = () => {
-    dispatch(deletePackTC({ params: {}, packId: pack._id }))
+    dispatch(openModal(modal.DELETE_PACK, { name: pack.name, private: pack.private, _id: pack._id }))
   }
   const stringDate = makeStringDate(pack.updated)
 

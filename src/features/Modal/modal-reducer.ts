@@ -1,4 +1,4 @@
-import { CreatePacksDataType, UpdatePackDataType } from 'common/api/DataTypes'
+import { CreatePacksDataType, DeleteParamType, UpdatePackDataType } from 'common/api/DataTypes'
 
 const initState = {} as ModalStateType<ModalStateDataType>
 
@@ -24,6 +24,6 @@ export type ModalStateType<D> = {
   data: D
 }
 
-export type ModalStateDataType = CreatePacksDataType | UpdatePackDataType
+export type ModalStateDataType = CreatePacksDataType | UpdatePackDataType | DeleteParamType
 
 type ActionType = ReturnType<typeof openModal> | ReturnType<typeof closeModal>

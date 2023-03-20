@@ -183,6 +183,8 @@ export type UpdatePackDataType = {
   private: boolean
 }
 
+export type DeleteParamType = { _id: string; name: string }
+
 export type UpdatePackResponseType = {
   updatedCardsPack: PackType
 }
