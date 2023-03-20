@@ -10,10 +10,15 @@ import { BackDrop } from 'common/components/BackDrop/BackDrop'
 import { Header } from 'common/components/Header/Header'
 import { RoutesPage } from 'common/components/RoutesPage/RoutesPage'
 import { SnackBar } from 'common/components/SnackBar/SnackBar'
+import { BasicModal } from 'features/Modal/BasicModal'
+import { openModal } from 'features/Modal/modal-reducer'
+import { PackModal } from 'features/Modal/PackModal'
 
 export const App = () => {
   const isInitialized = useAppSelector<boolean>(selectIsAppInitialized)
   const dispatch = useAppDispatch()
+
+  const title = useAppSelector(state => state.modals.title)
 
   useEffect(() => {
     dispatch(initializeAppTC())
@@ -33,6 +38,9 @@ export const App = () => {
       <Header />
       <RoutesPage />
       <SnackBar />
+      <BasicModal title={title}>
+        <PackModal />
+      </BasicModal>
     </div>
   )
 }
