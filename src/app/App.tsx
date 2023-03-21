@@ -7,13 +7,13 @@ import s from 'app/App.module.scss'
 import { selectIsAppInitialized } from 'app/appSelectors'
 import { AppRootStateType, useAppDispatch, useAppSelector } from 'app/store'
 import { BackDrop } from 'common/components/BackDrop/BackDrop'
+import { BasicModal } from 'common/components/BasicModal/BasicModal'
+import { modal } from 'common/components/constants/modal-constant'
 import { Header } from 'common/components/Header/Header'
 import { RoutesPage } from 'common/components/RoutesPage/RoutesPage'
 import { SnackBar } from 'common/components/SnackBar/SnackBar'
-import { BasicModal } from 'features/Modal/BasicModal'
-import { DeleteModal } from 'features/Modal/DeleteModal'
-import { modal } from 'features/Modal/modal-constant'
-import { PackModal } from 'features/Modal/PackModal'
+import { DeletePackModal } from 'features/Modal/PackModal/DeletePackModal/DeletePackModal'
+import { PackModal } from 'features/Modal/PackModal/PackModal'
 
 export const App = () => {
   const isInitialized = useAppSelector<boolean>(selectIsAppInitialized)
@@ -35,7 +35,7 @@ export const App = () => {
 
   const getModalChildren = (title: string) => {
     if (title === modal.ADD_PACK || title === modal.EDIT_PACK) return <PackModal />
-    if (title === modal.DELETE_PACK) return <DeleteModal />
+    if (title === modal.DELETE_PACK) return <DeletePackModal />
   }
 
   return (

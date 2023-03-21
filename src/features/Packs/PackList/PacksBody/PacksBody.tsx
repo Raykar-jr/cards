@@ -10,9 +10,9 @@ import edit from 'assets/icons/edit-2.svg'
 import learn from 'assets/icons/teacher.svg'
 import trash from 'assets/icons/trash.svg'
 import { PackType } from 'common/api/DataTypes'
+import { modal } from 'common/components/constants/modal-constant'
 import { makeStringDate } from 'common/utils/makeStringDate'
-import { modal } from 'features/Modal/modal-constant'
-import { openModal } from 'features/Modal/modal-reducer'
+import { openModal } from 'features/Modal/PackModal/modal-reducer'
 import { deletePackTC, updatePackTC } from 'features/Packs/packs-reducer'
 
 type PropsType = {

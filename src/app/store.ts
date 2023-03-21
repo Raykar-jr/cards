@@ -4,7 +4,7 @@ import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 
 import { appReducer } from 'app/app-reducer'
 import { loginReducer } from 'features/Login/login-reducer'
-import { modalsReducer } from 'features/Modal/modal-reducer'
+import { modalsReducer } from 'features/Modal/PackModal/modal-reducer'
 import { cardsReducer } from 'features/Packs/Card/card-reducer'
 import { packsReducer } from 'features/Packs/packs-reducer'
 import { recoveryPassReducer } from 'features/Password/RecoveryPassword/recoveryPass-reducer'

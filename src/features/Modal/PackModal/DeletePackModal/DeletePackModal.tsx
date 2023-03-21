@@ -5,13 +5,13 @@ import Button from '@mui/material/Button'
 
 import { AppRootStateType, useAppDispatch, useAppSelector } from 'app/store'
 import { DeleteParamType } from 'common/api/DataTypes'
-import s from 'features/Modal/ButtonModal.module.scss'
-import style from 'features/Modal/DeleteModal.module.scss'
-import { modal } from 'features/Modal/modal-constant'
-import { closeModal } from 'features/Modal/modal-reducer'
+import { modal } from 'common/components/constants/modal-constant'
+import s from 'features/Modal/PackModal/ButtonModal.module.scss'
+import style from 'features/Modal/PackModal/DeletePackModal/DeleteModal.module.scss'
+import { closeModal } from 'features/Modal/PackModal/modal-reducer'
 import { deletePackTC } from 'features/Packs/packs-reducer'
 
-export const DeleteModal = () => {
+export const DeletePackModal = () => {
   const dispatch = useAppDispatch()
   const data = useAppSelector((state: AppRootStateType) => state.modals.data) as DeleteParamType
   const title = useAppSelector((state: AppRootStateType) => state.modals.title)

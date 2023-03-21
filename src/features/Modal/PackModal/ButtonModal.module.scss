@@ -1,4 +1,4 @@
-@import 'src/common/styles/scss/mixins';
+@import '../../../common/styles/scss/mixins';
 
 .button {
   @include fontSettings(16px, 500, 20px);

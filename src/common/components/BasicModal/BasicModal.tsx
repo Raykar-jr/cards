@@ -4,11 +4,10 @@ import IconButton from '@mui/material/IconButton/IconButton'
 import Modal from '@mui/material/Modal'
 import Typography from '@mui/material/Typography/Typography'
 
-import styles from './BasicModal.module.scss'
-
 import { useAppDispatch } from 'app/store'
 import closeIcon from 'assets/icons/closeIcon.svg'
-import { closeModal } from 'features/Modal/modal-reducer'
+import styles from 'common/components/BasicModal/BasicModal.module.scss'
+import { closeModal } from 'features/Modal/PackModal/modal-reducer'
 
 type PropsType = {
   children?: ReactNode

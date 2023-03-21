@@ -9,22 +9,15 @@ import FormGroup from '@mui/material/FormGroup'
 import InputLabel from '@mui/material/InputLabel'
 import { FormikProps } from 'formik'
 
-import { useAppDispatch } from 'app/store'
-import s from 'features/Modal/ButtonModal.module.scss'
-import { closeModal } from 'features/Modal/modal-reducer'
-import { PackModalFormValueType } from 'features/Modal/PackModal'
-import style from 'features/Modal/PackModalForm.module.scss'
+import s from 'features/Modal/PackModal/ButtonModal.module.scss'
+import { PackModalFormValueType } from 'features/Modal/PackModal/PackModal'
+import style from 'features/Modal/PackModal/PackModalForm/PackModalForm.module.scss'
 
 type PropsType = {
   formik: FormikProps<PackModalFormValueType>
 }
 
 export const PackModalForm: React.FC<PropsType> = ({ formik }) => {
-  const dispatch = useAppDispatch()
-  const onClose = () => {
-    dispatch(closeModal())
-  }
-
   return (
     <form onSubmit={formik.handleSubmit}>
       <FormGroup className={style.main}>

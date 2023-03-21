@@ -5,9 +5,9 @@ import * as Yup from 'yup'
 
 import { AppRootStateType, useAppDispatch, useAppSelector } from 'app/store'
 import { UpdatePackDataType } from 'common/api/DataTypes'
-import { modal } from 'features/Modal/modal-constant'
-import { closeModal } from 'features/Modal/modal-reducer'
-import { PackModalForm } from 'features/Modal/PackModalForm'
+import { modal } from 'common/components/constants/modal-constant'
+import { closeModal } from 'features/Modal/PackModal/modal-reducer'
+import { PackModalForm } from 'features/Modal/PackModal/PackModalForm/PackModalForm'
 import { createPackTC, updatePackTC } from 'features/Packs/packs-reducer'
 
 export const PackModal = () => {
