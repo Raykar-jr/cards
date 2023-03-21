@@ -2,9 +2,11 @@ import React, { ReactNode, useState } from 'react'
 
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton/IconButton'
 import Modal from '@mui/material/Modal'
 import Typography from '@mui/material/Typography'
 
+import closeIcon from 'assets/icons/closeIcon.svg'
 import s from 'common/components/Modals/BasicCardModal.module.scss'
 import { common_button } from 'common/styles/LoginStyles'
 
@@ -17,7 +19,7 @@ const style = {
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 2,
+  p: 4,
   gap: 3,
   display: 'flex',
   flexDirection: 'column',
@@ -48,7 +50,7 @@ export const BasicCardModal: React.FC<PropsType> = ({
   }
 
   return (
-    <div>
+    <>
       <Button
         variant={buttonName ? 'contained' : undefined}
         sx={iconSrc ? { minWidth: '24px' } : common_button}
@@ -60,14 +62,14 @@ export const BasicCardModal: React.FC<PropsType> = ({
       </Button>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
-          <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <div className={s.header}>
             <Typography variant="h6" component="h2">
               {modalTitle}
             </Typography>
-            <Button color="primary" onClick={handleClose} variant="outlined" size="small">
-              ✖️
-            </Button>
-          </Box>
+            <IconButton onClick={handleClose}>
+              <img src={closeIcon} alt="close" />
+            </IconButton>
+          </div>
 
           {children}
 
@@ -87,6 +89,6 @@ export const BasicCardModal: React.FC<PropsType> = ({
           </div>
         </Box>
       </Modal>
-    </div>
+    </>
   )
 }
