@@ -12,10 +12,11 @@ import s from './Card.module.scss'
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { ArrowBackToPacks } from 'common/components/ArrowBackToPacks/ArrowBackToPacks'
 import { Filters } from 'common/components/Filters/Filters'
+import { AddCardModal } from 'common/components/Modals/CardsModal/AddCardModal'
 import { Search } from 'common/components/Search/Search'
 import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
 import { common_button } from 'common/styles/LoginStyles'
-import { createCard, getCards, setCount, setPage, setSearch } from 'features/Packs/Card/card-reducer'
+import { getCards, setCount, setPage, setSearch } from 'features/Packs/Card/card-reducer'
 import { CardBody } from 'features/Packs/Card/CardParts/CardBody'
 import { CardHeader } from 'features/Packs/Card/CardParts/CardHeader'
 import { EmptyPack } from 'features/Packs/Card/CardParts/EmptyPack'
@@ -58,16 +59,11 @@ export const Cards = () => {
       dispatch(setSearch(''))
     }
   }, [])
-  const createCardHandler = () => {
-    packId && dispatch(createCard(packId))
-  }
   const changePaginationHandler = (newPage: number, newCount: number = 5) => {
     dispatch(setPage(newPage))
     dispatch(setCount(newCount))
   }
-  const searchHandler = (search: string) => {
-    dispatch(setSearch(search))
-  }
+  const searchHandler = (search: string) => dispatch(setSearch(search))
 
   return (
     <TableContainer className={s.container}>
@@ -79,14 +75,10 @@ export const Cards = () => {
             Learn to pack
           </Button>
         )}
-        {!isEmptyPack && isMyPack && (
-          <Button onClick={createCardHandler} sx={common_button} variant={'contained'} color={'primary'}>
-            Add new card
-          </Button>
-        )}
+        {!isEmptyPack && isMyPack && <AddCardModal packId={packId} />}
       </div>
       {isEmptyPack ? (
-        <EmptyPack onClick={createCardHandler} />
+        <EmptyPack packId={packId} />
       ) : (
         <TableContainer className={'commonContainer'}>
           <TableContainer>

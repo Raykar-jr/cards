@@ -18,21 +18,21 @@ export const cardsApi = {
       },
     })
   },
-  createCard(cardsPackId: string) {
+  createCard(cardsPackId: string, question: string, answer: string) {
     return instance.post<CreateCardsResponseType>('cards/card', {
       card: {
         cardsPack_id: cardsPackId,
-        question: 'no question!!!',
-        answer: 'no answer!!!',
+        question,
+        answer,
       },
     })
   },
-  updateCard(cardId: string) {
+  updateCard(cardId: string, question: string, answer: string) {
     return instance.put<UpdateCardsResponseType>('cards/card', {
       card: {
         _id: cardId,
-        question: 'new question!!!',
-        answer: 'new answer!!!',
+        question,
+        answer,
       },
     })
   },

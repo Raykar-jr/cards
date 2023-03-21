@@ -1,0 +1,13 @@
+.button {
+  background-color: transparent !important;
+  border: none !important;
+
+  &:active {
+    background: transparent !important;
+  }
+}
+.lowerButtonGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
