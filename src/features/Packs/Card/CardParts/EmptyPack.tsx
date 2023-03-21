@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 
-import { AddCardModal } from 'common/components/Modals/CardsModal/AddCardModal'
+import { AddCardModal } from 'features/Modal/CardsModal/AddCardModal'
 import s from 'features/Packs/Card/Card.module.scss'
 
 type Props = {

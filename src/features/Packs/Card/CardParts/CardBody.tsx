@@ -5,9 +5,9 @@ import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
 import { CardType } from 'common/api/DataTypes'
-import { DeleteCardModal } from 'common/components/Modals/CardsModal/DeleteCardModal'
-import { EditCardModal } from 'common/components/Modals/CardsModal/EditCardModal'
 import { makeStringDate } from 'common/utils/makeStringDate'
+import { DeleteCardModal } from 'features/Modal/CardsModal/DeleteCardModal'
+import { EditCardModal } from 'features/Modal/CardsModal/EditCardModal'
 
 type Props = {
   card: CardType
