@@ -5,7 +5,7 @@ import Button from '@mui/material/Button'
 import Modal from '@mui/material/Modal'
 import Typography from '@mui/material/Typography'
 
-import s from 'common/components/Modals/BasicModal.module.scss'
+import s from 'common/components/Modals/BasicCardModal.module.scss'
 import { common_button } from 'common/styles/LoginStyles'
 
 const style = {
@@ -31,7 +31,14 @@ type PropsType = {
   onClick: () => void
   deleteMode: boolean
 }
-export const BasicModal: React.FC<PropsType> = ({ children, modalTitle, buttonName, iconSrc, onClick, deleteMode }) => {
+export const BasicCardModal: React.FC<PropsType> = ({
+  children,
+  modalTitle,
+  buttonName,
+  iconSrc,
+  onClick,
+  deleteMode,
+}) => {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)

@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField'
 
 import { useAppDispatch } from 'app/store'
 import editCard from 'assets/icons/edit-2.svg'
-import { BasicModal } from 'common/components/Modals/BasicModal'
+import { BasicCardModal } from 'common/components/Modals/BasicCardModal'
 import { updateCard } from 'features/Packs/Card/card-reducer'
 
 type PropsType = {
@@ -31,7 +31,7 @@ export const EditCardModal: React.FC<PropsType> = ({ packId, cardId, questionPro
   const handleChangeSelect = (event: SelectChangeEvent) => setQuestionFormat(event.target.value)
 
   return (
-    <BasicModal deleteMode={false} onClick={handleEditCard} iconSrc={editCard} modalTitle={'Edit card'}>
+    <BasicCardModal deleteMode={false} onClick={handleEditCard} iconSrc={editCard} modalTitle={'Edit card'}>
       <FormControl variant="standard" sx={{ m: 0.5, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-standard-label">Question format</InputLabel>
         <Select
@@ -49,6 +49,6 @@ export const EditCardModal: React.FC<PropsType> = ({ packId, cardId, questionPro
       <TextField value={question} onChange={handleChangeQuestion} fullWidth label="Question" variant="standard" />
 
       <TextField value={answer} onChange={handleChangeAnswer} fullWidth label="Answer" variant="standard" />
-    </BasicModal>
+    </BasicCardModal>
   )
 }
