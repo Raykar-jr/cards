@@ -13,8 +13,10 @@ import TableContainer from '@mui/material/TableContainer'
 import s from './PacksList.module.scss'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
+import { modal } from 'common/components/constants/modal-constant'
 import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
 import { common_button } from 'common/styles/LoginStyles'
+import { openModal } from 'features/Modal/PackModal/modal-reducer'
 import { PacksBody } from 'features/Packs/PackList/PacksBody/PacksBody'
 import { PacksHeader } from 'features/Packs/PackList/PacksHeader/PacksHeader'
 import { FilterPanel } from 'features/Packs/PackList/Settings/FilterPanel'
@@ -35,7 +37,7 @@ export const PacksList = () => {
   }, [queryParams])
 
   const addNewPackHandler = () => {
-    dispatch(createPackTC({ params: {}, data: { cardsPack: { name: 'NEW PACK!!!!' } } }))
+    dispatch(openModal(modal.ADD_PACK, { name: '', private: false }))
   }
 
   const onChangePagination = (newPage: number, newCount: number) => {

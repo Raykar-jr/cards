@@ -14,10 +14,10 @@ export const packApi = {
     return instance.get<GetPacksResponseType>('cards/pack', { params })
   },
   createPack(data: CreatePacksDataType) {
-    return instance.post<CreatePackResponseType>('cards/pack', data)
+    return instance.post<CreatePackResponseType>('cards/pack', { cardsPack: data })
   },
   updatePack(data: UpdatePackDataType) {
-    return instance.put<UpdatePackResponseType>('cards/pack', data)
+    return instance.put<UpdatePackResponseType>('cards/pack', { cardsPack: data })
   },
   deletePack(packId: string) {
     return instance.delete<DeletePackResponseType>(`cards/pack?id=${packId}`)

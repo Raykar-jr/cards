@@ -169,7 +169,8 @@ export type PackListResponse = {
 }
 
 export type CreatePacksDataType = {
-  cardsPack: { name: string }
+  name: string
+  private: boolean
 }
 
 export type CreatePackResponseType = {
@@ -177,11 +178,12 @@ export type CreatePackResponseType = {
 }
 
 export type UpdatePackDataType = {
-  cardsPack: {
-    _id: string
-    name: string
-  }
+  _id: string
+  name: string
+  private: boolean
 }
+
+export type DeleteParamType = { _id: string; name: string }
 
 export type UpdatePackResponseType = {
   updatedCardsPack: PackType

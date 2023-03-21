@@ -1,0 +1,13 @@
+@import "../../../../common/styles/scss/mixins";
+
+.modal {
+  padding: 30px 0 0;
+  .title {
+    @include fontSettings(18px, 500, 22px);
+  }
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0 0;
+  }
+}

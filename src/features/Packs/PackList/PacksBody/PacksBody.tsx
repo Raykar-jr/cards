@@ -10,7 +10,9 @@ import edit from 'assets/icons/edit-2.svg'
 import learn from 'assets/icons/teacher.svg'
 import trash from 'assets/icons/trash.svg'
 import { PackType } from 'common/api/DataTypes'
+import { modal } from 'common/components/constants/modal-constant'
 import { makeStringDate } from 'common/utils/makeStringDate'
+import { openModal } from 'features/Modal/PackModal/modal-reducer'
 import { deletePackTC, updatePackTC } from 'features/Packs/packs-reducer'
 
 type PropsType = {
@@ -20,10 +22,10 @@ type PropsType = {
 export const PacksBody: React.FC<PropsType> = ({ pack }) => {
   const dispatch = useAppDispatch()
   const updatePackHandler = () => {
-    dispatch(updatePackTC({ params: {}, data: { cardsPack: { _id: pack._id, name: 'UPDATE PACK!!!' } } }))
+    dispatch(openModal(modal.EDIT_PACK, { name: pack.name, private: pack.private, _id: pack._id }))
   }
   const deletePackHandler = () => {
-    dispatch(deletePackTC({ params: {}, packId: pack._id }))
+    dispatch(openModal(modal.DELETE_PACK, { name: pack.name, private: pack.private, _id: pack._id }))
   }
   const stringDate = makeStringDate(pack.updated)
 

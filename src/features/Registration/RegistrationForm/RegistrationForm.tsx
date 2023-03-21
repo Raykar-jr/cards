@@ -30,15 +30,8 @@ const RegistrationForm: React.FC<Props> = ({ formik }) => {
     <form onSubmit={formik.handleSubmit} className={s.formContainer}>
       <FormControl sx={{ width: '100%' }}>
         <FormGroup>
-          <TextField
-            variant="standard"
-            label="Email"
-            margin="normal"
-            {...formik.getFieldProps('email')}
-          />
-          {formik.touched.email && formik.errors.email && (
-            <div className={s.errorText}>{formik.errors.email}</div>
-          )}
+          <TextField variant="standard" label="Email" margin="normal" {...formik.getFieldProps('email')} />
+          {formik.touched.email && formik.errors.email && <div className={s.errorText}>{formik.errors.email}</div>}
 
           <FormControl variant="standard" margin="normal">
             <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
