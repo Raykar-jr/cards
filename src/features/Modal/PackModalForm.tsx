@@ -42,7 +42,7 @@ export const PackModalForm: React.FC<PropsType> = ({ formik }) => {
           control={<Checkbox {...formik.getFieldProps('packPrivate')} />}
         />
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Button className={s.button} fullWidth onClick={onClose}>
+          <Button className={s.button} fullWidth onClick={formik.handleReset}>
             Cancel
           </Button>
           <Button
