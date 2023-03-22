@@ -3,14 +3,12 @@ import React, { ChangeEvent, useState } from 'react'
 import Checkbox from '@mui/material/Checkbox'
 import FormControl from '@mui/material/FormControl'
 import FormControlLabel from '@mui/material/FormControlLabel'
-import InputLabel from '@mui/material/InputLabel'
 import TextField from '@mui/material/TextField'
 
 import { useAppDispatch } from 'app/store'
 import editPack from 'assets/icons/edit-2.svg'
 import { BasicCardModal } from 'common/components/Modals/BasicCardModal'
-import style from 'features/Modal/PackModal/PackModalForm/PackModalForm.module.scss'
-import { createPackTC, updatePackTC } from 'features/Packs/packs-reducer'
+import { updatePackTC } from 'features/Packs/packs-reducer'
 
 type PropsType = {
   nameProp: string
@@ -39,15 +37,11 @@ export const EditPackModal: React.FC<PropsType> = ({ packId, privateProp, namePr
 
   return (
     <BasicCardModal deleteMode={false} onClick={handleEditPack} modalTitle={'Edit card'} iconSrc={editPack}>
-      <FormControl className={style.field} fullWidth variant="standard">
+      <FormControl fullWidth variant="standard">
         <TextField value={packName} onChange={handleChangePackName} fullWidth label={'Name Pack'} variant="standard" />
       </FormControl>
 
-      <FormControlLabel
-        className={style.checkbox}
-        label="Private cards"
-        control={<Checkbox onChange={handleChangePackPrivate} />}
-      />
+      <FormControlLabel label="Private cards" control={<Checkbox onChange={handleChangePackPrivate} />} />
       <div style={{ display: 'flex', justifyContent: 'space-between' }}></div>
     </BasicCardModal>
   )

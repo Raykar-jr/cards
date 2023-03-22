@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 
 import MoodBadIcon from '@mui/icons-material/MoodBad'
 import { Typography } from '@mui/material'
-import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
@@ -14,15 +13,12 @@ import { useParams } from 'react-router-dom'
 import s from './PacksList.module.scss'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
-import { modal } from 'common/components/constants/modal-constant'
 import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
-import { common_button } from 'common/styles/LoginStyles'
-import { openModal } from 'features/Modal/PackModal/modal-reducer'
-import { AddPackModal } from 'features/Modal/PackModal/PackModalForm/AddPackModal'
+import { AddPackModal } from 'features/Modal/PackModal/AddPackModal'
 import { PacksBody } from 'features/Packs/PackList/PacksBody/PacksBody'
 import { PacksHeader } from 'features/Packs/PackList/PacksHeader/PacksHeader'
 import { FilterPanel } from 'features/Packs/PackList/Settings/FilterPanel'
-import { createPackTC, getPackTC, setQueryParams } from 'features/Packs/packs-reducer'
+import { getPackTC, setQueryParams } from 'features/Packs/packs-reducer'
 
 export const PacksList = () => {
   const { packName } = useParams<{ packName: string }>()

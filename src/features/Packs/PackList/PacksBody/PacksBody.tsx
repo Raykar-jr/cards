@@ -5,30 +5,17 @@ import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { Link } from 'react-router-dom'
 
-import { useAppDispatch } from 'app/store'
-import edit from 'assets/icons/edit-2.svg'
 import learn from 'assets/icons/teacher.svg'
-import trash from 'assets/icons/trash.svg'
 import { PackType } from 'common/api/DataTypes'
-import { modal } from 'common/components/constants/modal-constant'
 import { makeStringDate } from 'common/utils/makeStringDate'
-import { DeletePackModal } from 'features/Modal/PackModal/DeletePackModal/DeletePackModal'
-import { openModal } from 'features/Modal/PackModal/modal-reducer'
-import { EditPackModal } from 'features/Modal/PackModal/PackModalForm/EditPackModal'
-import { deletePackTC, updatePackTC } from 'features/Packs/packs-reducer'
+import { DeletePackModal } from 'features/Modal/PackModal/DeletePackModal'
+import { EditPackModal } from 'features/Modal/PackModal/EditPackModal'
 
 type PropsType = {
   // key: string
   pack: PackType
 }
 export const PacksBody: React.FC<PropsType> = ({ pack }) => {
-  const dispatch = useAppDispatch()
-  const updatePackHandler = () => {
-    dispatch(openModal(modal.EDIT_PACK, { name: pack.name, private: pack.private, _id: pack._id }))
-  }
-  const deletePackHandler = () => {
-    dispatch(openModal(modal.DELETE_PACK, { name: pack.name, private: pack.private, _id: pack._id }))
-  }
   const stringDate = makeStringDate(pack.updated)
 
   return (
