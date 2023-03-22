@@ -7,7 +7,7 @@ import { AppRootStateType, useAppDispatch, useAppSelector } from 'app/store'
 import { UpdatePackDataType } from 'common/api/DataTypes'
 import { modal } from 'common/components/constants/modal-constant'
 import { closeModal } from 'features/Modal/PackModal/modal-reducer'
-import { PackModalForm } from 'features/Modal/PackModal/PackModalForm/PackModalForm'
+import { AddPackModal } from 'features/Modal/PackModal/PackModalForm/AddPackModal'
 import { createPackTC, updatePackTC } from 'features/Packs/packs-reducer'
 
 export const PackModal = () => {
@@ -55,9 +55,7 @@ export const PackModal = () => {
       }}
       validationSchema={validatePackModalForm}
       onSubmit={submitModal}
-    >
-      {formik => <PackModalForm formik={formik} />}
-    </Formik>
+    ></Formik>
   )
 }
 

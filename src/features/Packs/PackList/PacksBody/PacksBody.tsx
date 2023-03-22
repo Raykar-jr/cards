@@ -12,7 +12,9 @@ import trash from 'assets/icons/trash.svg'
 import { PackType } from 'common/api/DataTypes'
 import { modal } from 'common/components/constants/modal-constant'
 import { makeStringDate } from 'common/utils/makeStringDate'
+import { DeletePackModal } from 'features/Modal/PackModal/DeletePackModal/DeletePackModal'
 import { openModal } from 'features/Modal/PackModal/modal-reducer'
+import { EditPackModal } from 'features/Modal/PackModal/PackModalForm/EditPackModal'
 import { deletePackTC, updatePackTC } from 'features/Packs/packs-reducer'
 
 type PropsType = {
@@ -47,12 +49,11 @@ export const PacksBody: React.FC<PropsType> = ({ pack }) => {
         <IconButton onClick={() => {}} size="small">
           <img src={learn} alt="learn icon" />
         </IconButton>
-        <IconButton onClick={updatePackHandler} size="small">
-          <img src={edit} alt="edit icon" />
-        </IconButton>
-        <IconButton onClick={deletePackHandler} size="small">
-          <img src={trash} alt="delete icon" />
-        </IconButton>
+        {/*<IconButton onClick={updatePackHandler} size="small">*/}
+        {/*  <img src={edit} alt="edit icon" />*/}
+        {/*</IconButton>*/}
+        <EditPackModal nameProp={pack.name} privateProp={pack.private} packId={pack._id} />
+        <DeletePackModal packId={pack._id} packName={pack.name} />
       </TableCell>
     </TableRow>
   )

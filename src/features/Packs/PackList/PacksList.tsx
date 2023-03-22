@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
+import { useParams } from 'react-router-dom'
 
 import s from './PacksList.module.scss'
 
@@ -17,12 +18,14 @@ import { modal } from 'common/components/constants/modal-constant'
 import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
 import { common_button } from 'common/styles/LoginStyles'
 import { openModal } from 'features/Modal/PackModal/modal-reducer'
+import { AddPackModal } from 'features/Modal/PackModal/PackModalForm/AddPackModal'
 import { PacksBody } from 'features/Packs/PackList/PacksBody/PacksBody'
 import { PacksHeader } from 'features/Packs/PackList/PacksHeader/PacksHeader'
 import { FilterPanel } from 'features/Packs/PackList/Settings/FilterPanel'
 import { createPackTC, getPackTC, setQueryParams } from 'features/Packs/packs-reducer'
 
 export const PacksList = () => {
+  const { packName } = useParams<{ packName: string }>()
   const dispatch = useAppDispatch()
   const cardPacksTotalCount = useAppSelector(state => {
     return state.packs.packList.cardPacksTotalCount
@@ -36,9 +39,9 @@ export const PacksList = () => {
     dispatch(getPackTC(queryParams))
   }, [queryParams])
 
-  const addNewPackHandler = () => {
-    dispatch(openModal(modal.ADD_PACK, { name: '', private: false }))
-  }
+  // const addNewPackHandler = () => {
+  //   dispatch(openModal(modal.ADD_PACK, { name: '', private: false }))
+  // }
 
   const onChangePagination = (newPage: number, newCount: number) => {
     dispatch(setQueryParams({ page: newPage, pageCount: newCount }))
@@ -49,9 +52,7 @@ export const PacksList = () => {
       <TableContainer className={s.container}>
         <Grid container justifyContent={'space-between'} alignItems={'center'}>
           <p className={s.title}>Packs list</p>
-          <Button onClick={addNewPackHandler} sx={common_button} variant={'contained'} color={'primary'}>
-            Add new pack
-          </Button>
+          <AddPackModal />
         </Grid>
         <FilterPanel />
         {packs.length ? (
