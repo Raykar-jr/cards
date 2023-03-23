@@ -8,7 +8,6 @@ import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
-import { useParams } from 'react-router-dom'
 
 import s from './PacksList.module.scss'
 

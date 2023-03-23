@@ -23,7 +23,7 @@ const initState: InitialStateType = {
   packList: {
     minCardsCount: 0,
     maxCardsCount: 0,
-    page: 0,
+    page: 1,
     pageCount: 5,
     cardPacks: [],
     cardPacksTotalCount: 100,

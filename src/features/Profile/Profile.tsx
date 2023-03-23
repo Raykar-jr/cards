@@ -24,7 +24,7 @@ const Profile = () => {
       <ArrowBackToPacks />
       <Grid container display="flex" justifyContent="center" marginTop="40px">
         <Paper
-          elevation={3}
+          elevation={2}
           sx={{
             p: '27px 0 36px 0',
             height: '360px',
