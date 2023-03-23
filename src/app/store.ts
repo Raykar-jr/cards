@@ -2,7 +2,6 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AnyAction, applyMiddleware, combineReducers, legacy_createStore } from 'redux'
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import { createWhitelistFilter } from 'redux-persist-transform-filter'
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 
 import { appReducer } from 'app/app-reducer'
@@ -17,7 +16,6 @@ const persistConfig = {
   key: 'packs',
   storage,
   whitelist: ['queryParams'],
-  transforms: [createWhitelistFilter('queryParams', ['user_id'])],
 }
 
 const rootReducer = combineReducers({
