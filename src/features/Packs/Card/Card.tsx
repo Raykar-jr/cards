@@ -77,15 +77,15 @@ export const Cards = () => {
         )}
         {!isEmptyPack && isMyPack && <AddCardModal packId={packId} />}
       </div>
+      <Filters>
+        <Search search={search} onChange={searchHandler} />
+      </Filters>
       {isEmptyPack ? (
         <EmptyPack packId={packId} />
       ) : (
         <TableContainer className={'commonContainer'}>
           <TableContainer>
             <Paper sx={{ width: '100%', mb: 2 }}>
-              <Filters>
-                <Search search={search} onChange={searchHandler} />
-              </Filters>
               <Table sx={{ minWidth: 700, mt: 2 }} aria-labelledby="tableTitle">
                 <CardHeader />
 
