@@ -21,7 +21,6 @@ import { FilterPanel } from 'features/Packs/PackList/Settings/FilterPanel'
 import { getPackTC, setQueryParams } from 'features/Packs/packs-reducer'
 
 export const PacksList = () => {
-  const { packName } = useParams<{ packName: string }>()
   const dispatch = useAppDispatch()
   const cardPacksTotalCount = useAppSelector(state => {
     return state.packs.packList.cardPacksTotalCount
@@ -34,10 +33,6 @@ export const PacksList = () => {
   useEffect(() => {
     dispatch(getPackTC(queryParams))
   }, [queryParams])
-
-  // const addNewPackHandler = () => {
-  //   dispatch(openModal(modal.ADD_PACK, { name: '', private: false }))
-  // }
 
   const onChangePagination = (newPage: number, newCount: number) => {
     dispatch(setQueryParams({ page: newPage, pageCount: newCount }))

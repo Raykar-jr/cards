@@ -18,8 +18,13 @@ type PropsType = {
 export const EditPackModal: React.FC<PropsType> = ({ packId, privateProp, nameProp }) => {
   const [packName, setPackName] = useState(nameProp)
   const [privatePack, setPrivatePack] = useState(privateProp)
+  const [error, setError] = useState(false)
+  const [helperText, setHelperText] = useState('Name Pack')
 
-  const handleChangePackName = (e: ChangeEvent<HTMLInputElement>) => setPackName(e.currentTarget.value)
+  const handleChangePackName = (e: ChangeEvent<HTMLInputElement>) => {
+    setPackName(e.currentTarget.value)
+    actionError(false, '')
+  }
   const handleChangePackPrivate = (e: ChangeEvent<HTMLInputElement>) => setPrivatePack(e.currentTarget.checked)
   const dispatch = useAppDispatch()
   const handleEditPack = () => {
@@ -34,11 +39,40 @@ export const EditPackModal: React.FC<PropsType> = ({ packId, privateProp, namePr
       })
     )
   }
+  const handleError = () => {
+    if (packName.trim().length === 0) {
+      actionError(true, 'Please enter pack name')
+    }
+  }
+  const actionError = (error: boolean, text: string) => {
+    setError(error)
+    setHelperText(text)
+  }
+  const handleOnClickClose = () => {
+    actionError(false, '')
+    setPackName(nameProp)
+  }
 
   return (
-    <BasicCardModal deleteMode={false} onClick={handleEditPack} modalTitle={'Edit card'} iconSrc={editPack}>
+    <BasicCardModal
+      deleteMode={false}
+      onClick={handleEditPack}
+      modalTitle={'Edit card'}
+      iconSrc={editPack}
+      disabled={packName === nameProp || packName.trim().length === 0}
+      onClickClose={handleOnClickClose}
+    >
       <FormControl fullWidth variant="standard">
-        <TextField value={packName} onChange={handleChangePackName} fullWidth label={'Name Pack'} variant="standard" />
+        <TextField
+          onBlur={handleError}
+          value={packName}
+          error={error}
+          helperText={helperText}
+          onChange={handleChangePackName}
+          fullWidth
+          label={'Name Pack'}
+          variant="standard"
+        />
       </FormControl>
 
       <FormControlLabel label="Private cards" control={<Checkbox onChange={handleChangePackPrivate} />} />

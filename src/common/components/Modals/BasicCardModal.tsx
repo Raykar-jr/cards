@@ -32,6 +32,8 @@ type PropsType = {
   iconSrc?: string
   onClick: () => void
   deleteMode: boolean
+  disabled?: boolean
+  onClickClose?: (error: boolean, text: string) => void
 }
 export const BasicCardModal: React.FC<PropsType> = ({
   children,
@@ -40,10 +42,17 @@ export const BasicCardModal: React.FC<PropsType> = ({
   iconSrc,
   onClick,
   deleteMode,
+  disabled,
+  onClickClose,
 }) => {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const handleClose = () => {
+    setOpen(false)
+    if (onClickClose) {
+      onClickClose(false, '')
+    }
+  }
   const handleOnSaveOrRemove = () => {
     setOpen(false)
     onClick()
@@ -82,7 +91,7 @@ export const BasicCardModal: React.FC<PropsType> = ({
                 Delete
               </Button>
             ) : (
-              <Button onClick={handleOnSaveOrRemove} sx={common_button} variant={'contained'}>
+              <Button onClick={handleOnSaveOrRemove} sx={common_button} variant={'contained'} disabled={disabled}>
                 Save
               </Button>
             )}

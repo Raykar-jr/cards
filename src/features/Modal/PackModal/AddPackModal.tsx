@@ -10,14 +10,33 @@ import { BasicCardModal } from 'common/components/Modals/BasicCardModal'
 import { createPackTC } from 'features/Packs/packs-reducer'
 
 export const AddPackModal = () => {
+  const dispatch = useAppDispatch()
+
   const [packName, setPackName] = useState('')
   const [privatePack, setPrivatePack] = useState(false)
+  const [error, setError] = useState(false)
+  const [helperText, setHelperText] = useState('Name Pack')
 
-  const handleChangePackName = (e: ChangeEvent<HTMLInputElement>) => setPackName(e.currentTarget.value)
+  const handleChangePackName = (e: ChangeEvent<HTMLInputElement>) => {
+    setPackName(e.currentTarget.value)
+    actionError(false, '')
+  }
   const handleChangePackPrivate = (e: ChangeEvent<HTMLInputElement>) => setPrivatePack(e.currentTarget.checked)
-  const dispatch = useAppDispatch()
+
   const handleCreatPack = () => {
     dispatch(createPackTC({ params: {}, data: { name: packName, private: privatePack } }))
+    setPackName('')
+    setError(false)
+  }
+  const handleError = () => {
+    if (packName.trim().length === 0) {
+      actionError(true, 'Please enter pack name')
+    }
+  }
+
+  const actionError = (error: boolean, text: string) => {
+    setError(error)
+    setHelperText(text)
   }
 
   return (
@@ -26,9 +45,20 @@ export const AddPackModal = () => {
       onClick={handleCreatPack}
       modalTitle={'Add new Pack'}
       buttonName={'Add new Pack'}
+      disabled={!packName.trim()}
+      onClickClose={actionError}
     >
       <FormControl fullWidth variant="standard">
-        <TextField value={packName} onChange={handleChangePackName} fullWidth label={'Name Pack'} variant="standard" />
+        <TextField
+          error={error}
+          onBlur={handleError}
+          helperText={helperText}
+          value={packName}
+          onChange={handleChangePackName}
+          fullWidth
+          label={'Pack Name'}
+          variant="standard"
+        />
       </FormControl>
 
       <FormControlLabel label="Private cards" control={<Checkbox onChange={handleChangePackPrivate} />} />
