@@ -3,7 +3,7 @@ import * as React from 'react'
 import IconButton from '@mui/material/IconButton'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import learn from 'assets/icons/teacher.svg'
 import { PackType } from 'common/api/DataTypes'
@@ -17,6 +17,10 @@ type PropsType = {
 }
 export const PacksBody: React.FC<PropsType> = ({ pack }) => {
   const stringDate = makeStringDate(pack.updated)
+  const navigate = useNavigate()
+  const redirectToLearnHandler = () => {
+    navigate('/learn/' + pack._id)
+  }
 
   return (
     <TableRow>
@@ -33,7 +37,7 @@ export const PacksBody: React.FC<PropsType> = ({ pack }) => {
         {/*{'learn/edite,delete'}*/}
         {/*<button onClick={updatePackHandler}>Update Pack</button> <br />*/}
         {/*<button onClick={deletePackHandler}>Delete Pack</button>*/}
-        <IconButton onClick={() => {}} size="small">
+        <IconButton onClick={redirectToLearnHandler} size="small">
           <img src={learn} alt="learn icon" />
         </IconButton>
         {/*<IconButton onClick={updatePackHandler} size="small">*/}

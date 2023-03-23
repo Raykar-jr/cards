@@ -5,6 +5,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { Error404 } from 'common/components/Error404/Error404'
 import { PrivateRoutes } from 'common/components/PrivateRoutes/PrivateRoutes'
 import { PATH } from 'common/path/path'
+import { Learn } from 'features/Learn/Learn'
 import { Login } from 'features/Login/Login'
 import { Cards } from 'features/Packs/Card/Card'
 import { PacksList } from 'features/Packs/PackList/PacksList'
@@ -31,6 +32,7 @@ export const RoutesPage = () => {
         <Route path={PATH.PROFILE.PROFILE} element={<Profile />} />
         <Route path={PATH.PACKS.PACKS} element={<PacksList />} />
         <Route path={PATH.PACKS.CARD} element={<Cards />} />
+        <Route path={PATH.PACKS.LEARN} element={<Learn />} />
       </Route>
       <Route path="/" element={<Navigate to={PATH.LOGIN.LOGIN} />} />
       {routes.map(route => (

@@ -15,6 +15,6 @@ export const PATH = {
   PACKS: {
     PACKS: '/packs',
     CARD: '/packs/:packId',
-    LEARN: '/learn',
+    LEARN: '/learn/:packId',
   },
 } as const
