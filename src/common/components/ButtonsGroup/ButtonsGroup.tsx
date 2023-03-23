@@ -17,11 +17,11 @@ export const ButtonsGroup: React.FC<ButtonsGroupPropsType> = React.memo(({ onCli
   }
 
   const allActive: SxProps = {
-    backgroundColor: !userId ? '#366EFF' : '',
+    backgroundColor: !userId ? '#366EFF' : '#fff',
     width: 80,
   }
   const myActive: SxProps = {
-    backgroundColor: userId ? '#366EFF' : '',
+    backgroundColor: userId ? '#366EFF' : '#fff',
     width: 80,
   }
 
