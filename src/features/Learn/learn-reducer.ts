@@ -3,7 +3,7 @@ import { AppThunk } from 'app/store'
 import { CardType, UpdateGradeRequestType, UpdateGradeResponseType } from 'common/api/DataTypes'
 import { requestStatus } from 'common/components/constants/requestStatus'
 import { handleError } from 'common/utils/error-util'
-import { learnApi } from 'features/Learn/learn-api'
+import { cardsApi } from 'features/Packs/Card/card-api'
 import { gradeCardUpdate } from 'features/Packs/Card/card-reducer'
 
 type InitialStateType = {
@@ -33,7 +33,7 @@ export const updateGradeTC =
   async dispatch => {
     try {
       dispatch(appSetStatus(requestStatus.LOADING))
-      const res = await learnApi.updateGrade(data)
+      const res = await cardsApi.updateGradeCard(data)
 
       dispatch(gradeCardUpdate(res.data))
       // dispatch(updateGrade(res.data))
