@@ -25,13 +25,12 @@ export const AddCardModal: React.FC<PropsType> = ({ packId }) => {
     packId && dispatch(createCard(packId, question, answer))
     setAnswer('')
     setQuestion('')
-    setQuestionError(false)
-    setAnswerError(false)
   }
   const handleChangeQuestion = (e: ChangeEvent<HTMLInputElement>) => setQuestion(e.currentTarget.value)
   const handleChangeAnswer = (e: ChangeEvent<HTMLInputElement>) => setAnswer(e.currentTarget.value)
   const handleChangeSelect = (event: SelectChangeEvent) => setQuestionFormat(event.target.value)
-  const handleError = () => {
+
+  const handleTextFieldError = () => {
     if (question.trim() === '') {
       setQuestionError(true)
     } else {
@@ -70,7 +69,7 @@ export const AddCardModal: React.FC<PropsType> = ({ packId }) => {
       <TextField
         error={questionError}
         value={question}
-        onBlur={handleError}
+        onBlur={handleTextFieldError}
         onChange={handleChangeQuestion}
         fullWidth
         label="Question"
@@ -81,7 +80,7 @@ export const AddCardModal: React.FC<PropsType> = ({ packId }) => {
       <TextField
         error={answerError}
         value={answer}
-        onBlur={handleError}
+        onBlur={handleTextFieldError}
         onChange={handleChangeAnswer}
         fullWidth
         label="Answer"
