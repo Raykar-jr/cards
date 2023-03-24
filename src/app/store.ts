@@ -6,6 +6,7 @@ import { createWhitelistFilter } from 'redux-persist-transform-filter'
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 
 import { appReducer } from 'app/app-reducer'
+import { learnReducer } from 'features/Learn/learn-reducer'
 import { loginReducer } from 'features/Login/login-reducer'
 import { cardsReducer } from 'features/Packs/Card/card-reducer'
 import { packsReducer } from 'features/Packs/packs-reducer'
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   recovery: recoveryPassReducer,
   packs: persistReducer(persistConfig, packsReducer),
   cards: cardsReducer,
+  learn: learnReducer,
 })
 
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware))
