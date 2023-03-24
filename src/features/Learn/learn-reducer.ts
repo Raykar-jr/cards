@@ -41,7 +41,6 @@ export const updateGradeTC =
       const res = await cardsApi.updateGradeCard(data)
 
       dispatch(gradeCardUpdate(res.data))
-      // dispatch(updateGrade(res.data))
     } catch (e) {
       handleError(e, dispatch)
     } finally {

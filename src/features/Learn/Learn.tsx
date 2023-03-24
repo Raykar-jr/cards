@@ -10,7 +10,7 @@ import { ArrowBackToPacks } from 'common/components/ArrowBackToPacks/ArrowBackTo
 import { common_button } from 'common/styles/LoginStyles'
 import { getRandomCard } from 'common/utils/getRandomCard'
 import { Answer } from 'features/Learn/Answer'
-import { setCard } from 'features/Learn/learn-reducer'
+import { resetCardLearn, setCard } from 'features/Learn/learn-reducer'
 import { getAllCards, resetPackCard } from 'features/Packs/Card/card-reducer'
 
 export const Learn = () => {
@@ -29,6 +29,7 @@ export const Learn = () => {
 
     return () => {
       dispatch(resetPackCard())
+      dispatch(resetCardLearn())
     }
   }, [])
 
@@ -38,9 +39,7 @@ export const Learn = () => {
 
   const onNext = () => {
     setIsChecked(false)
-    if (cards.length > 0) {
-      dispatch(setCard(getRandomCard(cards)))
-    }
+    cards?.length && dispatch(setCard(getRandomCard(cards)))
   }
 
   return (

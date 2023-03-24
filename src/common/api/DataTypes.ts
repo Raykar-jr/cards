@@ -134,6 +134,7 @@ export type CardType = {
   answerVideo: string
   questionImg: string
   questionVideo: string
+  card_id: string
 }
 export type UpdateGradeRequestType = {
   grade: number
