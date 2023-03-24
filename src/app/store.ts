@@ -18,7 +18,7 @@ const persistConfig = {
   key: 'packs',
   storage,
   whitelist: ['queryParams'],
-  transforms: [createWhitelistFilter('queryParams', ['user_id', 'page', 'pageCount'])],
+  transforms: [createWhitelistFilter('queryParams', ['user_id', 'pageCount'])],
 }
 
 const rootReducer = combineReducers({
