@@ -6,7 +6,7 @@ import { handleError } from 'common/utils/error-util'
 import { cardsApi } from 'features/Packs/Card/card-api'
 import { gradeCardUpdate } from 'features/Packs/Card/card-reducer'
 
-const learnInitState = {
+const initState = {
   card: {
     _id: '',
     cardsPack_id: '',
@@ -18,10 +18,10 @@ const learnInitState = {
   },
 }
 
-export const learnReducer = (state = learnInitState, action: ActionType) => {
+export const learnReducer = (state: initStateType = initState, action: ActionType): initStateType => {
   switch (action.type) {
     case 'learn/RESET-LEAN-CARD':
-      return { ...state, card: { ...learnInitState.card } }
+      return { ...state, card: { ...initState.card } }
     case 'learn/SET-CARD':
       return { ...state, card: { ...state.card, ...action.payload.data } }
     default: {
@@ -50,4 +50,5 @@ export const updateGradeTC =
   }
 
 //type
+type initStateType = typeof initState
 type ActionType = ReturnType<typeof resetCardLearn> | ReturnType<typeof setCard>
