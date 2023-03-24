@@ -1,37 +1,37 @@
 import { appSetStatus } from 'app/app-reducer'
 import { AppThunk } from 'app/store'
-import { CardType, UpdateGradeRequestType, UpdateGradeResponseType } from 'common/api/DataTypes'
+import { CardType, UpdateGradeRequestType } from 'common/api/DataTypes'
 import { requestStatus } from 'common/components/constants/requestStatus'
 import { handleError } from 'common/utils/error-util'
 import { cardsApi } from 'features/Packs/Card/card-api'
 import { gradeCardUpdate } from 'features/Packs/Card/card-reducer'
 
-type InitialStateType = {
-  card: CardType
-  isFirst: boolean
-}
-const learnInitState: InitialStateType = {
-  card: {} as CardType,
-  isFirst: true,
+const learnInitState = {
+  card: {
+    _id: '',
+    cardsPack_id: '',
+    user_id: '',
+    answer: '',
+    question: '',
+    grade: 0,
+    shots: 0,
+  },
 }
 
-export const learnReducer = (state = learnInitState, action: ActionType): InitialStateType => {
+export const learnReducer = (state = learnInitState, action: ActionType) => {
   switch (action.type) {
-    case 'learn/UPDATE-GRADE':
-      return { ...state, card: { ...state.card, ...action.payload.updatedGrade } }
+    case 'learn/RESET-LEAN-CARD':
+      return { ...state, card: { ...learnInitState.card } }
     case 'learn/SET-CARD':
-      return { ...state, card: { ...action.payload.data } }
-    case 'learn/SET-IS=FIRST':
-      return { ...state, isFirst: action.first }
+      return { ...state, card: { ...state.card, ...action.payload.data } }
     default: {
       return state
     }
   }
 }
 // actions
-export const updateGrade = (data: UpdateGradeResponseType) => ({ type: 'learn/UPDATE-GRADE', payload: data } as const)
+export const resetCardLearn = () => ({ type: 'learn/RESET-LEAN-CARD' } as const)
 export const setCard = (data: CardType) => ({ type: 'learn/SET-CARD', payload: { data } } as const)
-export const setIsFirst = (first: boolean) => ({ type: 'learn/SET-IS=FIRST', first } as const)
 
 export const updateGradeTC =
   (data: UpdateGradeRequestType): AppThunk =>
@@ -50,4 +50,4 @@ export const updateGradeTC =
   }
 
 //type
-type ActionType = ReturnType<typeof updateGrade> | ReturnType<typeof setCard> | ReturnType<typeof setIsFirst>
+type ActionType = ReturnType<typeof resetCardLearn> | ReturnType<typeof setCard>
