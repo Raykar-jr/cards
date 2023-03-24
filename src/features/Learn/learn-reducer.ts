@@ -39,8 +39,9 @@ export const updateGradeTC =
     try {
       dispatch(appSetStatus(requestStatus.LOADING))
       const res = await cardsApi.updateGradeCard(data)
+      const tmp = res.data.updatedGrade
 
-      dispatch(gradeCardUpdate(res.data))
+      dispatch(gradeCardUpdate({ grade: tmp.grade, shots: tmp.shots }, tmp.card_id))
     } catch (e) {
       handleError(e, dispatch)
     } finally {

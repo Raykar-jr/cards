@@ -2,7 +2,7 @@ import { Dispatch } from 'redux'
 
 import { appSetStatus, AppSetStatusType } from 'app/app-reducer'
 import { AppThunk } from 'app/store'
-import { GetCardsResponseType, PackCard, UpdateGradeResponseType } from 'common/api/DataTypes'
+import { GetCardsResponseType, PackCard } from 'common/api/DataTypes'
 import { requestStatus } from 'common/components/constants/requestStatus'
 import { handleError } from 'common/utils/error-util'
 import { cardsApi } from 'features/Packs/Card/card-api'
@@ -36,12 +36,7 @@ export const cardsReducer = (state = initState, action: ActionType): initStateTy
     case 'cards/RESET-PACK-CARD':
       return { ...state, ...initState }
     case 'cards/GRADE-CARD-UPDATE':
-      return {
-        ...state,
-        cards: state.cards.map(c =>
-          c._id === action.data.updatedGrade.card_id ? { ...c, ...action.data.updatedGrade } : { ...c }
-        ),
-      }
+      return { ...state, cards: state.cards.map(c => (c._id === action.card_id ? { ...c, ...action.data } : c)) }
     default:
       return state
   }
@@ -54,7 +49,12 @@ export const setCount = (count: number) => ({ type: 'cards/SET-COUNT', count } a
 export const setSort = (sort: string) => ({ type: 'cards/SET-SORT', sort } as const)
 export const setSearch = (search: string) => ({ type: 'cards/SEARCH-CARDS-BY-QUESTION', search } as const)
 export const resetPackCard = () => ({ type: 'cards/RESET-PACK-CARD' } as const)
-export const gradeCardUpdate = (data: UpdateGradeResponseType) => ({ type: 'cards/GRADE-CARD-UPDATE', data } as const)
+export const gradeCardUpdate = (data: { grade: number; shots: number }, card_id: string) =>
+  ({
+    type: 'cards/GRADE-CARD-UPDATE',
+    data,
+    card_id,
+  } as const)
 // thunks
 export const getCards =
   (cardsPackId: string): AppThunk =>
