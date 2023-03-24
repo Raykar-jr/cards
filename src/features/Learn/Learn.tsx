@@ -1,36 +1,62 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { Paper } from '@mui/material'
+import { Card, Typography } from '@mui/material'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import { useParams } from 'react-router-dom'
 
-import s from './Learn.module.scss'
-
-import { useAppSelector } from 'app/store'
+import { useAppDispatch, useAppSelector } from 'app/store'
 import { ArrowBackToPacks } from 'common/components/ArrowBackToPacks/ArrowBackToPacks'
 import { common_button } from 'common/styles/LoginStyles'
+import { getRandomCard } from 'common/utils/getRandomCard'
 import { Answer } from 'features/Learn/Answer'
+import { setCard } from 'features/Learn/learn-reducer'
+import { getAllCards, resetPackCard } from 'features/Packs/Card/card-reducer'
 
 export const Learn = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false)
-  const { packId } = useParams()
-  const pack = useAppSelector(state => state.packs.packList.cardPacks.filter(p => p._id === packId))
+  const { packId } = useParams<{ packId: string }>()
+  const dispatch = useAppDispatch()
+  const packName = useAppSelector(state => state.cards.packName)
+
   const cards = useAppSelector(state => state.cards.cards)
+  const card = useAppSelector(state => state.learn.card)
+  const packs = useAppSelector(state => state.packs.packList.cardPacks.filter(p => p._id == packId))
   const showHandler = () => setIsChecked(true)
+
+  useEffect(() => {
+    packId && dispatch(getAllCards(packId, packs[0].cardsCount))
+
+    return () => {
+      dispatch(resetPackCard())
+    }
+  }, [])
+
+  useEffect(() => {
+    cards?.length && dispatch(setCard(getRandomCard(cards)))
+  }, [cards])
+
+  const onNext = () => {
+    setIsChecked(false)
+    if (cards.length > 0) {
+      dispatch(setCard(getRandomCard(cards)))
+    }
+  }
 
   return (
     <>
       <ArrowBackToPacks />
       <Grid container display="flex" alignItems="center" flexDirection="column" gap="2rem" marginY="27px">
-        <span className={s.title}>{`Learn "${pack[0].name.trim()}"`}</span>
-        <Paper
-          elevation={2}
+        <Typography variant={'h1'} fontSize={22} fontWeight={600} textAlign={'center'}>
+          {`Learn: "${packName}"`}
+        </Typography>
+        <Card
+          variant="outlined"
           sx={{
-            p: '30px 33px 48px 33px',
             display: 'flex',
             alignItems: 'flex-start',
             flexDirection: 'column',
+            p: '30px 33px 48px 33px',
             gap: '1rem',
             borderRadius: '2px',
             boxShadow: '1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1)',
@@ -38,11 +64,19 @@ export const Learn = () => {
         >
           <span>
             <b>Question: </b>
-            {}
+            {card.question}
           </span>
-          <p className={s.text}>Количество попыток ответов на вопрос:{}</p>
+          <span
+            style={{
+              fontSize: 14,
+              fontWeight: 400,
+              opacity: 0.5,
+            }}
+          >
+            Количество попыток ответов на вопрос: {card.shots}
+          </span>
           {isChecked ? (
-            <Answer />
+            <Answer onNext={onNext} card_id={card._id} answer={card.answer} />
           ) : (
             <Button
               onClick={showHandler}
@@ -54,7 +88,7 @@ export const Learn = () => {
               Show Answer
             </Button>
           )}
-        </Paper>
+        </Card>
       </Grid>
     </>
   )

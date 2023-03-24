@@ -18,6 +18,14 @@ export const cardsApi = {
       },
     })
   },
+  getAllCards(cardsPackId: string, pageCount: number) {
+    return instance.get<GetCardsResponseType>(`/cards/card`, {
+      params: {
+        cardsPack_id: cardsPackId,
+        pageCount,
+      },
+    })
+  },
   createCard(cardsPackId: string, question: string, answer: string) {
     return instance.post<CreateCardsResponseType>('cards/card', {
       card: {
