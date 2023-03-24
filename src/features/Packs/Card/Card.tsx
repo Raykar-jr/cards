@@ -37,7 +37,6 @@ export const Cards = () => {
   const dispatch = useAppDispatch()
 
   const cards = useAppSelector(selectCards)
-
   const page = useAppSelector(selectCardPage)
   const pageCount = useAppSelector(selectCardPageCount)
   const cardsTotalCount = useAppSelector(selectCardsTotalCount)

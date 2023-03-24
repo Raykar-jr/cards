@@ -7,7 +7,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import TextField from '@mui/material/TextField'
 
 import { useAppDispatch } from 'app/store'
-import { BasicCardModal } from 'common/components/Modals/BasicCardModal'
+import { BasicModal } from 'common/components/Modals/BasicModal'
 import { createCard } from 'features/Packs/Card/card-reducer'
 
 type PropsType = {
@@ -17,18 +17,37 @@ export const AddCardModal: React.FC<PropsType> = ({ packId }) => {
   const [questionFormat, setQuestionFormat] = useState('')
   const [question, setQuestion] = useState('')
   const [answer, setAnswer] = useState('')
+  const [questionError, setQuestionError] = useState(false)
+  const [answerError, setAnswerError] = useState(false)
 
   const dispatch = useAppDispatch()
   const handleCreatCard = () => {
     packId && dispatch(createCard(packId, question, answer))
+    setAnswer('')
+    setQuestion('')
   }
   const handleChangeQuestion = (e: ChangeEvent<HTMLInputElement>) => setQuestion(e.currentTarget.value)
   const handleChangeAnswer = (e: ChangeEvent<HTMLInputElement>) => setAnswer(e.currentTarget.value)
   const handleChangeSelect = (event: SelectChangeEvent) => setQuestionFormat(event.target.value)
 
+  const handleTextFieldError = () => {
+    if (question.trim() === '') {
+      setQuestionError(true)
+    } else {
+      setQuestionError(false)
+    }
+    if (answer.trim() === '') {
+      setAnswerError(true)
+    } else {
+      setAnswerError(false)
+    }
+  }
+  const isEmptyField = !question.trim() || !answer.trim()
+
   return (
-    <BasicCardModal
+    <BasicModal
       deleteMode={false}
+      disabled={isEmptyField}
       onClick={handleCreatCard}
       modalTitle={'Add new card'}
       buttonName={'Add new card'}
@@ -47,9 +66,27 @@ export const AddCardModal: React.FC<PropsType> = ({ packId }) => {
         </Select>
       </FormControl>
 
-      <TextField value={question} onChange={handleChangeQuestion} fullWidth label="Question" variant="standard" />
+      <TextField
+        error={questionError}
+        value={question}
+        onBlur={handleTextFieldError}
+        onChange={handleChangeQuestion}
+        fullWidth
+        label="Question"
+        variant="standard"
+        helperText={question.trim() === '' && 'The question field must not be empty'}
+      />
 
-      <TextField value={answer} onChange={handleChangeAnswer} fullWidth label="Answer" variant="standard" />
-    </BasicCardModal>
+      <TextField
+        error={answerError}
+        value={answer}
+        onBlur={handleTextFieldError}
+        onChange={handleChangeAnswer}
+        fullWidth
+        label="Answer"
+        variant="standard"
+        helperText={answer.trim() === '' && 'The answer field must not be empty'}
+      />
+    </BasicModal>
   )
 }

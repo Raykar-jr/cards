@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField'
 
 import { useAppDispatch } from 'app/store'
 import editPack from 'assets/icons/edit-2.svg'
-import { BasicCardModal } from 'common/components/Modals/BasicCardModal'
+import { BasicModal } from 'common/components/Modals/BasicModal'
 import { updatePackTC } from 'features/Packs/packs-reducer'
 
 type PropsType = {
@@ -54,7 +54,7 @@ export const EditPackModal: React.FC<PropsType> = ({ packId, privateProp, namePr
   }
 
   return (
-    <BasicCardModal
+    <BasicModal
       deleteMode={false}
       onClick={handleEditPack}
       modalTitle={'Edit card'}
@@ -77,6 +77,6 @@ export const EditPackModal: React.FC<PropsType> = ({ packId, privateProp, namePr
 
       <FormControlLabel label="Private cards" control={<Checkbox onChange={handleChangePackPrivate} />} />
       <div style={{ display: 'flex', justifyContent: 'space-between' }}></div>
-    </BasicCardModal>
+    </BasicModal>
   )
 }

@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import TextField from '@mui/material/TextField'
 
 import { useAppDispatch } from 'app/store'
-import { BasicCardModal } from 'common/components/Modals/BasicCardModal'
+import { BasicModal } from 'common/components/Modals/BasicModal'
 import { createPackTC } from 'features/Packs/packs-reducer'
 
 export const AddPackModal = () => {
@@ -40,7 +40,7 @@ export const AddPackModal = () => {
   }
 
   return (
-    <BasicCardModal
+    <BasicModal
       deleteMode={false}
       onClick={handleCreatPack}
       modalTitle={'Add new Pack'}
@@ -63,6 +63,6 @@ export const AddPackModal = () => {
 
       <FormControlLabel label="Private cards" control={<Checkbox onChange={handleChangePackPrivate} />} />
       <div style={{ display: 'flex', justifyContent: 'space-between' }}></div>
-    </BasicCardModal>
+    </BasicModal>
   )
 }

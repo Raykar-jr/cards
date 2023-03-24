@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react'
+import React from 'react'
 
 import Rating from '@mui/material/Rating'
 import TableCell from '@mui/material/TableCell'
@@ -13,12 +13,7 @@ type Props = {
   card: CardType
 }
 export const CardBody: React.FC<Props> = ({ card }) => {
-  const [value, setValue] = useState<number | null>(2)
-
   const stringDate = makeStringDate(card.updated)
-  const changeRatingValue = (event: SyntheticEvent<Element, Event>, newValue: number | null) => {
-    setValue(newValue)
-  }
 
   return (
     <TableRow>
@@ -26,8 +21,7 @@ export const CardBody: React.FC<Props> = ({ card }) => {
       <TableCell align="left">{card.answer}</TableCell>
       <TableCell align="center">{stringDate}</TableCell>
       <TableCell align="left">
-        <Rating name="simple-controlled" value={value} onChange={changeRatingValue} />
-        {/* {card.grade}*/}
+        <Rating name="simple-controlled" value={card.grade} />
       </TableCell>
       <TableCell align="left">
         <div style={{ display: 'flex' }}>
