@@ -3,6 +3,8 @@ import {
   DeleteCardsResponseType,
   GetCardsResponseType,
   UpdateCardsResponseType,
+  UpdateGradeRequestType,
+  UpdateGradeResponseType,
 } from 'common/api/DataTypes'
 import { instance } from 'common/api/main-api'
 
@@ -46,5 +48,8 @@ export const cardsApi = {
   },
   removeCard(cardId: string) {
     return instance.delete<DeleteCardsResponseType>(`cards/card?id=${cardId}`)
+  },
+  updateGradeCard(data: UpdateGradeRequestType) {
+    return instance.put<UpdateGradeResponseType>('cards/grade', data)
   },
 }
