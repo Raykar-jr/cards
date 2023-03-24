@@ -77,34 +77,37 @@ export const Cards = () => {
         )}
         {!isEmptyPack && isMyPack && <AddCardModal packId={packId} />}
       </div>
-      <Filters>
-        <Search search={search} onChange={searchHandler} />
-      </Filters>
+
       {isEmptyPack ? (
         <EmptyPack packId={packId} />
       ) : (
-        <TableContainer className={'commonContainer'}>
-          <TableContainer>
-            <Paper sx={{ width: '100%', mb: 2 }}>
-              <Table sx={{ minWidth: 700, mt: 2 }} aria-labelledby="tableTitle">
-                <CardHeader />
+        <>
+          <Filters>
+            <Search search={search} onChange={searchHandler} />
+          </Filters>
+          <TableContainer className={'commonContainer'}>
+            <TableContainer>
+              <Paper sx={{ width: '100%', mb: 2 }}>
+                <Table sx={{ minWidth: 700, mt: 2 }} aria-labelledby="tableTitle">
+                  <CardHeader />
 
-                <TableBody>
-                  {cards.map(card => (
-                    <CardBody key={card._id} card={card} />
-                  ))}
-                </TableBody>
-              </Table>
-            </Paper>
+                  <TableBody>
+                    {cards.map(card => (
+                      <CardBody key={card._id} card={card} />
+                    ))}
+                  </TableBody>
+                </Table>
+              </Paper>
+            </TableContainer>
+
+            <SuperPaginationTable
+              page={page}
+              itemsCount={pageCount}
+              totalCount={cardsTotalCount}
+              onChange={changePaginationHandler}
+            />
           </TableContainer>
-
-          <SuperPaginationTable
-            page={page}
-            itemsCount={pageCount}
-            totalCount={cardsTotalCount}
-            onChange={changePaginationHandler}
-          />
-        </TableContainer>
+        </>
       )}
     </TableContainer>
   )
