@@ -2,7 +2,7 @@ import { Dispatch } from 'redux'
 
 import { appSetStatus, AppSetStatusType } from 'app/app-reducer'
 import { AppThunk } from 'app/store'
-import { GetCardsResponseType } from 'common/api/DataTypes'
+import { GetCardsResponseType, UpdateGradeResponseType } from 'common/api/DataTypes'
 import { requestStatus } from 'common/components/constants/requestStatus'
 import { handleError } from 'common/utils/error-util'
 import { cardsApi } from 'features/Packs/Card/card-api'
@@ -49,6 +49,15 @@ export const cardsReducer = (state = initState, action: ActionType): initStateTy
       return { ...state, sort: action.sort }
     case 'cards/SEARCH-CARDS-BY-QUESTION':
       return { ...state, search: action.search }
+    case 'cards/RESET-PACK-CARD':
+      return { ...state, ...initState }
+    case 'cards/GRADE-CARD-UPDATE':
+      return {
+        ...state,
+        cards: state.cards.map(c =>
+          c._id === action.data.updatedGrade.card_id ? { ...c, ...action.data.updatedGrade } : { ...c }
+        ),
+      }
     default:
       return state
   }
@@ -60,7 +69,8 @@ export const setPage = (page: number) => ({ type: 'cards/SET-PAGE', page } as co
 export const setCount = (count: number) => ({ type: 'cards/SET-COUNT', count } as const)
 export const setSort = (sort: string) => ({ type: 'cards/SET-SORT', sort } as const)
 export const setSearch = (search: string) => ({ type: 'cards/SEARCH-CARDS-BY-QUESTION', search } as const)
-
+export const resetPackCard = () => ({ type: 'cards/RESET-PACK-CARD' } as const)
+export const gradeCardUpdate = (data: UpdateGradeResponseType) => ({ type: 'cards/GRADE-CARD-UPDATE', data } as const)
 // thunks
 export const getCards =
   (cardsPackId: string): AppThunk =>
@@ -70,6 +80,21 @@ export const getCards =
       const { page, pageCount, sort, search } = getState().cards
 
       const res = await cardsApi.getCards(cardsPackId, page, pageCount, sort, search)
+
+      dispatch(setCards(res.data))
+    } catch (e) {
+      handleError(e, dispatch)
+    } finally {
+      dispatch(appSetStatus(requestStatus.SUCCEEDED))
+    }
+  }
+export const getAllCards =
+  (cardsPackId: string, cardsCount: number): AppThunk =>
+  async (dispatch: Dispatch<ActionType>) => {
+    try {
+      dispatch(appSetStatus(requestStatus.LOADING))
+
+      const res = await cardsApi.getAllCards(cardsPackId, cardsCount)
 
       dispatch(setCards(res.data))
     } catch (e) {
@@ -128,3 +153,5 @@ type ActionType =
   | ReturnType<typeof setPage>
   | ReturnType<typeof setSort>
   | ReturnType<typeof setSearch>
+  | ReturnType<typeof resetPackCard>
+  | ReturnType<typeof gradeCardUpdate>

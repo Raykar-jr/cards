@@ -93,13 +93,10 @@ export type PackType = {
   user_name: string
   private: boolean
   name: string
-  grade: number
-  shots: number
+  deckCover: string
   cardsCount: number
-  rating: number
   created: string
   updated: string
-  deckCover: string
 }
 export type GetCardsResponseType = {
   cards: CardType[]
@@ -112,7 +109,17 @@ export type GetCardsResponseType = {
   minGrade: number
   maxGrade: number
 }
-
+export type CardType2 = {
+  answer: string
+  question: string
+  cardsPack_id: string
+  grade: number
+  shots: number
+  user_id: string
+  created: string
+  updated: string
+  _id: string
+}
 export type CardType = {
   _id: string
   cardsPack_id: string
@@ -127,6 +134,20 @@ export type CardType = {
   answerVideo: string
   questionImg: string
   questionVideo: string
+}
+export type UpdateGradeRequestType = {
+  grade: number
+  card_id: string
+}
+export type UpdateGradeResponseType = {
+  updatedGrade: {
+    _id: string
+    cardsPack_id: string
+    card_id: string
+    user_id: string
+    grade: number
+    shots: number
+  }
 }
 export type CreateCardsResponseType = {
   newCard: CardType
