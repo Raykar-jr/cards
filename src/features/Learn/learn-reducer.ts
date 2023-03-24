@@ -8,9 +8,11 @@ import { gradeCardUpdate } from 'features/Packs/Card/card-reducer'
 
 type InitialStateType = {
   card: CardType
+  isFirst: boolean
 }
 const learnInitState: InitialStateType = {
   card: {} as CardType,
+  isFirst: true,
 }
 
 export const learnReducer = (state = learnInitState, action: ActionType): InitialStateType => {
@@ -19,6 +21,8 @@ export const learnReducer = (state = learnInitState, action: ActionType): Initia
       return { ...state, card: { ...state.card, ...action.payload.updatedGrade } }
     case 'learn/SET-CARD':
       return { ...state, card: { ...action.payload.data } }
+    case 'learn/SET-IS=FIRST':
+      return { ...state, isFirst: action.first }
     default: {
       return state
     }
@@ -27,6 +31,7 @@ export const learnReducer = (state = learnInitState, action: ActionType): Initia
 // actions
 export const updateGrade = (data: UpdateGradeResponseType) => ({ type: 'learn/UPDATE-GRADE', payload: data } as const)
 export const setCard = (data: CardType) => ({ type: 'learn/SET-CARD', payload: { data } } as const)
+export const setIsFirst = (first: boolean) => ({ type: 'learn/SET-IS=FIRST', first } as const)
 
 export const updateGradeTC =
   (data: UpdateGradeRequestType): AppThunk =>
@@ -45,4 +50,4 @@ export const updateGradeTC =
   }
 
 //type
-type ActionType = ReturnType<typeof updateGrade> | ReturnType<typeof setCard>
+type ActionType = ReturnType<typeof updateGrade> | ReturnType<typeof setCard> | ReturnType<typeof setIsFirst>

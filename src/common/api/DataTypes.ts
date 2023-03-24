@@ -209,6 +209,19 @@ export type DeleteParamType = { _id: string; name: string }
 export type UpdatePackResponseType = {
   updatedCardsPack: PackType
 }
+export type PackCard = {
+  cards: CardType[]
+  packUserId: string
+  packName: string
+  packDeckCover: string
+  page: number
+  pageCount: number
+  cardsTotalCount: number
+  minGrade: number
+  maxGrade: number
+  search: string
+  sort: string
+}
 
 export type DeletePackResponseType = {}
 

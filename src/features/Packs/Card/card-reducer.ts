@@ -2,29 +2,13 @@ import { Dispatch } from 'redux'
 
 import { appSetStatus, AppSetStatusType } from 'app/app-reducer'
 import { AppThunk } from 'app/store'
-import { GetCardsResponseType, UpdateGradeResponseType } from 'common/api/DataTypes'
+import { GetCardsResponseType, PackCard, UpdateGradeResponseType } from 'common/api/DataTypes'
 import { requestStatus } from 'common/components/constants/requestStatus'
 import { handleError } from 'common/utils/error-util'
 import { cardsApi } from 'features/Packs/Card/card-api'
 
-const initState = {
-  cards: [
-    {
-      _id: '',
-      cardsPack_id: '',
-      user_id: '',
-      answer: '',
-      question: '',
-      grade: 0,
-      shots: 0,
-      created: '',
-      updated: '',
-      answerImg: '',
-      answerVideo: '',
-      questionImg: '',
-      questionVideo: '',
-    },
-  ],
+const initState: PackCard = {
+  cards: [],
   packUserId: '',
   packName: '',
   packDeckCover: '',
