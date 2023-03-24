@@ -34,15 +34,9 @@ export const PacksBody: React.FC<PropsType> = ({ pack }) => {
       <TableCell align="right">{stringDate}</TableCell>
       <TableCell align="right">{pack.user_name}</TableCell>
       <TableCell align="right">
-        {/*{'learn/edite,delete'}*/}
-        {/*<button onClick={updatePackHandler}>Update Pack</button> <br />*/}
-        {/*<button onClick={deletePackHandler}>Delete Pack</button>*/}
         <IconButton onClick={redirectToLearnHandler} size="small">
           <img src={learn} alt="learn icon" />
         </IconButton>
-        {/*<IconButton onClick={updatePackHandler} size="small">*/}
-        {/*  <img src={edit} alt="edit icon" />*/}
-        {/*</IconButton>*/}
         <EditPackModal nameProp={pack.name} privateProp={pack.private} packId={pack._id} />
         <DeletePackModal packId={pack._id} packName={pack.name} />
       </TableCell>
