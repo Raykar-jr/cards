@@ -7,7 +7,7 @@ import Modal from '@mui/material/Modal'
 import Typography from '@mui/material/Typography'
 
 import closeIcon from 'assets/icons/closeIcon.svg'
-import s from 'common/components/Modals/BasicCardModal.module.scss'
+import s from 'common/components/Modals/BasicModal.module.scss'
 import { common_button } from 'common/styles/LoginStyles'
 
 const style = {
@@ -35,7 +35,7 @@ type PropsType = {
   disabled?: boolean
   onClickClose?: (error: boolean, text: string) => void
 }
-export const BasicCardModal: React.FC<PropsType> = ({
+export const BasicModal: React.FC<PropsType> = ({
   children,
   modalTitle,
   buttonName,
