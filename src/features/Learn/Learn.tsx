@@ -59,11 +59,12 @@ export const Learn = () => {
             gap: '1rem',
             borderRadius: '2px',
             boxShadow: '1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1)',
+            maxWidth: '450px',
           }}
         >
           <span>
             <b>Question: </b>
-            {card.question}
+            <p style={{ wordBreak: 'break-word' }}>{card.question}</p>
           </span>
           <span
             style={{

@@ -19,7 +19,9 @@ export const DeleteCardModal: React.FC<PropsType> = memo(({ packId, cardId, card
   return (
     <BasicModal deleteMode={true} onClick={handleDeleteCard} iconSrc={removeCard} modalTitle={'Delete card'}>
       <p>
-        Do you really want to remove <b>{cardName}</b>? This card will be deleted.
+        Do you really want to remove <b style={{ wordBreak: 'break-word' }}>{cardName}</b>?
+        <br />
+        This card will be deleted.
       </p>
     </BasicModal>
   )

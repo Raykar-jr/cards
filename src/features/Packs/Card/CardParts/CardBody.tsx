@@ -17,8 +17,12 @@ export const CardBody: React.FC<Props> = ({ card }) => {
 
   return (
     <TableRow>
-      <TableCell align="left">{card.question}</TableCell>
-      <TableCell align="left">{card.answer}</TableCell>
+      <TableCell sx={{ maxWidth: '20%', wordBreak: 'break-word' }} align="left">
+        {card.question}
+      </TableCell>
+      <TableCell sx={{ maxWidth: '20%', wordBreak: 'break-word' }} align="left">
+        {card.answer}
+      </TableCell>
       <TableCell align="center">{stringDate}</TableCell>
       <TableCell align="left">
         <Rating name="simple-controlled" value={card.grade} />

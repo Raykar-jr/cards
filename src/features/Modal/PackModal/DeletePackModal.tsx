@@ -16,9 +16,10 @@ export const DeletePackModal: React.FC<PropsType> = ({ packId, packName }) => {
   }
 
   return (
-    <BasicModal deleteMode={true} onClick={handleDeletePack} iconSrc={removePack} modalTitle={'Delete card'}>
+    <BasicModal deleteMode={true} onClick={handleDeletePack} iconSrc={removePack} modalTitle={'Delete pack'}>
       <p>
-        Do you really want to remove <b>{packName}</b>? This card will be deleted.
+        Do you really want to remove <b style={{ wordBreak: 'break-word' }}>{packName}</b>? <br />
+        This pack will be deleted.
       </p>
     </BasicModal>
   )

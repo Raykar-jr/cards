@@ -4,6 +4,7 @@
   width: 100%;
   @include flex(flex-start, center);
   @include fontSettings(12px, 400, 15px);
+  margin-bottom: 20px;
 
   .show {
     font-size: 12px;
