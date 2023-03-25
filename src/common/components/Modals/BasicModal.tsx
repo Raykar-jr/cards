@@ -49,9 +49,7 @@ export const BasicModal: React.FC<PropsType> = ({
   const handleOpen = () => setOpen(true)
   const handleClose = () => {
     setOpen(false)
-    if (onClickClose) {
-      onClickClose(false, '')
-    }
+    onClickClose && onClickClose(false, '')
   }
   const handleOnSaveOrRemove = () => {
     setOpen(false)

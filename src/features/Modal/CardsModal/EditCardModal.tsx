@@ -25,26 +25,25 @@ export const EditCardModal: React.FC<PropsType> = ({ packId, cardId, questionPro
   const [answer, setAnswer] = useState(answerProp)
   const [questionError, setQuestionError] = useState(false)
   const [answerError, setAnswerError] = useState(false)
+
+  const isEmptyField = !question.trim() || !answer.trim()
+  const previousFieldsName = question === questionProp || answer === answerProp
   const handleEditCard = () => {
     dispatch(updateCard(packId, cardId, question, answer))
   }
-  const handleChangeQuestion = (e: ChangeEvent<HTMLInputElement>) => setQuestion(e.currentTarget.value)
-  const handleChangeAnswer = (e: ChangeEvent<HTMLInputElement>) => setAnswer(e.currentTarget.value)
+  const handleChangeQuestion = (e: ChangeEvent<HTMLInputElement>) => {
+    setQuestion(e.currentTarget.value)
+    setQuestionError(false)
+  }
+  const handleChangeAnswer = (e: ChangeEvent<HTMLInputElement>) => {
+    setAnswer(e.currentTarget.value)
+    setAnswerError(false)
+  }
   const handleChangeSelect = (event: SelectChangeEvent) => setQuestionFormat(event.target.value)
   const handleTextFieldError = () => {
-    if (question.trim() === '') {
-      setQuestionError(true)
-    } else {
-      setQuestionError(false)
-    }
-    if (answer.trim() === '') {
-      setAnswerError(true)
-    } else {
-      setAnswerError(false)
-    }
+    setQuestionError(question.trim() === '')
+    setAnswerError(answer.trim() === '')
   }
-  const isEmptyField = !question.trim() || !answer.trim()
-  const previousFieldsName = question === questionProp || answer === answerProp
 
   return (
     <BasicModal
