@@ -19,7 +19,11 @@ export const AddPackModal = () => {
 
   const handleChangePackName = (e: ChangeEvent<HTMLInputElement>) => {
     setPackName(e.currentTarget.value)
-    actionError(false, '')
+    if (packName.length <= 100) {
+      actionError(false, '')
+    } else {
+      actionError(true, 'Max length of the pack name should be less 100 symbols')
+    }
   }
   const handleChangePackPrivate = (e: ChangeEvent<HTMLInputElement>) => setPrivatePack(e.currentTarget.checked)
 
@@ -32,6 +36,9 @@ export const AddPackModal = () => {
     if (packName.trim().length === 0) {
       actionError(true, 'Please enter pack name')
     }
+    if (packName.trim().length >= 100) {
+      actionError(true, 'Max length of the pack name should be less 100 symbols')
+    }
   }
 
   const actionError = (error: boolean, text: string) => {
@@ -43,9 +50,9 @@ export const AddPackModal = () => {
     <BasicModal
       deleteMode={false}
       onClick={handleCreatPack}
-      modalTitle={'Add new Pack'}
-      buttonName={'Add new Pack'}
-      disabled={!packName.trim()}
+      modalTitle={'Add new pack'}
+      buttonName={'Add new pack'}
+      disabled={!packName.trim() || packName.length >= 100}
       onClickClose={actionError}
     >
       <FormControl fullWidth variant="standard">

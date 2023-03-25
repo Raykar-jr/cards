@@ -16,6 +16,8 @@ type PropsType = {
   packId: string
 }
 export const EditPackModal: React.FC<PropsType> = ({ packId, privateProp, nameProp }) => {
+  const dispatch = useAppDispatch()
+
   const [packName, setPackName] = useState(nameProp)
   const [privatePack, setPrivatePack] = useState(privateProp)
   const [error, setError] = useState(false)
@@ -26,7 +28,7 @@ export const EditPackModal: React.FC<PropsType> = ({ packId, privateProp, namePr
     actionError(false, '')
   }
   const handleChangePackPrivate = (e: ChangeEvent<HTMLInputElement>) => setPrivatePack(e.currentTarget.checked)
-  const dispatch = useAppDispatch()
+
   const handleEditPack = () => {
     dispatch(
       updatePackTC({

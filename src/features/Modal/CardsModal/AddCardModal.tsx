@@ -14,35 +14,35 @@ type PropsType = {
   packId?: string
 }
 export const AddCardModal: React.FC<PropsType> = ({ packId }) => {
+  const dispatch = useAppDispatch()
+
   const [questionFormat, setQuestionFormat] = useState('')
   const [question, setQuestion] = useState('')
   const [answer, setAnswer] = useState('')
   const [questionError, setQuestionError] = useState(false)
   const [answerError, setAnswerError] = useState(false)
 
-  const dispatch = useAppDispatch()
+  const isEmptyField = !question.trim() || !answer.trim()
+
   const handleCreatCard = () => {
     packId && dispatch(createCard(packId, question, answer))
     setAnswer('')
     setQuestion('')
   }
-  const handleChangeQuestion = (e: ChangeEvent<HTMLInputElement>) => setQuestion(e.currentTarget.value)
-  const handleChangeAnswer = (e: ChangeEvent<HTMLInputElement>) => setAnswer(e.currentTarget.value)
+  const handleChangeQuestion = (e: ChangeEvent<HTMLInputElement>) => {
+    setQuestion(e.currentTarget.value)
+    setQuestionError(false)
+  }
+  const handleChangeAnswer = (e: ChangeEvent<HTMLInputElement>) => {
+    setAnswer(e.currentTarget.value)
+    setAnswerError(false)
+  }
   const handleChangeSelect = (event: SelectChangeEvent) => setQuestionFormat(event.target.value)
 
   const handleTextFieldError = () => {
-    if (question.trim() === '') {
-      setQuestionError(true)
-    } else {
-      setQuestionError(false)
-    }
-    if (answer.trim() === '') {
-      setAnswerError(true)
-    } else {
-      setAnswerError(false)
-    }
+    setQuestionError(question.trim() === '')
+    setAnswerError(answer.trim() === '')
   }
-  const isEmptyField = !question.trim() || !answer.trim()
 
   return (
     <BasicModal
