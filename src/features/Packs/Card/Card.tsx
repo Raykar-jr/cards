@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import s from './Card.module.scss'
 
@@ -37,7 +37,7 @@ import { selectUserId } from 'features/Profile/profileSelectors'
 export const Cards = () => {
   const { packId } = useParams<{ packId: string }>()
   const dispatch = useAppDispatch()
-
+  const navigate = useNavigate()
   const cards = useAppSelector(selectCards)
   const page = useAppSelector(selectCardPage)
   const pageCount = useAppSelector(selectCardPageCount)
@@ -66,6 +66,9 @@ export const Cards = () => {
     dispatch(setCount(newCount))
   }
   const searchHandler = (search: string) => dispatch(setSearch(search))
+  const redirectToLearnHandler = () => {
+    navigate('/learn/' + packId)
+  }
 
   return (
     <TableContainer className={s.container}>
@@ -73,7 +76,7 @@ export const Cards = () => {
       <div className={s.packName}>
         <p className={s.packNameText}>{packName}</p>
         {!isEmptyPack && !isMyPack && (
-          <Button sx={common_button} variant={'contained'} color={'primary'}>
+          <Button sx={common_button} variant={'contained'} color={'primary'} onClick={redirectToLearnHandler}>
             Learn to pack
           </Button>
         )}
