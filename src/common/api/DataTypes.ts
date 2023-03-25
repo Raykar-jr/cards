@@ -214,6 +214,8 @@ export type CardLearnType = {
   question: string
   grade: number
   shots: number
+  questionImg: string
+  answerImg: string
 }
 export type UpdatePackResponseType = {
   updatedCardsPack: PackType

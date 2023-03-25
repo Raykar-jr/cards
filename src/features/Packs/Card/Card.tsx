@@ -27,6 +27,7 @@ import {
   selectCardSearch,
   selectCardSort,
   selectCardsTotalCount,
+  selectPackDeckCover,
   selectPackName,
   selectPackUserId,
 } from 'features/Packs/Card/CardSelectors'
@@ -45,7 +46,7 @@ export const Cards = () => {
   const search = useAppSelector(selectCardSearch)
   const userId = useAppSelector(selectUserId)
   const packUserId = useAppSelector(selectPackUserId)
-
+  const packDeckCover = useAppSelector(selectPackDeckCover)
   const isMyPack = userId === packUserId
   const isEmptyPack = !cards.length
 
@@ -81,6 +82,7 @@ export const Cards = () => {
         <EmptyPack packId={packId} />
       ) : (
         <>
+          <img className={s.packDeckCover} src={packDeckCover} alt="pack deck cover" />
           <Filters>
             <Search search={search} onChange={searchHandler} />
           </Filters>

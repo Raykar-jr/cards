@@ -18,6 +18,8 @@ const learnInitState: LearnInitStateType = {
     question: '',
     grade: 0,
     shots: 0,
+    questionImg: '',
+    answerImg: '',
   },
 }
 

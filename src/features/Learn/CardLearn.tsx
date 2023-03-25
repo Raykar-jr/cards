@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Card } from '@mui/material'
 import Button from '@mui/material/Button'
 
+import s from './styles.module.scss'
+
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { common_button } from 'common/styles/LoginStyles'
 import { getRandomCard } from 'common/utils/getRandomCard'
@@ -40,7 +42,11 @@ export const CardLearn = () => {
     >
       <span style={{ wordBreak: 'break-word' }}>
         <b>Question: </b>
-        {card.question}
+        {card.questionImg ? (
+          <img className={s.cardCover} src={card.questionImg} alt="question card cover" />
+        ) : (
+          card.question
+        )}
       </span>
       <span
         style={{
@@ -52,7 +58,7 @@ export const CardLearn = () => {
         Количество попыток ответов на вопрос: {card.shots}
       </span>
       {isChecked ? (
-        <Answer onNext={onNext} card_id={card._id} answer={card.answer} />
+        <Answer onNext={onNext} card_id={card._id} answer={card.answer} answerImg={card.answerImg} />
       ) : (
         <Button
           onClick={showHandler}

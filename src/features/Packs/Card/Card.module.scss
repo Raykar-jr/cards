@@ -1,11 +1,12 @@
 @import "src/common/styles/scss/mixins";
 
 
-.container{
+.container {
   max-width: 1280px;
   margin: 0 auto;
   @include flex(center, null, column);
   gap: 16px;
+
   .head {
     background-color: #efefef;
 
@@ -13,22 +14,27 @@
       cursor: pointer;
     }
   }
+
   .packName {
     display: flex;
     justify-content: space-between;
     @include fontSettings(22px, 600, 27px);
+
     & button {
       max-height: 40px !important;
     }
+
     & .packNameText {
       margin-top: 10px;
       word-break: break-word;
       max-width: 80%;
     }
   }
-  .search{
+
+  .search {
     width: 100%;
   }
+
   .button {
     background-color: transparent;
     border: none;
@@ -45,6 +51,12 @@
       opacity: 0.5;
     }
   }
+}
+
+.packDeckCover {
+  width: 170px;
+  height: 107px;
+  border-radius: 2px;
 }
 
 
