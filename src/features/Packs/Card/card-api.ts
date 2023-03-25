@@ -28,12 +28,13 @@ export const cardsApi = {
       },
     })
   },
-  createCard(cardsPackId: string, question: string, answer: string) {
+  createCard(cardsPackId: string, question: string, answer: string, questionImg: string) {
     return instance.post<CreateCardsResponseType>('cards/card', {
       card: {
         cardsPack_id: cardsPackId,
         question,
         answer,
+        questionImg,
       },
     })
   },

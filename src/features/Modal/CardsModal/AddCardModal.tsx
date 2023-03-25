@@ -7,25 +7,33 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import TextField from '@mui/material/TextField'
 
 import { useAppDispatch } from 'app/store'
+import { InputTypeFile } from 'common/components/InputTypeFile'
 import { BasicModal } from 'common/components/Modals/BasicModal'
 import { createCard } from 'features/Packs/Card/card-reducer'
+
+const qFormat = {
+  text: 1,
+  image: 2,
+} as const
 
 type PropsType = {
   packId?: string
 }
+
 export const AddCardModal: React.FC<PropsType> = ({ packId }) => {
   const dispatch = useAppDispatch()
 
-  const [questionFormat, setQuestionFormat] = useState('')
+  const [questionFormat, setQuestionFormat] = useState(1)
   const [question, setQuestion] = useState('')
+  const [questionImg, setQuestionImg] = useState('')
   const [answer, setAnswer] = useState('')
   const [questionError, setQuestionError] = useState(false)
   const [answerError, setAnswerError] = useState(false)
 
-  const isEmptyField = !question.trim() || !answer.trim()
+  const isEmptyField = !answer.trim()
 
   const handleCreatCard = () => {
-    packId && dispatch(createCard(packId, question, answer))
+    packId && dispatch(createCard(packId, question, answer, questionImg))
     setAnswer('')
     setQuestion('')
   }
@@ -37,11 +45,14 @@ export const AddCardModal: React.FC<PropsType> = ({ packId }) => {
     setAnswer(e.currentTarget.value)
     setAnswerError(false)
   }
-  const handleChangeSelect = (event: SelectChangeEvent) => setQuestionFormat(event.target.value)
+  const handleChangeSelect = (event: SelectChangeEvent) => setQuestionFormat(+event.target.value)
 
   const handleTextFieldError = () => {
     setQuestionError(question.trim() === '')
     setAnswerError(answer.trim() === '')
+  }
+  const handleChangeQuestionImg = (file64: string) => {
+    setQuestionImg(file64)
   }
 
   return (
@@ -57,7 +68,7 @@ export const AddCardModal: React.FC<PropsType> = ({ packId }) => {
         <Select
           labelId="demo-simple-select-standard-label"
           id="demo-simple-select-standard"
-          value={questionFormat}
+          value={questionFormat + ''}
           onChange={handleChangeSelect}
           label="Question format"
         >
@@ -66,16 +77,21 @@ export const AddCardModal: React.FC<PropsType> = ({ packId }) => {
         </Select>
       </FormControl>
 
-      <TextField
-        error={questionError}
-        value={question}
-        onBlur={handleTextFieldError}
-        onChange={handleChangeQuestion}
-        fullWidth
-        label="Question"
-        variant="standard"
-        helperText={question.trim() === '' && 'The question field must not be empty'}
-      />
+      {questionFormat === qFormat.text && (
+        <TextField
+          error={questionError}
+          value={question}
+          onBlur={handleTextFieldError}
+          onChange={handleChangeQuestion}
+          fullWidth
+          label="Question"
+          variant="standard"
+          helperText={question.trim() === '' && 'The question field must not be empty'}
+        />
+      )}
+      {questionFormat === qFormat.image && (
+        <InputTypeFile buttonTitle={'Upload question image'} callBack={handleChangeQuestionImg} />
+      )}
 
       <TextField
         error={answerError}
