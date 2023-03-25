@@ -105,11 +105,11 @@ export const createCard =
   }
 
 export const updateCard =
-  (packId: string, cardId: string, question: string, answer: string): AppThunk =>
+  (packId: string, cardId: string, question: string, answer: string, questionImg: string): AppThunk =>
   async dispatch => {
     try {
       dispatch(appSetStatus(requestStatus.LOADING))
-      await cardsApi.updateCard(cardId, question, answer)
+      await cardsApi.updateCard(cardId, question, answer, questionImg)
       dispatch(getCards(packId))
     } catch (e) {
       handleError(e, dispatch)

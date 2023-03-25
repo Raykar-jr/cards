@@ -38,12 +38,13 @@ export const cardsApi = {
       },
     })
   },
-  updateCard(cardId: string, question: string, answer: string) {
+  updateCard(cardId: string, question: string, answer: string, questionImg: string) {
     return instance.put<UpdateCardsResponseType>('cards/card', {
       card: {
         _id: cardId,
         question,
         answer,
+        questionImg,
       },
     })
   },

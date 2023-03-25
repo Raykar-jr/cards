@@ -11,7 +11,7 @@ import { InputTypeFile } from 'common/components/InputTypeFile'
 import { BasicModal } from 'common/components/Modals/BasicModal'
 import { createCard } from 'features/Packs/Card/card-reducer'
 
-const qFormat = {
+export const qFormat = {
   text: 1,
   image: 2,
 } as const

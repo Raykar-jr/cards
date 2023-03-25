@@ -36,6 +36,7 @@ export const CardBody: React.FC<Props> = ({ card }) => {
             cardId={card._id}
             answerProp={card.answer}
             questionProp={card.question}
+            questionImgProp={card.questionImg}
           />
           <DeleteCardModal cardName={card.question} packId={card.cardsPack_id} cardId={card._id} />
         </div>
