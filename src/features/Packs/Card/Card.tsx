@@ -10,13 +10,14 @@ import { useParams } from 'react-router-dom'
 import s from './Card.module.scss'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
+import defaultCover from 'assets/images/defaultCover.jpg'
 import { ArrowBackToPacks } from 'common/components/ArrowBackToPacks/ArrowBackToPacks'
 import { Filters } from 'common/components/Filters/Filters'
 import { Search } from 'common/components/Search/Search'
 import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
 import { common_button } from 'common/styles/LoginStyles'
 import { AddCardModal } from 'features/Modal/CardsModal/AddCardModal'
-import { getCards, setCount, setPage, setSearch } from 'features/Packs/Card/card-reducer'
+import { getCards, resetPackDeckCover, setCount, setPage, setSearch } from 'features/Packs/Card/card-reducer'
 import { CardBody } from 'features/Packs/Card/CardParts/CardBody'
 import { CardHeader } from 'features/Packs/Card/CardParts/CardHeader'
 import { EmptyPack } from 'features/Packs/Card/CardParts/EmptyPack'
@@ -57,6 +58,7 @@ export const Cards = () => {
   useEffect(() => {
     return () => {
       dispatch(setSearch(''))
+      dispatch(resetPackDeckCover())
     }
   }, [])
   const changePaginationHandler = (newPage: number, newCount: number = 5) => {
@@ -82,7 +84,7 @@ export const Cards = () => {
         <EmptyPack packId={packId} />
       ) : (
         <>
-          <img className={s.packDeckCover} src={packDeckCover} alt="pack deck cover" />
+          <img className={s.packDeckCover} src={packDeckCover || defaultCover} alt="pack deck cover" />
           <Filters>
             <Search search={search} onChange={searchHandler} />
           </Filters>
