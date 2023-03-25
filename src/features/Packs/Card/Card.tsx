@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator'
 import Button from '@mui/material/Button'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
@@ -32,10 +33,12 @@ import {
   selectPackName,
   selectPackUserId,
 } from 'features/Packs/Card/CardSelectors'
+import { MenuCard } from 'features/Packs/Card/MenuCard/MenuCard'
 import { selectUserId } from 'features/Profile/profileSelectors'
 
 export const Cards = () => {
   const { packId } = useParams<{ packId: string }>()
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const cards = useAppSelector(selectCards)
@@ -69,12 +72,19 @@ export const Cards = () => {
   const redirectToLearnHandler = () => {
     navigate('/learn/' + packId)
   }
+  const clickHandler = (event: any) => {
+    setAnchorEl(event.currentTarget)
+  }
 
   return (
     <TableContainer className={s.container}>
       <ArrowBackToPacks />
       <div className={s.packName}>
-        <p className={s.packNameText}>{packName}</p>
+        <p className={s.packNameText}>
+          {packName}
+          <DragIndicatorIcon onClick={clickHandler} sx={{ cursor: 'pointer' }} />
+        </p>
+        <MenuCard anchorEl={anchorEl} setAnchorEl={setAnchorEl} redirectToLearn={redirectToLearnHandler} />
         {!isEmptyPack && !isMyPack && (
           <Button sx={common_button} variant={'contained'} color={'primary'} onClick={redirectToLearnHandler}>
             Learn to pack

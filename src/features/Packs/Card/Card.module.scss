@@ -16,8 +16,8 @@
   }
 
   .packName {
-    display: flex;
-    justify-content: space-between;
+    margin-top: 10px;
+    @include flex(space-between, center);
     @include fontSettings(22px, 600, 27px);
 
     & button {
@@ -25,9 +25,10 @@
     }
 
     & .packNameText {
-      margin-top: 10px;
       word-break: break-word;
       max-width: 80%;
+      @include flex(flex-start, center);
+      gap: 0.5rem;
     }
   }
 
