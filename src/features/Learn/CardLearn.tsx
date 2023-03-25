@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { Card } from '@mui/material'
 import Button from '@mui/material/Button'
 
-import s from './styles.module.scss'
-
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { common_button } from 'common/styles/LoginStyles'
 import { getRandomCard } from 'common/utils/getRandomCard'
@@ -43,7 +41,11 @@ export const CardLearn = () => {
       <span style={{ wordBreak: 'break-word' }}>
         <b>Question: </b>
         {card.questionImg ? (
-          <img className={s.cardCover} src={card.questionImg} alt="question card cover" />
+          <img
+            style={{ height: '100%', marginTop: '10px', width: '100%' }}
+            src={card.questionImg}
+            alt="question card cover"
+          />
         ) : (
           card.question
         )}

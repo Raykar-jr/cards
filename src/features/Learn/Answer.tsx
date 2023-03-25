@@ -7,8 +7,6 @@ import FormLabel from '@mui/material/FormLabel'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 
-import s from './styles.module.scss'
-
 import { UpdateGradeRequestType } from 'common/api/DataTypes'
 import { common_button } from 'common/styles/LoginStyles'
 import { updateGradeTC } from 'features/Learn/learn-reducer'
@@ -35,7 +33,11 @@ export const Answer: React.FC<AnswerPropsType> = React.memo(({ onNext, card_id, 
     <>
       <span style={{ wordBreak: 'break-word' }}>
         <b>Answer: </b>
-        {answerImg ? <img className={s.cardCover} src={answerImg} alt="answer card cover" /> : answer}
+        {answerImg ? (
+          <img style={{ height: '100%', marginTop: '10px', width: '100%' }} src={answerImg} alt="answer card cover" />
+        ) : (
+          answer
+        )}
       </span>
       <form onSubmit={handleSubmit(sendGradeHandler)} style={{ marginTop: '1rem', width: '100%' }}>
         <FormLabel style={{ color: 'black' }}>Rate yourself:</FormLabel>
