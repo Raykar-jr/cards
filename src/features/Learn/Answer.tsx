@@ -30,9 +30,9 @@ export const Answer: React.FC<AnswerPropsType> = React.memo(({ onNext, card_id, 
 
   return (
     <>
-      <span>
+      <span style={{ wordBreak: 'break-word' }}>
         <b>Answer: </b>
-        <p style={{ wordBreak: 'break-word' }}>{answer}</p>
+        {answer}
       </span>
       <form onSubmit={handleSubmit(sendGradeHandler)} style={{ marginTop: '1rem', width: '100%' }}>
         <FormLabel style={{ color: 'black' }}>Rate yourself:</FormLabel>
