@@ -1,12 +1,15 @@
 import { appSetStatus } from 'app/app-reducer'
 import { AppThunk } from 'app/store'
-import { CardType, UpdateGradeRequestType } from 'common/api/DataTypes'
+import { CardLearnType, CardType, UpdateGradeRequestType } from 'common/api/DataTypes'
 import { requestStatus } from 'common/components/constants/requestStatus'
 import { handleError } from 'common/utils/error-util'
 import { cardsApi } from 'features/Packs/Card/card-api'
 import { gradeCardUpdate } from 'features/Packs/Card/card-reducer'
 
-const initState = {
+type LearnInitStateType = {
+  card: CardLearnType
+}
+const learnInitState: LearnInitStateType = {
   card: {
     _id: '',
     cardsPack_id: '',
@@ -18,10 +21,10 @@ const initState = {
   },
 }
 
-export const learnReducer = (state: initStateType = initState, action: ActionType): initStateType => {
+export const learnReducer = (state = learnInitState, action: ActionType): LearnInitStateType => {
   switch (action.type) {
-    case 'learn/RESET-LEARN-CARD':
-      return { ...state, card: { ...initState.card } }
+    case 'learn/RESET-LEAN-CARD':
+      return { ...state, card: { ...learnInitState.card } }
     case 'learn/SET-CARD':
       return { ...state, card: { ...state.card, ...action.payload.data } }
     default: {
@@ -30,7 +33,7 @@ export const learnReducer = (state: initStateType = initState, action: ActionTyp
   }
 }
 // actions
-export const resetCardLearn = () => ({ type: 'learn/RESET-LEARN-CARD' } as const)
+export const resetCardLearn = () => ({ type: 'learn/RESET-LEAN-CARD' } as const)
 export const setCard = (data: CardType) => ({ type: 'learn/SET-CARD', payload: { data } } as const)
 
 export const updateGradeTC =
@@ -50,5 +53,4 @@ export const updateGradeTC =
   }
 
 //type
-type initStateType = typeof initState
 type ActionType = ReturnType<typeof resetCardLearn> | ReturnType<typeof setCard>

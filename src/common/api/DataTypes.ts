@@ -206,7 +206,15 @@ export type UpdatePackDataType = {
 }
 
 export type DeleteParamType = { _id: string; name: string }
-
+export type CardLearnType = {
+  _id: string
+  cardsPack_id: string
+  user_id: string
+  answer: string
+  question: string
+  grade: number
+  shots: number
+}
 export type UpdatePackResponseType = {
   updatedCardsPack: PackType
 }
