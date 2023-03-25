@@ -38,7 +38,7 @@ export const Answer: React.FC<AnswerPropsType> = React.memo(({ onNext, card_id, 
         <FormLabel style={{ color: 'black' }}>Rate yourself:</FormLabel>
         <RadioGroup defaultValue="1">
           {grades.map((grade, i) => (
-            <FormControlLabel key={i} value={i + 1} control={<Radio {...register('grade')} />} label={grade} />
+            <FormControlLabel key={'grade' + i} value={++i} control={<Radio {...register('grade')} />} label={grade} />
           ))}
         </RadioGroup>
         <Button
