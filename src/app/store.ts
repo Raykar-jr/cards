@@ -17,8 +17,10 @@ import { registrationReducer } from 'features/Registration/registration-reducer'
 const persistConfig = {
   key: 'packs',
   storage,
-  whitelist: ['queryParams'],
-  transforms: [createWhitelistFilter('queryParams', ['user_id', 'pageCount'])],
+  transforms: [
+    createWhitelistFilter('queryParams', ['user_id', 'pageCount']),
+    createWhitelistFilter('packlist', ['cardPacks']),
+  ],
 }
 
 const rootReducer = combineReducers({
