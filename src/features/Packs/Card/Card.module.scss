@@ -17,10 +17,13 @@
     display: flex;
     justify-content: space-between;
     @include fontSettings(22px, 600, 27px);
-
+    & button {
+      max-height: 40px !important;
+    }
     & .packNameText {
       margin-top: 10px;
       word-break: break-word;
+      max-width: 80%;
     }
   }
   .search{
