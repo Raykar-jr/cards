@@ -82,7 +82,7 @@ export const Cards = () => {
       <div className={s.packName}>
         <p className={s.packNameText}>
           {packName}
-          <DragIndicatorIcon onClick={clickHandler} sx={{ cursor: 'pointer' }} />
+          {isMyPack && <DragIndicatorIcon onClick={clickHandler} sx={{ cursor: 'pointer' }} />}
         </p>
         <MenuCard anchorEl={anchorEl} setAnchorEl={setAnchorEl} redirectToLearn={redirectToLearnHandler} />
         {!isEmptyPack && !isMyPack && (
