@@ -20,7 +20,7 @@ const initState = {
 
 export const learnReducer = (state: initStateType = initState, action: ActionType): initStateType => {
   switch (action.type) {
-    case 'learn/RESET-LEAN-CARD':
+    case 'learn/RESET-LEARN-CARD':
       return { ...state, card: { ...initState.card } }
     case 'learn/SET-CARD':
       return { ...state, card: { ...state.card, ...action.payload.data } }
@@ -30,7 +30,7 @@ export const learnReducer = (state: initStateType = initState, action: ActionTyp
   }
 }
 // actions
-export const resetCardLearn = () => ({ type: 'learn/RESET-LEAN-CARD' } as const)
+export const resetCardLearn = () => ({ type: 'learn/RESET-LEARN-CARD' } as const)
 export const setCard = (data: CardType) => ({ type: 'learn/SET-CARD', payload: { data } } as const)
 
 export const updateGradeTC =
