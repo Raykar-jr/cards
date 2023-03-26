@@ -1,15 +1,18 @@
 import React, { ChangeEvent } from 'react'
 
+import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
 
 import { setAppError } from 'app/app-reducer'
 import { useAppDispatch } from 'app/store'
 import { common_button } from 'common/styles/LoginStyles'
 type Props = {
   callBack: (file64: string) => void
-  buttonTitle: string
+  buttonTitle?: string
+  iconButton?: string
 }
-export const InputTypeFile: React.FC<Props> = ({ buttonTitle, callBack }) => {
+export const InputTypeFile: React.FC<Props> = ({ iconButton = false, buttonTitle, callBack }) => {
   const dispatch = useAppDispatch()
   const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
@@ -39,11 +42,20 @@ export const InputTypeFile: React.FC<Props> = ({ buttonTitle, callBack }) => {
   }
 
   return (
-    <label>
-      <input type="file" onChange={uploadHandler} style={{ display: 'none' }} />
-      <Button sx={common_button} variant="contained" component="span">
-        {buttonTitle}
-      </Button>
-    </label>
+    <>
+      {iconButton ? (
+        <IconButton component="label">
+          <CloudUploadIcon />
+          <input type="file" accept="image/*" onChange={uploadHandler} style={{ display: 'none' }} />
+        </IconButton>
+      ) : (
+        <label>
+          <input type="file" accept="image/*" onChange={uploadHandler} style={{ display: 'none' }} />
+          <Button sx={common_button} variant="contained" component="span">
+            {buttonTitle}
+          </Button>
+        </label>
+      )}
+    </>
   )
 }
