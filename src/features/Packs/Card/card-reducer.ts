@@ -11,6 +11,7 @@ const initState: PackCard = {
   cards: [],
   packUserId: '',
   packName: '',
+  packPrivate: false,
   packDeckCover: '',
   page: 1,
   pageCount: 5,

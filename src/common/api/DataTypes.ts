@@ -224,6 +224,7 @@ export type PackCard = {
   cards: CardType[]
   packUserId: string
   packName: string
+  packPrivate: boolean
   packDeckCover: string
   page: number
   pageCount: number
