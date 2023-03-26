@@ -57,8 +57,8 @@ export const Cards = () => {
   const isEmptyPack = !cards.length
 
   useEffect(() => {
-    packId && dispatch(getCards(packId))
-  }, [page, pageCount, sort, search, pack])
+    pack && packId && dispatch(getCards(packId))
+  }, [page, pageCount, sort, search])
 
   useEffect(() => {
     return () => {
