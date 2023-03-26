@@ -28,7 +28,7 @@ export const AddPackModal = () => {
   const handleChangePackPrivate = (e: ChangeEvent<HTMLInputElement>) => setPrivatePack(e.currentTarget.checked)
 
   const handleCreatPack = () => {
-    dispatch(createPackTC({ params: {}, data: { name: packName, private: privatePack } }))
+    dispatch(createPackTC({ data: { name: packName, private: privatePack } }))
     setPackName('')
     setError(false)
   }

@@ -14,8 +14,9 @@ type PropsType = {
   nameProp: string
   privateProp: boolean
   packId: string
+  menuName?: string
 }
-export const EditPackModal: React.FC<PropsType> = ({ packId, privateProp, nameProp }) => {
+export const EditPackModal: React.FC<PropsType> = ({ packId, privateProp, nameProp, ...restProps }) => {
   const dispatch = useAppDispatch()
 
   const [packName, setPackName] = useState(nameProp)
@@ -32,7 +33,6 @@ export const EditPackModal: React.FC<PropsType> = ({ packId, privateProp, namePr
   const handleEditPack = () => {
     dispatch(
       updatePackTC({
-        params: {},
         data: {
           name: packName,
           private: privatePack,
@@ -63,6 +63,7 @@ export const EditPackModal: React.FC<PropsType> = ({ packId, privateProp, namePr
       iconSrc={editPack}
       disabled={packName === nameProp || packName.trim().length === 0}
       onClickClose={handleOnClickClose}
+      {...restProps}
     >
       <FormControl fullWidth variant="standard">
         <TextField

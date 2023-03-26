@@ -78,12 +78,14 @@ export const getPackTC =
   }
 
 export const createPackTC =
-  (params: { params: PackParamsType; data: CreatePacksDataType }): AppThunk =>
-  async dispatch => {
+  (params: { data: CreatePacksDataType }): AppThunk =>
+  async (dispatch, getState) => {
     try {
+      const queryParams = getState().packs.queryParams
+
       dispatch(appSetStatus(requestStatus.LOADING))
       await packApi.createPack(params.data)
-      dispatch(getPackTC(params.params))
+      dispatch(getPackTC(queryParams))
     } catch (e) {
       handleError(e, dispatch)
     } finally {
@@ -92,12 +94,14 @@ export const createPackTC =
   }
 
 export const updatePackTC =
-  (params: { params: PackParamsType; data: UpdatePackDataType }): AppThunk =>
-  async dispatch => {
+  (params: { data: UpdatePackDataType }): AppThunk =>
+  async (dispatch, getState) => {
     try {
+      const queryParams = getState().packs.queryParams
+
       dispatch(appSetStatus(requestStatus.LOADING))
       await packApi.updatePack(params.data)
-      dispatch(getPackTC(params.params))
+      dispatch(getPackTC(queryParams))
     } catch (e) {
       handleError(e, dispatch)
     } finally {
@@ -106,12 +110,14 @@ export const updatePackTC =
   }
 
 export const deletePackTC =
-  (params: { params: PackParamsType; packId: string }): AppThunk =>
-  async dispatch => {
+  (params: { packId: string }): AppThunk =>
+  async (dispatch, getState) => {
     try {
+      const queryParams = getState().packs.queryParams
+
       dispatch(appSetStatus(requestStatus.LOADING))
       await packApi.deletePack(params.packId)
-      dispatch(getPackTC(params.params))
+      dispatch(getPackTC(queryParams))
     } catch (e) {
       handleError(e, dispatch)
     } finally {
