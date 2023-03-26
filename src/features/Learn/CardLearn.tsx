@@ -32,7 +32,7 @@ export const CardLearn = () => {
         alignItems: 'flex-start',
         flexDirection: 'column',
         p: '30px 40px 48px 40px',
-        gap: '1rem',
+        gap: '0.5rem',
         borderRadius: '2px',
         boxShadow: '1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1)',
         maxWidth: '450px',

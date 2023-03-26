@@ -31,7 +31,7 @@ export const Answer: React.FC<AnswerPropsType> = React.memo(({ onNext, card_id, 
 
   return (
     <>
-      <span style={{ wordBreak: 'break-word' }}>
+      <span style={{ wordBreak: 'break-word', marginTop: '1rem' }}>
         <b>Answer: </b>
         {answerImg ? (
           <img style={{ height: '100%', marginTop: '10px', width: '100%' }} src={answerImg} alt="answer card cover" />

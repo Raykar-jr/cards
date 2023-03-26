@@ -1,6 +1,5 @@
-import { appSetStatus } from 'app/app-reducer'
 import { AppThunk } from 'app/store'
-import { CardLearnType, CardType, UpdateGradeRequestType } from 'common/api/DataTypes'
+import { CardLearnType, CardType, requestsStatus, UpdateGradeRequestType } from 'common/api/DataTypes'
 import { requestStatus } from 'common/components/constants/requestStatus'
 import { handleError } from 'common/utils/error-util'
 import { cardsApi } from 'features/Packs/Card/card-api'
@@ -8,6 +7,7 @@ import { gradeCardUpdate } from 'features/Packs/Card/card-reducer'
 
 type LearnInitStateType = {
   card: CardLearnType
+  status: requestsStatus
 }
 const learnInitState: LearnInitStateType = {
   card: {
@@ -21,6 +21,7 @@ const learnInitState: LearnInitStateType = {
     questionImg: '',
     answerImg: '',
   },
+  status: requestStatus.IDLE,
 }
 
 export const learnReducer = (state = learnInitState, action: ActionType): LearnInitStateType => {
@@ -29,6 +30,8 @@ export const learnReducer = (state = learnInitState, action: ActionType): LearnI
       return { ...state, card: { ...learnInitState.card } }
     case 'learn/SET-CARD':
       return { ...state, card: { ...state.card, ...action.payload.data } }
+    case 'learn/SET-STATUS':
+      return { ...state, status: action.status }
     default: {
       return state
     }
@@ -37,12 +40,13 @@ export const learnReducer = (state = learnInitState, action: ActionType): LearnI
 // actions
 export const resetCardLearn = () => ({ type: 'learn/RESET-LEAN-CARD' } as const)
 export const setCard = (data: CardType) => ({ type: 'learn/SET-CARD', payload: { data } } as const)
+export const learnSetStatus = (status: requestsStatus) => ({ type: 'learn/SET-STATUS', status } as const)
 
 export const updateGradeTC =
   (data: UpdateGradeRequestType): AppThunk =>
   async dispatch => {
     try {
-      dispatch(appSetStatus(requestStatus.LOADING))
+      dispatch(learnSetStatus(requestStatus.LOADING))
       const res = await cardsApi.updateGradeCard(data)
       const tmp = res.data.updatedGrade
 
@@ -50,9 +54,9 @@ export const updateGradeTC =
     } catch (e) {
       handleError(e, dispatch)
     } finally {
-      dispatch(appSetStatus(requestStatus.SUCCEEDED))
+      dispatch(learnSetStatus(requestStatus.SUCCEEDED))
     }
   }
 
 //type
-type ActionType = ReturnType<typeof resetCardLearn> | ReturnType<typeof setCard>
+type ActionType = ReturnType<typeof resetCardLearn> | ReturnType<typeof setCard> | ReturnType<typeof learnSetStatus>

@@ -17,7 +17,7 @@ export const Learn = () => {
   const packName = useAppSelector(state => state.cards.packName)
 
   const packs = useAppSelector(state => state.packs.packList.cardPacks.filter(p => p._id == packId))
-  const status = useAppSelector(state => state.app.status)
+  const status = useAppSelector(state => state.learn.status)
 
   useEffect(() => {
     packId && dispatch(getAllCards(packId, packs[0].cardsCount))
