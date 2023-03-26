@@ -2,18 +2,18 @@ import React from 'react'
 
 import { ListItemIcon, Menu, MenuItem } from '@mui/material'
 
-import { useAppDispatch } from 'app/store'
-import editPack from 'assets/icons/edit-2.svg'
 import learn from 'assets/icons/teacher.svg'
-import removePack from 'assets/icons/trash.svg'
+import { PackType } from 'common/api/DataTypes'
+import { DeletePackModal } from 'features/Modal/PackModal/DeletePackModal'
+import { EditPackModal } from 'features/Modal/PackModal/EditPackModal'
 
 type MenuPropsType = {
   anchorEl: null | HTMLElement
   setAnchorEl: (anchorEl: null | HTMLElement) => void
   redirectToLearn: () => void
+  pack: PackType
 }
-export const MenuCard: React.FC<MenuPropsType> = ({ anchorEl, setAnchorEl, redirectToLearn }) => {
-  const dispatch = useAppDispatch()
+export const MenuCard: React.FC<MenuPropsType> = React.memo(({ anchorEl, setAnchorEl, redirectToLearn, pack }) => {
   const open = Boolean(anchorEl)
   const closeHandler = () => {
     setAnchorEl(null)
@@ -26,7 +26,7 @@ export const MenuCard: React.FC<MenuPropsType> = ({ anchorEl, setAnchorEl, redir
         id="account-menu"
         open={open}
         onClose={closeHandler}
-        onClick={closeHandler}
+        //onClick={closeHandler}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -50,18 +50,8 @@ export const MenuCard: React.FC<MenuPropsType> = ({ anchorEl, setAnchorEl, redir
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={() => {}}>
-          <ListItemIcon>
-            <img src={editPack} alt="edit icon" />
-          </ListItemIcon>
-          Edit
-        </MenuItem>
-        <MenuItem onClick={() => {}}>
-          <ListItemIcon>
-            <img src={removePack} alt="delete icon" />
-          </ListItemIcon>
-          Delete
-        </MenuItem>
+        <EditPackModal nameProp={pack.name} privateProp={pack.private} packId={pack._id} menuName="Edit" />
+        <DeletePackModal packId={pack._id} packName={pack.name} menuName="Delete" />
         <MenuItem onClick={redirectToLearn}>
           <ListItemIcon>
             <img src={learn} alt="learn icon" />
@@ -71,4 +61,4 @@ export const MenuCard: React.FC<MenuPropsType> = ({ anchorEl, setAnchorEl, redir
       </Menu>
     </>
   )
-}
+})

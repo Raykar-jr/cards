@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from 'react'
 
+import { ListItemIcon, MenuItem } from '@mui/material'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton/IconButton'
@@ -34,6 +35,8 @@ type PropsType = {
   deleteMode: boolean
   disabled?: boolean
   onClickClose?: (error: boolean, text: string) => void
+  iconList?: string
+  menuName?: string
 }
 export const BasicModal: React.FC<PropsType> = ({
   children,
@@ -44,6 +47,7 @@ export const BasicModal: React.FC<PropsType> = ({
   deleteMode,
   disabled,
   onClickClose,
+  menuName,
 }) => {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
@@ -58,15 +62,25 @@ export const BasicModal: React.FC<PropsType> = ({
 
   return (
     <>
-      <Button
-        variant={buttonName ? 'contained' : undefined}
-        sx={iconSrc ? { minWidth: '24px' } : common_button}
-        onClick={handleOpen}
-        className={iconSrc ? s.button : ''}
-      >
-        <img src={iconSrc} alt="" />
-        {buttonName}
-      </Button>
+      {menuName ? (
+        <MenuItem onClick={handleOpen}>
+          <ListItemIcon>
+            <img src={iconSrc} alt="" />
+          </ListItemIcon>
+          {menuName}
+        </MenuItem>
+      ) : (
+        <Button
+          variant={buttonName ? 'contained' : undefined}
+          sx={iconSrc ? { minWidth: '24px' } : common_button}
+          onClick={handleOpen}
+          className={iconSrc ? s.button : ''}
+        >
+          <img src={iconSrc} alt="" />
+          {buttonName}
+        </Button>
+      )}
+
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <div className={s.header}>

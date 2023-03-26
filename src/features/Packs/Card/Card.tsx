@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 
-import DragIndicatorIcon from '@mui/icons-material/DragIndicator'
 import Button from '@mui/material/Button'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
@@ -11,6 +10,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import s from './Card.module.scss'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
+import info from 'assets/icons/info.svg'
 import defaultCover from 'assets/images/defaultCover.jpg'
 import { ArrowBackToPacks } from 'common/components/ArrowBackToPacks/ArrowBackToPacks'
 import { Filters } from 'common/components/Filters/Filters'
@@ -51,12 +51,13 @@ export const Cards = () => {
   const userId = useAppSelector(selectUserId)
   const packUserId = useAppSelector(selectPackUserId)
   const packDeckCover = useAppSelector(selectPackDeckCover)
+  const pack = useAppSelector(state => state.packs.packList.cardPacks.filter(p => p._id == packId))[0]
   const isMyPack = userId === packUserId
   const isEmptyPack = !cards.length
 
   useEffect(() => {
     packId && dispatch(getCards(packId))
-  }, [page, pageCount, sort, search])
+  }, [page, pageCount, sort, search, pack])
 
   useEffect(() => {
     return () => {
@@ -72,8 +73,12 @@ export const Cards = () => {
   const redirectToLearnHandler = () => {
     navigate('/learn/' + packId)
   }
-  const clickHandler = (event: any) => {
+  const openMenuHandler = (event: any) => {
     setAnchorEl(event.currentTarget)
+  }
+
+  if (!pack) {
+    return navigate(-1)
   }
 
   return (
@@ -82,9 +87,9 @@ export const Cards = () => {
       <div className={s.packName}>
         <p className={s.packNameText}>
           {packName}
-          {isMyPack && <DragIndicatorIcon onClick={clickHandler} sx={{ cursor: 'pointer' }} />}
+          {isMyPack && <img onClick={openMenuHandler} src={info} alt="info" style={{ cursor: 'pointer' }} />}
         </p>
-        <MenuCard anchorEl={anchorEl} setAnchorEl={setAnchorEl} redirectToLearn={redirectToLearnHandler} />
+        <MenuCard anchorEl={anchorEl} setAnchorEl={setAnchorEl} redirectToLearn={redirectToLearnHandler} pack={pack} />
         {!isEmptyPack && !isMyPack && (
           <Button sx={common_button} variant={'contained'} color={'primary'} onClick={redirectToLearnHandler}>
             Learn to pack
