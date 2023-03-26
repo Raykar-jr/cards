@@ -9,17 +9,22 @@ type PropsType = {
   packId: string
   packName: string
   menuName?: string
+  onClose?: () => void
 }
-export const DeletePackModal: React.FC<PropsType> = ({ packId, packName, ...restProps }) => {
+export const DeletePackModal: React.FC<PropsType> = ({ onClose, packId, packName, ...restProps }) => {
   const dispatch = useAppDispatch()
   const handleDeletePack = () => {
     dispatch(deletePackTC({ packId: packId }))
+  }
+  const handleCloseMenu = () => {
+    onClose && onClose()
   }
 
   return (
     <BasicModal
       deleteMode={true}
       onClick={handleDeletePack}
+      onCloseMenu={handleCloseMenu}
       iconSrc={removePack}
       modalTitle={'Delete pack'}
       {...restProps}

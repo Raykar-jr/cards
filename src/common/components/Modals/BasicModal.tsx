@@ -37,6 +37,7 @@ type PropsType = {
   onClickClose?: (error: boolean, text: string) => void
   iconList?: string
   menuName?: string
+  onCloseMenu?: () => void
 }
 export const BasicModal: React.FC<PropsType> = ({
   children,
@@ -44,6 +45,7 @@ export const BasicModal: React.FC<PropsType> = ({
   buttonName,
   iconSrc,
   onClick,
+  onCloseMenu,
   deleteMode,
   disabled,
   onClickClose,
@@ -54,11 +56,12 @@ export const BasicModal: React.FC<PropsType> = ({
   const handleClose = () => {
     setOpen(false)
     onClickClose && onClickClose(false, '')
-    onClick()
+    onCloseMenu && onCloseMenu()
   }
   const handleOnSaveOrRemove = () => {
     setOpen(false)
     onClick()
+    onCloseMenu && onCloseMenu()
   }
 
   return (

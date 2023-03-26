@@ -57,7 +57,7 @@ export const MenuCard: React.FC<MenuPropsType> = React.memo(({ anchorEl, setAnch
           packId={pack._id}
           menuName="Edit"
         />
-        <DeletePackModal packId={pack._id} packName={pack.name} menuName="Delete" />
+        <DeletePackModal onClose={closeHandler} packId={pack._id} packName={pack.name} menuName="Delete" />
         <MenuItem onClick={redirectToLearn}>
           <ListItemIcon>
             <img src={learn} alt="learn icon" />

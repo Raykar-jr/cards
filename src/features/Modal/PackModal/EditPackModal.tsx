@@ -30,7 +30,9 @@ export const EditPackModal: React.FC<PropsType> = ({ onClose, packId, privatePro
     actionError(false, '')
   }
   const handleChangePackPrivate = (e: ChangeEvent<HTMLInputElement>) => setPrivatePack(e.currentTarget.checked)
-
+  const handleCloseMenu = () => {
+    onClose && onClose()
+  }
   const handleEditPack = () => {
     dispatch(
       updatePackTC({
@@ -41,7 +43,6 @@ export const EditPackModal: React.FC<PropsType> = ({ onClose, packId, privatePro
         },
       })
     )
-    onClose && onClose()
   }
   const handleError = () => {
     if (packName.trim().length === 0) {
@@ -61,6 +62,7 @@ export const EditPackModal: React.FC<PropsType> = ({ onClose, packId, privatePro
     <BasicModal
       deleteMode={false}
       onClick={handleEditPack}
+      onCloseMenu={handleCloseMenu}
       modalTitle={'Edit card'}
       iconSrc={editPack}
       disabled={packName === nameProp || packName.trim().length === 0}
