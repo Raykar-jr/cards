@@ -101,6 +101,7 @@ export type PackType = {
 export type GetCardsResponseType = {
   cards: CardType[]
   packUserId: string
+  packPrivate: boolean
   packName: string
   packDeckCover: string
   page: number

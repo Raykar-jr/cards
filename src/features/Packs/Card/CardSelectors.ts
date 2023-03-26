@@ -9,3 +9,4 @@ export const selectCardSort = (state: AppRootStateType) => state.cards.sort
 export const selectCardSearch = (state: AppRootStateType) => state.cards.search
 export const selectPackUserId = (state: AppRootStateType) => state.cards.packUserId
 export const selectPackDeckCover = (state: AppRootStateType) => state.cards.packDeckCover
+export const selectPackPrivate = (state: AppRootStateType) => state.cards.packPrivate

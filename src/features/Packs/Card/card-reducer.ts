@@ -40,6 +40,8 @@ export const cardsReducer = (state = initState, action: ActionType): initStateTy
       return { ...state, packDeckCover: '' }
     case 'cards/GRADE-CARD-UPDATE':
       return { ...state, cards: state.cards.map(c => (c._id === action.card_id ? { ...c, ...action.data } : c)) }
+    case 'cards/EDIT-CARDS':
+      return { ...state, ...action.data }
     default:
       return state
   }
@@ -53,6 +55,11 @@ export const setSort = (sort: string) => ({ type: 'cards/SET-SORT', sort } as co
 export const setSearch = (search: string) => ({ type: 'cards/SEARCH-CARDS-BY-QUESTION', search } as const)
 export const resetPackCard = () => ({ type: 'cards/RESET-PACK-CARD' } as const)
 export const resetPackDeckCover = () => ({ type: 'cards/RESET-PACK-DECK-COVER' } as const)
+export const editCards = (data: { packName: string; packPrivate: boolean }) =>
+  ({
+    type: 'cards/EDIT-CARDS',
+    data,
+  } as const)
 export const gradeCardUpdate = (data: { grade: number; shots: number }, card_id: string) =>
   ({
     type: 'cards/GRADE-CARD-UPDATE',
@@ -144,3 +151,4 @@ type ActionType =
   | ReturnType<typeof resetPackCard>
   | ReturnType<typeof gradeCardUpdate>
   | ReturnType<typeof resetPackDeckCover>
+  | ReturnType<typeof editCards>

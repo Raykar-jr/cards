@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField'
 import { useAppDispatch } from 'app/store'
 import editPack from 'assets/icons/edit-2.svg'
 import { BasicModal } from 'common/components/Modals/BasicModal'
+import { editCards } from 'features/Packs/Card/card-reducer'
 import { updatePackTC } from 'features/Packs/packs-reducer'
 
 type PropsType = {
@@ -43,6 +44,7 @@ export const EditPackModal: React.FC<PropsType> = ({ onClose, packId, privatePro
         },
       })
     )
+    restProps.menuName && dispatch(editCards({ packName, packPrivate: privatePack }))
   }
   const handleError = () => {
     if (packName.trim().length === 0) {
@@ -56,6 +58,7 @@ export const EditPackModal: React.FC<PropsType> = ({ onClose, packId, privatePro
   const handleOnClickClose = () => {
     actionError(false, '')
     setPackName(nameProp)
+    onClose && onClose()
   }
 
   return (

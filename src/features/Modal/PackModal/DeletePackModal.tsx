@@ -10,11 +10,13 @@ type PropsType = {
   packName: string
   menuName?: string
   onClose?: () => void
+  redirectToPacks?: () => void
 }
-export const DeletePackModal: React.FC<PropsType> = ({ onClose, packId, packName, ...restProps }) => {
+export const DeletePackModal: React.FC<PropsType> = ({ onClose, packId, packName, redirectToPacks, ...restProps }) => {
   const dispatch = useAppDispatch()
   const handleDeletePack = () => {
     dispatch(deletePackTC({ packId: packId }))
+    restProps.menuName && redirectToPacks && redirectToPacks()
   }
   const handleCloseMenu = () => {
     onClose && onClose()
