@@ -58,7 +58,7 @@ export const Cards = () => {
 
   useEffect(() => {
     pack && packId && dispatch(getCards(packId))
-  }, [page, pageCount, sort, search])
+  }, [page, pageCount, sort, search, pack])
 
   useEffect(() => {
     return () => {
