@@ -1,16 +1,17 @@
 import { CardType } from 'common/api/DataTypes'
 
 export const getRandomCard = (cards: CardType[]) => {
-  const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0)
+  const sum = cards.reduce((acc, card) => (card.grade === 5 ? acc : acc + (6 - card.grade) ** 3), 0)
   const rand = Math.random() * sum
-  const res = cards.reduce(
-    (acc: { sum: number; id: number }, card, i) => {
-      const newSum = acc.sum + (6 - card.grade) * (6 - card.grade)
+  let newSum = 0,
+    res = -1
 
-      return { sum: newSum, id: newSum < rand ? i : acc.id }
-    },
-    { sum: 0, id: -1 }
-  )
+  for (let i = 0; newSum < rand; i++) {
+    if (cards[i].grade !== 5) {
+      newSum += (6 - cards[i].grade) ** 3
+      res = i
+    }
+  }
 
-  return cards[res.id + 1]
+  return cards[res]
 }

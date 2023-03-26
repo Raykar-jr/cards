@@ -14,13 +14,14 @@ import { recoveryPassReducer } from 'features/Password/RecoveryPassword/recovery
 import { profileReducer } from 'features/Profile/profile-reducer'
 import { registrationReducer } from 'features/Registration/registration-reducer'
 
-const persistConfig = {
+const persistConfigPacks = {
   key: 'packs',
   storage,
-  transforms: [
-    createWhitelistFilter('queryParams', ['user_id', 'page', 'pageCount']),
-    createWhitelistFilter('packlist', ['cardPacks']),
-  ],
+  transforms: [createWhitelistFilter('queryParams', ['user_id', 'page', 'pageCount'])],
+}
+const persistConfigCards = {
+  key: 'cards',
+  storage,
 }
 
 const rootReducer = combineReducers({
@@ -29,8 +30,8 @@ const rootReducer = combineReducers({
   profile: profileReducer,
   registration: registrationReducer,
   recovery: recoveryPassReducer,
-  packs: persistReducer(persistConfig, packsReducer),
-  cards: cardsReducer,
+  packs: persistReducer(persistConfigPacks, packsReducer),
+  cards: persistReducer(persistConfigCards, cardsReducer),
   learn: learnReducer,
 })
 

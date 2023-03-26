@@ -1,0 +1,12 @@
+@import 'src/common/styles/scss/mixins';
+
+.allStudied{
+  @include flex(center,center,row,wrap);
+  word-break: break-word;
+  gap: 1rem;
+  font-size: 22px;
+  & img{
+    height: 3rem;
+    width: 3rem;
+  }
+}
