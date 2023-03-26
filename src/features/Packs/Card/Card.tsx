@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
 import s from './Card.module.scss'
 
@@ -16,6 +16,7 @@ import { ArrowBackToPacks } from 'common/components/ArrowBackToPacks/ArrowBackTo
 import { Filters } from 'common/components/Filters/Filters'
 import { Search } from 'common/components/Search/Search'
 import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
+import { PATH } from 'common/path/path'
 import { common_button } from 'common/styles/LoginStyles'
 import { AddCardModal } from 'features/Modal/CardsModal/AddCardModal'
 import { getCards, resetPackDeckCover, setCount, setPage, setSearch } from 'features/Packs/Card/card-reducer'
@@ -78,7 +79,7 @@ export const Cards = () => {
   }
 
   if (!pack) {
-    return navigate(-1)
+    return <Navigate to={PATH.PACKS.PACKS} />
   }
 
   return (
