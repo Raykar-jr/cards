@@ -38,10 +38,13 @@ import { MenuCard } from 'features/Packs/Card/MenuCard/MenuCard'
 import { selectUserId } from 'features/Profile/profileSelectors'
 
 export const Cards = () => {
+  const dispatch = useAppDispatch()
+
   const { packId } = useParams<{ packId: string }>()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-  const dispatch = useAppDispatch()
+
   const navigate = useNavigate()
+
   const cards = useAppSelector(selectCards)
   const page = useAppSelector(selectCardPage)
   const pageCount = useAppSelector(selectCardPageCount)
@@ -53,6 +56,7 @@ export const Cards = () => {
   const packUserId = useAppSelector(selectPackUserId)
   const packDeckCover = useAppSelector(selectPackDeckCover)
   const pack = useAppSelector(state => state.packs.packList.cardPacks.filter(p => p._id == packId))[0]
+
   const isMyPack = userId === packUserId
   const isEmptyPack = !cards.length
 
