@@ -18,7 +18,7 @@ const persistConfig = {
   key: 'packs',
   storage,
   transforms: [
-    createWhitelistFilter('queryParams', ['user_id', 'pageCount']),
+    createWhitelistFilter('queryParams', ['user_id', 'page', 'pageCount']),
     createWhitelistFilter('packlist', ['cardPacks']),
   ],
 }
