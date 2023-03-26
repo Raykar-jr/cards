@@ -11,7 +11,7 @@ import {
   UpdatePackDataType,
 } from 'common/api/DataTypes'
 import { requestStatus } from 'common/components/constants/requestStatus'
-import { handleError } from 'common/utils/error-util'
+import { handleError } from 'common/utils'
 import { packApi } from 'features/Packs/packs-api'
 
 type InitialStateType = {

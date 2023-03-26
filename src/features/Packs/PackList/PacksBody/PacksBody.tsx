@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import learn from 'assets/icons/teacher.svg'
 import { PackType } from 'common/api/DataTypes'
-import { makeStringDate } from 'common/utils/makeStringDate'
+import { makeStringDate } from 'common/utils'
 import { DeletePackModal } from 'features/Modal/PackModal/DeletePackModal'
 import { EditPackModal } from 'features/Modal/PackModal/EditPackModal'
 

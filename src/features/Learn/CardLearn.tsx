@@ -5,7 +5,7 @@ import Button from '@mui/material/Button'
 
 import { useAppDispatch, useAppSelector } from 'app/store'
 import { common_button } from 'common/styles/LoginStyles'
-import { getRandomCard } from 'common/utils/getRandomCard'
+import { getRandomCard } from 'common/utils'
 import { Answer } from 'features/Learn/Answer'
 import { setCard } from 'features/Learn/learn-reducer'
 

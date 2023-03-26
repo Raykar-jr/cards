@@ -4,7 +4,7 @@ import { appSetStatus, AppSetStatusType } from 'app/app-reducer'
 import { AppThunk } from 'app/store'
 import { GetCardsResponseType, PackCard } from 'common/api/DataTypes'
 import { requestStatus } from 'common/components/constants/requestStatus'
-import { handleError } from 'common/utils/error-util'
+import { handleError } from 'common/utils'
 import { cardsApi } from 'features/Packs/Card/card-api'
 
 const initState: PackCard = {

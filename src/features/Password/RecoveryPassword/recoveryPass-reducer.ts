@@ -3,7 +3,7 @@ import { AppThunk } from 'app/store'
 import { authAPI } from 'common/api/authAPI'
 import { PassDataType, RecoveredDataType } from 'common/api/DataTypes'
 import { requestStatus } from 'common/components/constants/requestStatus'
-import { handleError } from 'common/utils/error-util'
+import { handleError } from 'common/utils'
 
 const initialState = {
   email: '',

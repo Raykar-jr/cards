@@ -7,7 +7,7 @@ import TableRow from '@mui/material/TableRow'
 import s from './styles.module.scss'
 
 import { CardType } from 'common/api/DataTypes'
-import { makeStringDate } from 'common/utils/makeStringDate'
+import { makeStringDate } from 'common/utils'
 import { DeleteCardModal } from 'features/Modal/CardsModal/DeleteCardModal'
 import { EditCardModal } from 'features/Modal/CardsModal/EditCardModal'
 

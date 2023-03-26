@@ -5,7 +5,7 @@ import { AppThunk } from 'app/store'
 import { authAPI } from 'common/api/authAPI'
 import { LoginParamsType } from 'common/api/DataTypes'
 import { requestStatus } from 'common/components/constants/requestStatus'
-import { handleError } from 'common/utils/error-util'
+import { handleError } from 'common/utils'
 import { setUserData, SetUserDataActionType } from 'features/Profile/profile-reducer'
 
 const initState = {

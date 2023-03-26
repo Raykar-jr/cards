@@ -1,7 +1,7 @@
 import { AppThunk } from 'app/store'
 import { CardLearnType, CardType, requestsStatus, UpdateGradeRequestType } from 'common/api/DataTypes'
 import { requestStatus } from 'common/components/constants/requestStatus'
-import { handleError } from 'common/utils/error-util'
+import { handleError } from 'common/utils'
 import { cardsApi } from 'features/Packs/Card/card-api'
 import { gradeCardUpdate } from 'features/Packs/Card/card-reducer'
 

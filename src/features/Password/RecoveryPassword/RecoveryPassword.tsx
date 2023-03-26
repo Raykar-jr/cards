@@ -9,7 +9,7 @@ import s from './RecoveryPassword.module.css'
 
 import { useAppDispatch } from 'app/store'
 import { PATH } from 'common/path/path'
-import { makeRecoveredData } from 'common/utils/makeRecoveredData'
+import { makeRecoveredData } from 'common/utils'
 import { recovery, setEmail } from 'features/Password/RecoveryPassword/recoveryPass-reducer'
 import { RecoveryPasswordForm } from 'features/Password/RecoveryPassword/RecoveryPasswordForm'
 

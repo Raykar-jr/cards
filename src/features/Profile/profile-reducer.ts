@@ -4,7 +4,7 @@ import { appSetStatus, AppSetStatusType } from 'app/app-reducer'
 import { AppThunk } from 'app/store'
 import { UserDataType } from 'common/api/DataTypes'
 import { requestStatus } from 'common/components/constants/requestStatus'
-import { handleError } from 'common/utils/error-util'
+import { handleError } from 'common/utils'
 import { profileAPI, UpdateDataUserType } from 'features/Profile/profile-api'
 
 const initState = {
