@@ -50,7 +50,13 @@ export const MenuCard: React.FC<MenuPropsType> = React.memo(({ anchorEl, setAnch
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <EditPackModal nameProp={pack.name} privateProp={pack.private} packId={pack._id} menuName="Edit" />
+        <EditPackModal
+          onClose={closeHandler}
+          nameProp={pack.name}
+          privateProp={pack.private}
+          packId={pack._id}
+          menuName="Edit"
+        />
         <DeletePackModal packId={pack._id} packName={pack.name} menuName="Delete" />
         <MenuItem onClick={redirectToLearn}>
           <ListItemIcon>

@@ -15,8 +15,9 @@ type PropsType = {
   privateProp: boolean
   packId: string
   menuName?: string
+  onClose?: () => void
 }
-export const EditPackModal: React.FC<PropsType> = ({ packId, privateProp, nameProp, ...restProps }) => {
+export const EditPackModal: React.FC<PropsType> = ({ onClose, packId, privateProp, nameProp, ...restProps }) => {
   const dispatch = useAppDispatch()
 
   const [packName, setPackName] = useState(nameProp)
@@ -40,6 +41,7 @@ export const EditPackModal: React.FC<PropsType> = ({ packId, privateProp, namePr
         },
       })
     )
+    onClose && onClose()
   }
   const handleError = () => {
     if (packName.trim().length === 0) {
