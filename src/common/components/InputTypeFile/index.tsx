@@ -18,13 +18,15 @@ export const InputTypeFile: React.FC<Props> = ({ iconButton = false, buttonTitle
     if (e.target.files && e.target.files.length) {
       const file = e.target.files[0]
 
-      if (file.size < 4000000) {
+      if (!/^image\//.test(file.type)) {
+        dispatch(setAppError(`File ${file.name} is not an image.`))
+      } else if (file.size >= 4000000) {
+        dispatch(setAppError(`Файл слишком большого размера`))
+      } else {
         // https://developer.mozilla.org/ru/docs/Web/API/FileReader/FileReader
         convertFileToBase64(file, (file64: string) => {
           callBack(file64) // передаём конвертированный файл наверх
         })
-      } else {
-        dispatch(setAppError(`Файл слишком большого размера`))
       }
     }
   }
