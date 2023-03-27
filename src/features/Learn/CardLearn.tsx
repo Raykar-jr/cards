@@ -13,7 +13,6 @@ import { Answer } from 'features/Learn/Answer'
 import { setCard } from 'features/Learn/learn-reducer'
 
 export const CardLearn = () => {
-  debugger
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const [isAllStudied, setIsAllStudied] = useState<boolean>(false)
   const dispatch = useAppDispatch()
