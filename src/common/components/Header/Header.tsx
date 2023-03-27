@@ -52,7 +52,7 @@ export const Header = () => {
                   <span>{name}</span>
                   <Avatar
                     sx={{ width: 36, height: 36, cursor: 'pointer' }}
-                    alt="UserName"
+                    alt={name}
                     src={avatar}
                     sizes="small"
                     onClick={clickHandler}

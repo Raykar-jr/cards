@@ -27,7 +27,7 @@ const Profile = () => {
           elevation={2}
           sx={{
             p: '27px 0 36px 0',
-            height: '360px',
+            minHeight: '360px',
             width: '420px',
             display: 'flex',
             alignItems: 'center',
