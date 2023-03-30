@@ -99,6 +99,7 @@ export const Cards = () => {
             packPrivate={packPrivate}
             packId={packId}
             redirectToLearn={redirectToLearnHandler}
+            packDeckCover={packDeckCover}
           />
         )}
         {!isEmptyPack && !isMyPack && (

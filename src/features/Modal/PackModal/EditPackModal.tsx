@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField'
 
 import { useAppDispatch } from 'app/store'
 import editPack from 'assets/icons/edit-2.svg'
+import { InputTypeFile } from 'common/components/InputTypeFile'
 import { BasicModal } from 'common/components/Modals/BasicModal'
 import { editCards } from 'features/Packs/Card/card-reducer'
 import { updatePackTC } from 'features/Packs/packs-reducer'
@@ -17,14 +18,23 @@ type PropsType = {
   packId: string
   menuName?: string
   onClose?: () => void
+  packDeckCover: string
 }
-export const EditPackModal: React.FC<PropsType> = ({ onClose, packId, privateProp, nameProp, ...restProps }) => {
+export const EditPackModal: React.FC<PropsType> = ({
+  onClose,
+  packId,
+  privateProp,
+  packDeckCover,
+  nameProp,
+  ...restProps
+}) => {
   const dispatch = useAppDispatch()
 
   const [packName, setPackName] = useState(nameProp)
   const [privatePack, setPrivatePack] = useState(privateProp)
   const [error, setError] = useState(false)
   const [helperText, setHelperText] = useState('Name Pack')
+  const [packCover, setPackCover] = useState(packDeckCover)
 
   const handleChangePackName = (e: ChangeEvent<HTMLInputElement>) => {
     setPackName(e.currentTarget.value)
@@ -41,6 +51,7 @@ export const EditPackModal: React.FC<PropsType> = ({ onClose, packId, privatePro
           name: packName,
           private: privatePack,
           _id: packId,
+          deckCover: packCover,
         },
       })
     )
@@ -60,18 +71,20 @@ export const EditPackModal: React.FC<PropsType> = ({ onClose, packId, privatePro
     setPackName(nameProp)
     onClose && onClose()
   }
+  const handleAddCover = (file64: string) => setPackCover(file64)
 
   return (
     <BasicModal
       deleteMode={false}
       onClick={handleEditPack}
       onCloseMenu={handleCloseMenu}
-      modalTitle={'Edit card'}
+      modalTitle={'Edit pack'}
       iconSrc={editPack}
       disabled={packName === nameProp || packName.trim().length === 0}
       onClickClose={handleOnClickClose}
       {...restProps}
     >
+      <img style={{ maxHeight: '200px', width: '100%' }} src={packCover} alt="" />
       <FormControl fullWidth variant="standard">
         <TextField
           onBlur={handleError}
@@ -86,7 +99,7 @@ export const EditPackModal: React.FC<PropsType> = ({ onClose, packId, privatePro
       </FormControl>
 
       <FormControlLabel label="Private cards" control={<Checkbox onChange={handleChangePackPrivate} />} />
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}></div>
+      <InputTypeFile buttonTitle="Update pack cover" callBack={handleAddCover} />
     </BasicModal>
   )
 }
