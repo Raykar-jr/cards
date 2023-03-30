@@ -18,14 +18,14 @@ type PropsType = {
   cardId: string
   questionProp: string
   answerProp: string
-  questionImgProp?: string
+  questionImgProp: string
 }
 export const EditCardModal: React.FC<PropsType> = ({ packId, cardId, questionProp, answerProp, questionImgProp }) => {
   const dispatch = useAppDispatch()
 
   const [questionFormat, setQuestionFormat] = useState(questionImgProp ? 2 : 1)
-  const [question, setQuestion] = useState(questionImgProp ? '' : questionProp)
-  const [questionImg, setQuestionImg] = useState('')
+  const [question, setQuestion] = useState(questionProp)
+  const [questionImg, setQuestionImg] = useState(questionImgProp)
   const [answer, setAnswer] = useState(answerProp)
   const [questionError, setQuestionError] = useState(false)
   const [answerError, setAnswerError] = useState(false)
@@ -89,7 +89,7 @@ export const EditCardModal: React.FC<PropsType> = ({ packId, cardId, questionPro
 
       {questionFormat === qFormat.image && (
         <>
-          <img style={{ maxWidth: '350px', maxHeight: '150px' }} src={questionImgProp} alt="question card cover" />
+          <img style={{ maxHeight: '200px', width: '100%' }} src={questionImg} alt="question card cover" />
           <InputTypeFile buttonTitle={'Update question image'} callBack={handleChangeQuestionImg} />
         </>
       )}

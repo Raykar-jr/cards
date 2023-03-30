@@ -90,7 +90,10 @@ export const AddCardModal: React.FC<PropsType> = ({ packId }) => {
         />
       )}
       {questionFormat === qFormat.image && (
-        <InputTypeFile buttonTitle={'Upload question image'} callBack={handleChangeQuestionImg} />
+        <>
+          <img style={{ maxHeight: '200px', width: '100%' }} src={questionImg} alt="" />
+          <InputTypeFile buttonTitle={'Upload question image'} callBack={handleChangeQuestionImg} />
+        </>
       )}
 
       <TextField
