@@ -15,9 +15,10 @@ type MenuPropsType = {
   packName: string
   packPrivate: boolean
   packId: string
+  packDeckCover: string
 }
 export const MenuCard: React.FC<MenuPropsType> = React.memo(
-  ({ anchorEl, setAnchorEl, redirectToLearn, packName, packPrivate, packId }) => {
+  ({ anchorEl, setAnchorEl, redirectToLearn, packName, packPrivate, packId, packDeckCover }) => {
     const open = Boolean(anchorEl)
     const navigate = useNavigate()
     const closeHandler = () => {
@@ -58,6 +59,7 @@ export const MenuCard: React.FC<MenuPropsType> = React.memo(
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
           <EditPackModal
+            packDeckCover={packDeckCover}
             onClose={closeHandler}
             nameProp={packName}
             privateProp={packPrivate}

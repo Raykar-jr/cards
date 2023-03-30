@@ -194,6 +194,7 @@ export type PackListResponse = {
 export type CreatePacksDataType = {
   name: string
   private: boolean
+  deckCover: string
 }
 
 export type CreatePackResponseType = {
@@ -204,6 +205,7 @@ export type UpdatePackDataType = {
   _id: string
   name: string
   private: boolean
+  deckCover: string
 }
 
 export type DeleteParamType = { _id: string; name: string }

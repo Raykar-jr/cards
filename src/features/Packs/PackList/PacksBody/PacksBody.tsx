@@ -7,6 +7,7 @@ import TableRow from '@mui/material/TableRow'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from 'app/store'
+import deckCover from 'assets/images/deckCover.jpg'
 import { PackType } from 'common/api/DataTypes'
 import { makeStringDate } from 'common/utils'
 import { DeletePackModal } from 'features/Modal/PackModal/DeletePackModal'
@@ -27,12 +28,14 @@ export const PacksBody: React.FC<PropsType> = ({ pack }) => {
 
   return (
     <TableRow>
-      <TableCell sx={{ maxWidth: '15%', wordBreak: 'break-word' }} scope={'row'} component="th">
+      <TableCell align="left" sx={{ display: 'flex', gap: '15px', alignItems: 'center' }} scope={'row'} component="th">
+        <img
+          style={{ height: '40px', width: '60px', borderRadius: '2px' }}
+          alt={'pack deck cover'}
+          src={(pack.deckCover !== 'url' && pack.deckCover) || deckCover}
+        />
         <Link to={pack._id}>{pack.name}</Link>
       </TableCell>
-      {/*<TableCell align="right">*/}
-      {/*  <img alt={'avatar'} src={'sadfsadf'} />*/}
-      {/*</TableCell>*/}
       <TableCell align="left">{pack.cardsCount}</TableCell>
       <TableCell align="center">{stringDate}</TableCell>
       <TableCell align="left">{pack.user_name}</TableCell>
@@ -42,7 +45,12 @@ export const PacksBody: React.FC<PropsType> = ({ pack }) => {
         </IconButton>
         {userId === pack.user_id && (
           <>
-            <EditPackModal nameProp={pack.name} privateProp={pack.private} packId={pack._id} />
+            <EditPackModal
+              packDeckCover={pack.deckCover}
+              nameProp={pack.name}
+              privateProp={pack.private}
+              packId={pack._id}
+            />
             <DeletePackModal packId={pack._id} packName={pack.name} />
           </>
         )}

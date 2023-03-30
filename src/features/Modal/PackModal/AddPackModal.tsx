@@ -6,6 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import TextField from '@mui/material/TextField'
 
 import { useAppDispatch } from 'app/store'
+import { InputTypeFile } from 'common/components/InputTypeFile'
 import { BasicModal } from 'common/components/Modals/BasicModal'
 import { createPackTC } from 'features/Packs/packs-reducer'
 
@@ -16,6 +17,7 @@ export const AddPackModal = () => {
   const [privatePack, setPrivatePack] = useState(false)
   const [error, setError] = useState(false)
   const [helperText, setHelperText] = useState('Name Pack')
+  const [packDeckCover, setPackDeckCover] = useState('')
 
   const handleChangePackName = (e: ChangeEvent<HTMLInputElement>) => {
     setPackName(e.currentTarget.value)
@@ -28,7 +30,7 @@ export const AddPackModal = () => {
   const handleChangePackPrivate = (e: ChangeEvent<HTMLInputElement>) => setPrivatePack(e.currentTarget.checked)
 
   const handleCreatPack = () => {
-    dispatch(createPackTC({ data: { name: packName, private: privatePack } }))
+    dispatch(createPackTC({ data: { name: packName, private: privatePack, deckCover: packDeckCover } }))
     setPackName('')
     setError(false)
   }
@@ -45,6 +47,7 @@ export const AddPackModal = () => {
     setError(error)
     setHelperText(text)
   }
+  const handleAddCover = (file64: string) => setPackDeckCover(file64)
 
   return (
     <BasicModal
@@ -55,6 +58,7 @@ export const AddPackModal = () => {
       disabled={!packName.trim() || packName.length >= 100}
       onClickClose={actionError}
     >
+      <img style={{ maxHeight: '200px', width: '100%' }} src={packDeckCover} alt="pack cover" />
       <FormControl fullWidth variant="standard">
         <TextField
           error={error}
@@ -67,9 +71,8 @@ export const AddPackModal = () => {
           variant="standard"
         />
       </FormControl>
-
       <FormControlLabel label="Private cards" control={<Checkbox onChange={handleChangePackPrivate} />} />
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}></div>
+      <InputTypeFile buttonTitle="Upload pack cover" callBack={handleAddCover} />
     </BasicModal>
   )
 }
