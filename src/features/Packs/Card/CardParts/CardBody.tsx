@@ -13,8 +13,9 @@ import { EditCardModal } from 'features/Modal/CardsModal/EditCardModal'
 
 type Props = {
   card: CardType
+  isMyPack: boolean
 }
-export const CardBody: React.FC<Props> = ({ card }) => {
+export const CardBody: React.FC<Props> = ({ card, isMyPack }) => {
   const stringDate = makeStringDate(card.updated)
 
   return (
@@ -29,18 +30,20 @@ export const CardBody: React.FC<Props> = ({ card }) => {
       <TableCell align="left">
         <Rating name="simple-controlled" value={card.grade} />
       </TableCell>
-      <TableCell align="left">
-        <div style={{ display: 'flex' }}>
-          <EditCardModal
-            packId={card.cardsPack_id}
-            cardId={card._id}
-            answerProp={card.answer}
-            questionProp={card.question}
-            questionImgProp={card.questionImg}
-          />
-          <DeleteCardModal cardName={card.question} packId={card.cardsPack_id} cardId={card._id} />
-        </div>
-      </TableCell>
+      {isMyPack && (
+        <TableCell align="left">
+          <div style={{ display: 'flex' }}>
+            <EditCardModal
+              packId={card.cardsPack_id}
+              cardId={card._id}
+              answerProp={card.answer}
+              questionProp={card.question}
+              questionImgProp={card.questionImg}
+            />
+            <DeleteCardModal cardName={card.question} packId={card.cardsPack_id} cardId={card._id} />
+          </div>
+        </TableCell>
+      )}
     </TableRow>
   )
 }

@@ -7,7 +7,10 @@ import TableRow from '@mui/material/TableRow'
 import arrow_down from 'assets/icons/arrow_down.svg'
 import s from 'features/Packs/Card/Card.module.scss'
 
-export const CardHeader = () => {
+type CardHeaderPropsType = {
+  isMyPack: boolean
+}
+export const CardHeader: React.FC<CardHeaderPropsType> = ({ isMyPack }) => {
   return (
     <TableHead>
       <TableRow className={`${s.head} ${s.wrap}`}>
@@ -18,7 +21,7 @@ export const CardHeader = () => {
           <img src={arrow_down} alt={'sort'} />
         </TableCell>
         <TableCell align={'left'}>Grade</TableCell>
-        <TableCell align={'left'}>Actions</TableCell>
+        {isMyPack && <TableCell align={'left'}>Actions</TableCell>}
       </TableRow>
     </TableHead>
   )

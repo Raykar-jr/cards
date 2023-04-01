@@ -122,11 +122,11 @@ export const Cards = () => {
             <TableContainer>
               <Paper sx={{ width: '100%', mb: 2 }}>
                 <Table sx={{ minWidth: 700, mt: 2 }} aria-labelledby="tableTitle">
-                  <CardHeader />
+                  <CardHeader isMyPack={isMyPack} />
 
                   <TableBody>
                     {cards.map(card => (
-                      <CardBody key={card._id} card={card} />
+                      <CardBody key={card._id} card={card} isMyPack={isMyPack} />
                     ))}
                   </TableBody>
                 </Table>
