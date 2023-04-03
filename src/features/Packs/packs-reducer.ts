@@ -36,7 +36,7 @@ const initState: InitialStateType = {
     block: false,
     page: 1,
     pageCount: 5,
-    sortPacks: '0updated',
+    sortPacks: '',
   },
 }
 

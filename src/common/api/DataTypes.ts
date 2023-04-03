@@ -110,17 +110,7 @@ export type GetCardsResponseType = {
   minGrade: number
   maxGrade: number
 }
-export type CardType2 = {
-  answer: string
-  question: string
-  cardsPack_id: string
-  grade: number
-  shots: number
-  user_id: string
-  created: string
-  updated: string
-  _id: string
-}
+
 export type CardType = {
   _id: string
   cardsPack_id: string

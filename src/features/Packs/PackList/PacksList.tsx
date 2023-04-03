@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import MoodBadIcon from '@mui/icons-material/MoodBad'
 import { Typography } from '@mui/material'
@@ -21,12 +20,8 @@ import { getPackTC, setQueryParams } from 'features/Packs/packs-reducer'
 
 export const PacksList = () => {
   const dispatch = useAppDispatch()
-  const cardPacksTotalCount = useAppSelector(state => {
-    return state.packs.packList.cardPacksTotalCount
-  })
-  const packs = useAppSelector(state => {
-    return state.packs.packList.cardPacks
-  })
+  const cardPacksTotalCount = useAppSelector(state => state.packs.packList.cardPacksTotalCount)
+  const packs = useAppSelector(state => state.packs.packList.cardPacks)
   const queryParams = useAppSelector(state => state.packs.queryParams)
 
   useEffect(() => {

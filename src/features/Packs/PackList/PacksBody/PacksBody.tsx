@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined'
 import IconButton from '@mui/material/IconButton'
@@ -15,7 +15,6 @@ import { EditPackModal } from 'features/Modal/PackModal/EditPackModal'
 import { selectUserId } from 'features/Profile/profileSelectors'
 
 type PropsType = {
-  // key: string
   pack: PackType
 }
 export const PacksBody: React.FC<PropsType> = ({ pack }) => {
@@ -25,6 +24,7 @@ export const PacksBody: React.FC<PropsType> = ({ pack }) => {
   const redirectToLearnHandler = () => {
     navigate('/learn/' + pack._id)
   }
+  const checkDeckCover = pack.deckCover !== 'url' && pack.deckCover !== 'url or base64' && pack.deckCover
 
   return (
     <TableRow>
@@ -32,7 +32,7 @@ export const PacksBody: React.FC<PropsType> = ({ pack }) => {
         <img
           style={{ height: '40px', width: '60px', borderRadius: '2px' }}
           alt={'pack deck cover'}
-          src={(pack.deckCover !== 'url' && pack.deckCover) || deckCover}
+          src={checkDeckCover || deckCover}
         />
         <Link to={pack._id}>{pack.name}</Link>
       </TableCell>
