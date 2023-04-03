@@ -18,7 +18,7 @@ import { Search } from 'common/components/Search/Search'
 import { SuperPaginationTable } from 'common/components/SuperPaginationTable/SuperPaginationTable'
 import { common_button } from 'common/styles/LoginStyles'
 import { AddCardModal } from 'features/Modal/CardsModal/AddCardModal'
-import { getCards, resetPackDeckCover, setCount, setPage, setSearch } from 'features/Packs/Card/card-reducer'
+import { getCards, resetPackDeckCover, setCount, setPage, setSearch, setSort } from 'features/Packs/Card/card-reducer'
 import { CardBody } from 'features/Packs/Card/CardParts/CardBody'
 import { CardHeader } from 'features/Packs/Card/CardParts/CardHeader'
 import { EmptyPack } from 'features/Packs/Card/CardParts/EmptyPack'
@@ -67,6 +67,7 @@ export const Cards = () => {
   useEffect(() => {
     return () => {
       dispatch(setSearch(''))
+      dispatch(setSort(''))
       dispatch(resetPackDeckCover())
     }
   }, [])
