@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 import AppBar from '@mui/material/AppBar'
 import Avatar from '@mui/material/Avatar'
@@ -11,6 +10,7 @@ import Typography from '@mui/material/Typography'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from 'app/store'
+import flashLogo from 'assets/images/flash_logo.png'
 import { AccountMenu } from 'common/components/Header/AccountMenu/AccountMenu'
 import { PATH } from 'common/path/path'
 import { common_button } from 'common/styles/LoginStyles'
@@ -36,8 +36,13 @@ export const Header = () => {
         <AppBar sx={{ bgcolor: '#FCFCFC' }} position="fixed">
           <Container maxWidth="lg">
             <Toolbar>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: 'black' }}>
-                Cards
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{ display: 'flex', alignItems: 'center', gap: '10px', flexGrow: 1, color: 'black' }}
+              >
+                Flash Cards
+                <Avatar sx={{ width: 50, height: 50 }} src={flashLogo} alt="Flash cards logo" />
               </Typography>
               {isLoggedIn ? (
                 <Typography
