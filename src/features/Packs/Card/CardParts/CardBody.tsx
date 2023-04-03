@@ -20,10 +20,10 @@ export const CardBody: React.FC<Props> = ({ card, isMyPack }) => {
 
   return (
     <TableRow>
-      <TableCell sx={{ maxWidth: '20%', wordBreak: 'break-word' }} align="left">
+      <TableCell sx={{ maxWidth: '350px', wordBreak: 'break-word' }} align="left">
         {card.questionImg ? <img className={s.img} src={card.questionImg} alt="question card cover" /> : card.question}
       </TableCell>
-      <TableCell sx={{ maxWidth: '20%', wordBreak: 'break-word' }} align="left">
+      <TableCell sx={{ maxWidth: '350px', wordBreak: 'break-word' }} align="left">
         {card.answerImg ? <img className={s.img} src={card.answerImg} alt="question card cover" /> : card.answer}
       </TableCell>
       <TableCell align="center">{stringDate}</TableCell>
