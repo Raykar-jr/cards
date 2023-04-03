@@ -58,21 +58,7 @@ const RegistrationForm: React.FC<Props> = ({ formik }) => {
 
           <FormControl variant="standard" margin="normal">
             <InputLabel>Confirm password</InputLabel>
-            <Input
-              type={showPassword ? 'text' : 'password'}
-              {...formik.getFieldProps('confirmPassword')}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle confirm password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
+            <Input type={'password'} {...formik.getFieldProps('confirmPassword')} />
           </FormControl>
 
           {formik.touched.confirmPassword && formik.errors.confirmPassword && (

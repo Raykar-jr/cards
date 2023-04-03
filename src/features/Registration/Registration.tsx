@@ -13,9 +13,7 @@ import s from 'features/Registration/Registration.module.scss'
 import RegistrationForm from 'features/Registration/RegistrationForm/RegistrationForm'
 import { validationRegistrationForm } from 'features/Registration/validationRegistrationForm'
 
-type Login = {}
-
-const Registration: React.FC<Login> = () => {
+const Registration: React.FC = () => {
   const dispatch = useAppDispatch()
   const isRegistered = useAppSelector<boolean>(state => state.registration.isRegistered)
 
